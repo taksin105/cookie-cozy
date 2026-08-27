@@ -1,1242 +1,2606 @@
 <!DOCTYPE html>
-<html lang="th" data-theme="dark">
+<html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Taksin Nisaphawanit - Portfolio</title>
-  <meta name="description" content="Portfolio ของทักษิณ นิสภวาณิชย์ นักศึกษาสาขาเทคโนโลยีสารสนเทศและผู้พัฒนา Web Application" />
-  <meta property="og:title" content="Taksin Nisaphawanit - Portfolio" />
-  <meta property="og:description" content="Portfolio ของทักษิณ นิสภวาณิชย์ | Software Development • Web Development" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://taksin105.github.io/" />
-  <meta property="og:image" content="https://taksin105.github.io/images/profile.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Taksin Nisaphawanit - Portfolio" />
-  <meta name="twitter:description" content="Portfolio ของทักษิณ นิสภวาณิชย์ | Software Developer • Web Developer" />
-  <meta name="color-scheme" content="dark light">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5a2d18">
+  <title>Cookie Cozy | คุกกี้โฮมเมดพรีเมียม กรอบนอก นุ่มใน อร่อยทุกคำ</title>
+  <meta name="description" content="Cookie Cozy คุกกี้โฮมเมดเกรดพรีเมียม เนยแท้ฝรั่งเศส อบสดใหม่ทุกออเดอร์ พร้อมระบบเลือกคุกกี้ตามอารมณ์ กล่องของขวัญ Custom Box และคุกกี้เสี่ยงทาย">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== CSS Variables: Dark & Light ===== */
     :root {
-      --bg: #0b0c10;     /* พื้นหลังเข้ม */
-      --bg-soft: #0d1016; /* ไล่ชั้น */
-      --card: #121318;   /* กล่อง */
-      --text: #e8eef5;   /* ตัวอักษรหลัก */
-      --muted: #9fb0c6;  /* ตัวอักษรรอง */
-      --primary: #4f8cff;/* สีหลัก */
-      --accent: #00d094; /* ไฮไลท์ */
-      --border: #21222a; /* เส้นแบ่ง */
-      --ring: rgba(79, 140, 255, 0.5);
-      --glow: 0 0 0 rgba(79, 140, 255, 0);
-      --radius: 18px;
-    }
-    [data-theme="light"]{
-      --bg: #f7f8fb;
-      --bg-soft: #eef1f7;
-      --card: #ffffff;
-      --text: #0e1726;
-      --muted: #51607a;
-      --primary: #265bff;
-      --accent: #00a878;
-      --border: #e7e9f1;
-      --ring: rgba(38, 91, 255, 0.25);
+      --cream: #fff9f0;
+      --paper: #ffffff;
+      --tan: #f5dfbc;
+      --peach: #f1c982;
+      --caramel: #bf7739;
+      --caramel-hover: #a36129;
+      --cocoa: #5a2d18;
+      --cocoa-dark: #3a1a0c;
+      --ink: #321f17;
+      --muted: #7c6252;
+      --line: #ebdcc9;
+      --gold: #d4a359;
+      --shadow-sm: 0 4px 12px rgba(90, 45, 24, 0.06);
+      --shadow-md: 0 10px 25px rgba(90, 45, 24, 0.1);
+      --shadow-lg: 0 20px 45px rgba(90, 45, 24, 0.15);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    /* ===== Base ===== */
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:100px}
-    body{
-      margin:0;
-      font-family:"Kanit",system-ui,-apple-system,"Inter",Segoe UI,Roboto;
-      line-height:1.6;
-      background: radial-gradient(1200px 800px at 20% -10%, rgba(79,140,255,.08), transparent 60%),
-                  radial-gradient(1000px 700px at 85% 10%, rgba(0,208,148,.08), transparent 60%),
-                  var(--bg);
-      color:var(--text);
-      min-height:100dvh;
-    }
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-
-    /* ===== Fancy Background Grid & Noise ===== */
-    .bg-grid:before{
-      content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;
-      background: linear-gradient(var(--bg), var(--bg-soft));
-    }
-    .bg-grid:after{
-      content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-      background-image: linear-gradient(transparent 95%, rgba(127,127,127,.08) 95%),
-                        linear-gradient(90deg, transparent 95%, rgba(127,127,127,.08) 95%);
-      background-size: 22px 22px, 22px 22px;
-      -webkit-mask-image: radial-gradient(60% 50% at 50% 0%, black, transparent 80%);
-      mask-image: radial-gradient(60% 50% at 50% 0%, black, transparent 80%);
-      opacity:.5;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    /* ===== Animated Gradient Orbs ===== */
-    .orb{
-      position:fixed;border-radius:50%;filter:blur(80px);opacity:.4;pointer-events:none;z-index:-1;
-      animation:float 20s ease-in-out infinite;
-    }
-    .orb-1{width:400px;height:400px;background:radial-gradient(circle, rgba(79,140,255,.6), transparent 70%);top:-10%;left:10%;animation-delay:0s}
-    .orb-2{width:350px;height:350px;background:radial-gradient(circle, rgba(0,208,148,.5), transparent 70%);top:30%;right:5%;animation-delay:-7s}
-    .orb-3{width:300px;height:300px;background:radial-gradient(circle, rgba(147,51,234,.4), transparent 70%);bottom:10%;left:20%;animation-delay:-14s}
-    @keyframes float{
-      0%,100%{transform:translate(0,0) scale(1)}
-      33%{transform:translate(30px,-30px) scale(1.1)}
-      66%{transform:translate(-20px,20px) scale(.9)}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
-    /* ===== Particles ===== */
-    .particle{
-      position:fixed;width:4px;height:4px;background:var(--primary);border-radius:50%;
-      pointer-events:none;z-index:-1;opacity:.3;
-      animation:particle-float 15s linear infinite;
-    }
-    @keyframes particle-float{
-      0%{transform:translateY(100vh) translateX(0) scale(0);opacity:0}
-      10%{opacity:.3}
-      90%{opacity:.3}
-      100%{transform:translateY(-100vh) translateX(100px) scale(1);opacity:0}
+    body {
+      font-family: 'Kanit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.55;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* ===== Header / Nav ===== */
-    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-    [data-theme="light"] header{background:rgba(255,255,255,.6)}
-    .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .brand .dot{
-      width:10px;height:10px;border-radius:50%;background:var(--accent);
-      box-shadow:0 0 16px 4px rgba(0,208,148,.35);
-      animation:dot-pulse 2s ease-in-out infinite;
-    }
-    @keyframes dot-pulse{
-      0%,100%{transform:scale(1);box-shadow:0 0 16px 4px rgba(0,208,148,.35)}
-      50%{transform:scale(1.2);box-shadow:0 0 24px 6px rgba(0,208,148,.6)}
-    }
-    .brand .logotype{letter-spacing:.3px}
-    .nav a{color:var(--text);text-decoration:none;opacity:.85;padding:8px 10px;border-radius:10px}
-    .nav a:hover{opacity:1;background:rgba(127,127,127,.08)}
-    .nav a.active{background:linear-gradient(90deg, rgba(79,140,255,.18), rgba(0,208,148,.18));outline:1px solid var(--border)}
-    .menu{display:flex;gap:8px;flex-wrap:wrap}
-    .btn{
-      border:1px solid var(--border);background:var(--card);color:var(--text);
-      padding:8px 12px;border-radius:12px;cursor:pointer;position:relative;overflow:hidden;
-      transition:transform .2s ease, box-shadow .3s ease, border-color .3s ease, color .2s ease;
-      z-index:10;
-    }
-    .btn:before{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
-      transform:translateX(-100%);transition:transform .3s ease;
-      z-index:-1;
-    }
-    .btn:hover{
-      border-color:var(--primary);transform:translateY(-2px) scale(1.02);
-      box-shadow:0 8px 24px -12px var(--ring);color:var(--primary);
-    }
-    .btn:hover:before{transform:translateX(0)}
-
-    /* ===== Hero / Cards ===== */
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start;margin-top:24px}
-    
-    /* ===== Enhanced Intro Section ===== */
-    .intro-badge{
-      display:inline-block;padding:6px 14px;border-radius:999px;
-      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
-      border:1px solid var(--border);font-size:14px;margin-bottom:16px;
-      animation:badge-float 3s ease-in-out infinite;
-    }
-    @keyframes badge-float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-5px)}
-    }
-    .intro-card h1{margin-bottom:8px}
-    .nickname,.nickname-en{
-      font-size:24px;color:var(--muted);font-weight:400;
-    }
-    .intro-info{
-      display:flex;flex-direction:column;gap:16px;margin:24px 0;
-    }
-    .info-item{
-      display:flex;gap:12px;align-items:start;
-      padding:12px;border-radius:12px;
-      background:linear-gradient(135deg, rgba(79,140,255,.05), rgba(0,208,148,.05));
-      border:1px solid var(--border);
-      transition:all .3s ease;
-    }
-    .info-item:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
-      transform:translateX(8px);
-    }
-    .info-icon{font-size:28px}
-    .info-item strong{display:block;margin-bottom:2px;color:var(--text)}
-    .info-item .muted{margin:0;font-size:14px}
-    
-    .intro-actions{
-      display:flex;gap:12px;margin:24px 0;flex-wrap:wrap;
-    }
-    .btn-primary,.btn-secondary{
-      padding:12px 24px;border-radius:12px;text-decoration:none;
-      font-weight:600;font-size:15px;
-      transition:all .3s ease;display:inline-flex;align-items:center;gap:8px;
-      border:2px solid var(--border);
-    }
-    .btn-primary{
-      background:linear-gradient(135deg, var(--primary), var(--accent));
-      color:#fff;border-color:transparent;
-      box-shadow:0 4px 16px -4px var(--ring);
-    }
-    .btn-primary:hover{
-      transform:translateY(-3px);
-      box-shadow:0 8px 24px -4px var(--ring);
-    }
-    .btn-secondary{
-      background:var(--card);color:var(--text);
-    }
-    .btn-secondary:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
-      border-color:var(--primary);transform:translateY(-3px);
-    }
-    
-    .intro-stats{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-      margin-top:24px;padding-top:24px;border-top:1px solid var(--border);
-    }
-    .stat-item{text-align:center}
-    .stat-value{
-      font-size:32px;font-weight:700;
-      background:linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .stat-label{font-size:13px;color:var(--muted);margin-top:4px}
-    
-    .profile-card{position:relative;overflow:visible}
-    .profile-wrapper{
-      position:relative;display:flex;flex-direction:column;align-items:center;
-    }
-    .profile-ring{
-      position:absolute;inset:-8px;border-radius:50%;
-      background:linear-gradient(135deg, var(--primary), var(--accent));
-      opacity:.3;filter:blur(20px);
-      animation:ring-pulse 3s ease-in-out infinite;
-    }
-    @keyframes ring-pulse{
-      0%,100%{transform:scale(1);opacity:.3}
-      50%{transform:scale(1.1);opacity:.5}
-    }
-    .profile-img{
-      width:100%;aspect-ratio:1/1;object-fit:cover;
-      border-radius:50%;position:relative;z-index:1;
-      border:4px solid var(--card);
-      box-shadow:0 8px 32px -8px rgba(0,0,0,.3);
-      transition:transform .5s ease;
-    }
-    .profile-card:hover .profile-img{
-      transform:scale(1.05) rotate(5deg);
-    }
-    .profile-status{
-      margin-top:16px;display:flex;align-items:center;gap:8px;
-      padding:8px 16px;border-radius:999px;
-      background:linear-gradient(135deg, rgba(0,208,148,.15), rgba(79,140,255,.15));
-      border:1px solid var(--border);font-size:13px;
-    }
-    .status-dot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 0 3px rgba(0,208,148,.3);
-      animation:status-blink 2s ease-in-out infinite;
-    }
-    @keyframes status-blink{
-      0%,100%{opacity:1}
-      50%{opacity:.5}
-    }
-    
-    .social-links{
-      display:flex;gap:10px;justify-content:center;margin-top:20px;
-    }
-    .social-btn{
-      width:44px;height:44px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      background:var(--card);border:1px solid var(--border);
-      color:var(--text);text-decoration:none;
-      transition:all .3s ease;
-    }
-    .social-btn:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
-      border-color:var(--primary);transform:translateY(-4px) rotate(10deg);
-      box-shadow:0 8px 16px -4px var(--ring);
-    }
-    .card{
-      background:linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 0%), color-mix(in oklab, var(--card), transparent 14%));
-      padding:18px;border:1px solid var(--border);border-radius:var(--radius);position:relative;overflow:hidden;
-      transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
-      animation:card-float 6s ease-in-out infinite;
-    }
-    .card:nth-child(2n){animation-delay:-3s}
-    .card:nth-child(3n){animation-delay:-1.5s}
-    @keyframes card-float{
-      0%,100%{transform:translateY(0px)}
-      50%{transform:translateY(-8px)}
-    }
-    .card:before{
-      content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
-      background:linear-gradient(120deg, rgba(79,140,255,.5), rgba(0,208,148,.4) 40%, transparent 60%);
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-      mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      mask-composite:exclude;
-      opacity:.25;transition:opacity .3s ease;
-    }
-    .card:after{
-      content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-      background:conic-gradient(from 0deg at 50% 50%, transparent, rgba(79,140,255,.15), transparent 30%);
-      animation:card-rotate 8s linear infinite;opacity:0;transition:opacity .3s ease;
-      pointer-events:none;z-index:0;
-    }
-    .card > *{position:relative;z-index:1}
-    @keyframes card-rotate{
-      to{transform:rotate(360deg)}
-    }
-    .card:hover{
-      box-shadow:0 20px 40px -20px var(--ring), 0 1px 0 0 rgba(255,255,255,.04) inset;
-      transform:translateY(-6px) scale(1.02);animation-play-state:paused;
-    }
-    .card:hover:before{opacity:.7}
-    .card:hover:after{opacity:1}
-
-    h1{font-size:36px;line-height:1.25;margin:0 0 8px}
-    h2{font-size:28px;margin:0 0 12px}
-    h3{font-size:20px;margin:0 0 10px}
-    p.lead{font-size:18px;color:var(--muted);margin-top:4px}
-
-    /* Gradient text shimmer for name */
-    .shine{
-      background:linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-      background-size:200% 100%;
-      -webkit-background-clip:text;background-clip:text;color:transparent;position:relative;
-      animation:gradient-shift 3s ease infinite;
-    }
-    @keyframes gradient-shift{
-      0%,100%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-    }
-    .shine:after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.8) 50%, transparent 70%);
-      transform:skewX(-20deg) translateX(-120%);
-      animation:shine 3s ease-in-out infinite;
-    }
-    @keyframes shine{to{transform:skewX(-20deg) translateX(120%)}}
-
-    .grid{display:grid;gap:24px}
-    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-    
-    /* ===== Enhanced Skills Section ===== */
-    .skill-category{
-      margin-bottom:32px;padding:24px;border-radius:var(--radius);
-      background:linear-gradient(135deg, rgba(79,140,255,.03), rgba(0,208,148,.03));
-      border:1px solid var(--border);
-      transition:all .3s ease;
-    }
-    .skill-category:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.06), rgba(0,208,148,.06));
-      box-shadow:0 8px 24px -8px var(--ring);
-    }
-    .category-header{
-      display:flex;align-items:center;gap:12px;margin-bottom:20px;
-    }
-    .category-icon{font-size:32px}
-    .category-header h3{margin:0;font-size:22px}
-    
-    .skill-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
-    }
-    .skill-item{
-      display:flex;flex-direction:column;gap:8px;
-      padding:16px;border-radius:12px;
-      background:var(--card);border:1px solid var(--border);
-      transition:all .3s ease;
-    }
-    .skill-item:hover{
-      transform:translateY(-4px);
-      box-shadow:0 8px 20px -8px var(--ring);
-      border-color:var(--primary);
-    }
-    .skill-icon{
-      font-size:28px;margin-bottom:4px;
-      display:flex;align-items:center;justify-content:center;
-      width:48px;height:48px;border-radius:12px;
-      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
-    }
-    .skill-icon svg{width:24px;height:24px;color:var(--primary)}
-    .skill-name{
-      font-weight:600;font-size:15px;color:var(--text);
-    }
-    
-    .soft-skills{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:16px;
-    }
-    .soft-skill-item{
-      display:flex;align-items:center;gap:12px;
-      padding:16px 20px;border-radius:12px;
-      background:var(--card);border:1px solid var(--border);
-      transition:all .3s ease;font-weight:500;
-    }
-    .soft-skill-item:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
-      border-color:var(--primary);
-      transform:translateX(8px);
-    }
-    .soft-icon{font-size:24px}
-
-    .pill{
-      display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;
-      font-size:14px;color:var(--muted);margin:4px 6px 0 0;position:relative;
-      transition:transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
-    }
-    .pill:hover{
-      transform:translateY(-3px) scale(1.05);
-      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
-      border-color:var(--primary);color:var(--text);
-      box-shadow:0 4px 12px -4px var(--ring);
+    /* Ambient Warm Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image: radial-gradient(#d6b384 0.75px, transparent 0.75px);
+      background-size: 20px 20px;
+      mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
+      z-index: -1;
     }
 
-    .tag{
-      font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;
-      color:var(--muted);transition:background .2s, color .2s;
-      position:relative;z-index:10;
-    }
-    .tag:hover{background:rgba(127,127,127,.12);color:var(--text)}
-
-    .section{padding:8px 0 28px}
-    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-    .section-title .hash{color:var(--primary);font-weight:700}
-    .list{display:grid;gap:10px}
-    .list li{margin-left:20px}
-    .row{display:flex;gap:14px;flex-wrap:wrap}
-    .kpi{padding:12px 14px;border:1px dashed var(--border);border-radius:12px;color:var(--muted);background:linear-gradient(180deg, transparent, rgba(127,127,127,.04))}
-
-    .project{display:flex;flex-direction:column;gap:12px;height:100%}
-    .project .thumb{
-      position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);
-      box-shadow:0 4px 12px -4px rgba(0,0,0,.15);
-      transition:box-shadow .4s ease, transform .4s ease;
-    }
-    .project img{
-      width:100%;height:220px;object-fit:cover;display:block;transform:scale(1);
-      transition:transform .7s cubic-bezier(.34,1.56,.64,1), filter .4s ease;
-    }
-    .project .thumb:after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.6));
-      opacity:.3;transition:opacity .4s;pointer-events:none;
-    }
-    .project .thumb:before{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(135deg, rgba(79,140,255,.4), rgba(0,208,148,.4));
-      opacity:0;transition:opacity .4s;mix-blend-mode:overlay;pointer-events:none;
-    }
-    .project:hover .thumb{
-      box-shadow:0 12px 32px -8px rgba(79,140,255,.3);
-      transform:translateY(-4px);
-    }
-    .project:hover img{transform:scale(1.15);filter:brightness(1.15) saturate(1.1)}
-    .project:hover .thumb:after{opacity:.5}
-    .project:hover .thumb:before{opacity:1}
-    .project h3{
-      font-size:18px;line-height:1.3;margin:0;
-      background:linear-gradient(135deg, var(--text), var(--primary));
-      -webkit-background-clip:text;background-clip:text;
-      transition:color .3s ease;
-    }
-    .project:hover h3{color:transparent}
-    .project a{
-      color:var(--primary);text-decoration:none;position:relative;z-index:10;
-      padding:8px 14px;border:1px solid var(--border);border-radius:8px;
-      background:linear-gradient(135deg, rgba(79,140,255,.08), rgba(0,208,148,.08));
-      transition:all .3s ease;display:inline-block;font-size:14px;font-weight:500;
-    }
-    .project a:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
-      border-color:var(--primary);transform:translateY(-2px);
-      box-shadow:0 4px 12px -4px var(--ring);
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    .timeline{position:relative;padding-left:20px}
-    .timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
-    .timeline .item{position:relative;padding-left:16px;margin-bottom:12px}
-    .timeline .item:before{content:"";position:absolute;left:-2px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%)}
-
-    /* ===== Contact Items ===== */
-    .contact-item{
-      text-align:center;padding:18px 16px;position:relative;
-      transition:transform .3s ease, box-shadow .3s ease;
-      cursor:pointer;
-    }
-    .contact-item:hover{
-      transform:translateY(-4px);
-      box-shadow:0 12px 32px -12px var(--ring);
-    }
-    .contact-item .contact-link{position:relative;z-index:2}
-    .contact-item:before{
-      content:"";position:absolute;inset:0;z-index:1;
-    }
-    .contact-icon{
-      font-size:32px;margin-bottom:8px;
-      display:inline-flex;align-items:center;justify-content:center;
-      width:56px;height:56px;border-radius:50%;
-      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
-      border:2px solid var(--border);
-      transition:all .3s ease;
-    }
-    .contact-icon svg{
-      width:26px;height:26px;color:var(--primary);
-      transition:transform .3s ease;
-    }
-    .contact-item:hover .contact-icon{
-      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
-      border-color:var(--primary);
-      transform:scale(1.08) rotate(5deg);
-    }
-    .contact-item:hover .contact-icon svg{
-      transform:scale(1.1);
-    }
-    .contact-item h3{
-      font-size:14px;margin:8px 0 6px;color:var(--text);
-      font-weight:600;
-    }
-    .contact-link{
-      color:var(--primary);text-decoration:none;
-      font-size:13px;display:block;margin-top:2px;
-      transition:color .3s ease;word-break:break-word;
-      line-height:1.4;
-    }
-    .contact-link:hover{color:var(--accent)}
-    .btn-copy{
-      margin-top:8px;padding:4px 10px;font-size:12px;
-      border:1px solid var(--border);background:var(--card);
-      color:var(--text);border-radius:6px;cursor:pointer;
-      transition:all .3s ease;position:relative;
-    }
-    .btn-copy:hover{
-      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
-      border-color:var(--primary);transform:translateY(-2px);
+    button {
+      font-family: inherit;
     }
 
-    footer{border-top:1px solid var(--border);margin-top:24px}
-    .muted{color:var(--muted)}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-    /* ===== Scroll Reveal (initial state) ===== */
-    .reveal{
-      opacity:0;transform:translateY(30px) scale(.95);
-      transition:opacity .8s cubic-bezier(.34,1.56,.64,1), transform .8s cubic-bezier(.34,1.56,.64,1);
-    }
-    .reveal.show{opacity:1;transform:translateY(0) scale(1)}
-
-    /* ===== Back-To-Top FAB ===== */
-    .fab{
-      position:fixed;right:18px;bottom:18px;z-index:60;
-      border:1px solid var(--border);background:var(--card);color:var(--text);
-      padding:10px 14px;border-radius:999px;cursor:pointer;
-      box-shadow:0 10px 30px -18px var(--ring);
-      display:none;align-items:center;gap:8px;
-      transition:transform .3s ease, box-shadow .3s ease;
-      animation:fab-pulse 2s ease-in-out infinite;
-    }
-    @keyframes fab-pulse{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.05)}
-    }
-    .fab.show{display:flex}
-    .fab:hover{
-      transform:translateY(-4px) scale(1.1);
-      box-shadow:0 15px 40px -15px var(--ring);
-      animation-play-state:paused;
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    /* ===== Tooltip (for copy buttons) ===== */
-    .tip{position:relative}
-    .tip .tiptext{position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--card);color:var(--text);border:1px solid var(--border);padding:6px 8px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
-    .tip.show .tiptext{opacity:1}
-
-    /* ===== Image Slider ===== */
-    .slider{position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--border)}
-    .slider-wrapper{display:flex;transition:transform .5s ease-in-out}
-    .slider-wrapper img{width:100%;flex-shrink:0;display:block;object-fit:cover;height:400px}
-    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.2);padding:12px 16px;cursor:pointer;border-radius:8px;z-index:10;transition:background .3s ease, transform .2s ease;backdrop-filter:blur(8px)}
-    .slider-btn:hover{background:rgba(0,0,0,.8);transform:translateY(-50%) scale(1.1)}
-    .slider-btn.prev{left:12px}
-    .slider-btn.next{right:12px}
-    .slider-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
-    .slider-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .3s ease, transform .2s ease}
-    .slider-dot.active{background:var(--primary);transform:scale(1.3)}
-    .slider-dot:hover{background:var(--accent)}
-
-    /* ===== Responsive ===== */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-    }
-    @media (max-width:640px){
-      .grid.cols-2{grid-template-columns:1fr}
-      .grid.cols-3{grid-template-columns:1fr}
-      .project img{height:200px}
+    /* Top Live Batch Countdown Bar */
+    .topbar {
+      background: var(--cocoa-dark);
+      color: #fff6eb;
+      text-align: center;
+      font-size: 0.88rem;
+      padding: 9px 16px;
+      position: relative;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    /* ===== Reduced motion ===== */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none!important;transition:none!important}
+    .batch-timer-badge {
+      background: rgba(241, 201, 130, 0.25);
+      border: 1px solid var(--peach);
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      color: var(--peach);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* Neutral skill badges keep the section consistent across platforms. */
-    .category-icon{font-family:"Inter",sans-serif;font-size:20px;font-weight:700;letter-spacing:-.08em;color:var(--primary)}
-    .skill-icon{font-family:"Inter",sans-serif;font-size:11px;font-weight:700;letter-spacing:-.03em;color:var(--primary)}
-    .soft-icon{font-family:"Inter",sans-serif;font-size:11px;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums}
-    .skill-category{padding:22px;margin-bottom:22px;background:rgba(18,19,24,.74);border:1px solid var(--border);border-radius:14px}
-    .skill-category:hover{background:rgba(18,19,24,.82)}
-    .skill-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .skill-item{min-height:108px;justify-content:space-between}
-    .soft-skills{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-    @media (max-width:640px){.skill-grid,.soft-skills{grid-template-columns:repeat(2,minmax(0,1fr))}.skill-category{padding:16px}.skill-item{min-height:96px}}
+    /* Main Sticky Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 249, 240, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(235, 220, 201, 0.7);
+      transition: var(--transition);
+    }
 
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand img {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .brand:hover img {
+      transform: scale(1.04);
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .navlinks a {
+      color: var(--muted);
+      position: relative;
+      padding: 6px 2px;
+      transition: color 0.25s ease;
+    }
+
+    .navlinks a:hover {
+      color: var(--cocoa);
+    }
+
+    .navlinks a.nav-highlight {
+      color: var(--caramel);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-icon {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      color: var(--cocoa);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .btn-icon:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+      border-color: var(--caramel);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--caramel);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      border-radius: var(--radius-full);
+      display: grid;
+      place-items: center;
+      padding: 0 4px;
+      box-shadow: 0 2px 6px rgba(191, 119, 57, 0.4);
+    }
+
+    .user-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--cocoa);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .user-btn:hover {
+      border-color: var(--caramel);
+      background: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .user-btn .user-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--peach);
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--cocoa);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--cocoa);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.98rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(90, 45, 24, 0.18);
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--caramel-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(90, 45, 24, 0.25);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #fff;
+      color: var(--cocoa);
+      padding: 11px 22px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--line);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--caramel);
+      color: var(--caramel);
+      transform: translateY(-2px);
+      background: #fffdfa;
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #d48f3b 0%, #bf7739 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(191, 119, 57, 0.28);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 55px 0 65px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(241, 201, 130, 0.3);
+      border: 1px solid rgba(191, 119, 57, 0.35);
+      color: var(--caramel);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      line-height: 1.08;
+      color: var(--cocoa);
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--caramel);
+    }
+
+    .hero-desc {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 30px;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-item span {
+      color: var(--caramel);
+      font-size: 1.1rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-image-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 4px solid #fff;
+      aspect-ratio: 16/11;
+      background: #eae0d4;
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-image-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .floating-badge {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(235, 220, 201, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: var(--cocoa);
+      animation: floatSlow 4s ease-in-out infinite alternate;
+      z-index: 5;
+    }
+
+    .badge-top { top: -16px; right: -10px; }
+    .badge-bottom { bottom: -18px; left: -12px; animation-delay: 1.5s; }
+
+    @keyframes floatSlow {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+
+    .badge-icon { font-size: 1.35rem; }
+    .badge-text strong { display: block; font-size: 0.92rem; font-weight: 700; color: var(--cocoa); }
+    .badge-text span { font-size: 0.76rem; color: var(--muted); }
+
+    /* Marquee Strip */
+    .marquee-strip {
+      background: var(--cocoa);
+      color: #fff7eb;
+      padding: 13px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      transform: rotate(-1deg) scale(1.01);
+      margin: 20px 0 55px;
+      box-shadow: 0 6px 20px rgba(90, 45, 24, 0.12);
+    }
+
+    .marquee-content {
+      display: inline-flex;
+      gap: 36px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-content b { color: var(--peach); }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Section Headings */
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+
+    .section-kicker {
+      font-size: 0.88rem;
+      color: var(--caramel);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+      color: var(--cocoa);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    /* 1. MOOD MATCHER SECTION */
+    .mood-section { padding: 50px 0 80px; }
+    .mood-box-container {
+      background: linear-gradient(145deg, #ffffff 0%, #fffbf5 100%);
+      border: 1.5px solid var(--line);
+      border-radius: 32px;
+      padding: 42px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mood-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 28px 0 32px;
+    }
+
+    .mood-card-btn {
+      background: var(--cream);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mood-card-btn:hover {
+      background: #fff;
+      border-color: var(--caramel);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mood-card-btn.active {
+      background: var(--cocoa);
+      color: #fff;
+      border-color: var(--cocoa);
+      box-shadow: 0 6px 18px rgba(90, 45, 24, 0.22);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .mood-icon { font-size: 1.8rem; }
+    .mood-label { font-size: 0.86rem; font-weight: 600; }
+    .mood-sublabel { font-size: 0.72rem; color: var(--muted); line-height: 1.2; }
+    .mood-card-btn.active .mood-sublabel { color: #ebdcc9; }
+
+    .mood-result-panel {
+      background: #fff9f0;
+      border: 1.5px solid var(--peach);
+      border-radius: 24px;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: center;
+      gap: 32px;
+      animation: fadeIn 0.4s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mood-cookie-visual {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      box-shadow: var(--shadow-md);
+      border: 3px solid #fff;
+      background: #eee3d5;
+    }
+
+    .mood-cookie-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .mood-result-info h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem;
+      color: var(--cocoa);
+      margin-bottom: 6px;
+    }
+
+    .mood-quote {
+      font-style: italic;
+      color: var(--caramel);
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .mood-reason { color: var(--muted); font-size: 0.94rem; line-height: 1.6; margin-bottom: 18px; }
+    .flavor-profile { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .tag-badge { background: #fff; border: 1px solid var(--line); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 500; color: var(--cocoa); }
+    .mood-actions { display: flex; align-items: center; gap: 14px; }
+    .mood-price { font-size: 1.35rem; font-weight: 700; color: var(--caramel); }
+
+    /* 2. CUSTOM BOX BUILDER SECTION */
+    .box-builder-section {
+      padding: 50px 0 80px;
+    }
+
+    .builder-container {
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .builder-box-view {
+      background: #faf5ec;
+      border: 2px dashed var(--caramel);
+      border-radius: 26px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .box-ribbon-preview {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--caramel);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+    }
+
+    .slots-grid {
+      display: grid;
+      gap: 16px;
+      margin: 25px 0 20px;
+    }
+
+    .slots-4 { grid-template-columns: repeat(2, 1fr); max-width: 320px; margin-inline: auto; }
+    .slots-6 { grid-template-columns: repeat(3, 1fr); max-width: 440px; margin-inline: auto; }
+    .slots-12 { grid-template-columns: repeat(4, 1fr); max-width: 500px; margin-inline: auto; }
+
+    .box-slot {
+      aspect-ratio: 1/1;
+      border-radius: 18px;
+      background: #fff;
+      border: 2px dashed var(--line);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .box-slot:hover {
+      border-color: var(--caramel);
+      transform: scale(1.04);
+      background: #fffcf8;
+    }
+
+    .box-slot.filled {
+      border-style: solid;
+      border-color: var(--peach);
+      padding: 0;
+    }
+
+    .box-slot.filled img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .box-slot.filled .slot-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      border: none;
+    }
+
+    .slot-empty-icon { font-size: 1.5rem; color: var(--caramel); margin-bottom: 4px; }
+    .slot-empty-text { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+
+    /* Builder Config Panel */
+    .builder-config-panel h3 {
+      font-size: 1.5rem;
+      color: var(--cocoa);
+      margin-bottom: 16px;
+    }
+
+    .builder-step-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--cocoa);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .size-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .size-btn {
+      padding: 10px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--line);
+      background: #fff;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .size-btn.active {
+      border-color: var(--cocoa);
+      background: var(--cocoa);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .size-btn strong { display: block; font-size: 0.92rem; }
+    .size-btn span { font-size: 0.78rem; opacity: 0.85; }
+
+    .ribbon-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .ribbon-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--line);
+      background: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .ribbon-pill.active {
+      border-color: var(--caramel);
+      background: #fff5e6;
+      font-weight: 600;
+      color: var(--caramel);
+    }
+
+    .ribbon-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+
+    /* Gift Card Preview */
+    .card-customizer {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 22px;
+    }
+
+    .card-input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    /* 3. DAILY FORTUNE COOKIE SECTION */
+    .fortune-section {
+      padding: 50px 0 80px;
+    }
+
+    .fortune-container {
+      background: linear-gradient(135deg, #442211 0%, #291206 100%);
+      color: #fff;
+      border-radius: 32px;
+      padding: 50px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .fortune-interactive-area {
+      max-width: 580px;
+      margin: 30px auto 0;
+    }
+
+    .fortune-cookie-btn {
+      font-size: 5.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-block;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+    }
+
+    .fortune-cookie-btn:hover {
+      transform: scale(1.12) rotate(-5deg);
+    }
+
+    .fortune-paper-slip {
+      display: none;
+      background: #fffdf5;
+      color: var(--cocoa);
+      padding: 24px 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      border-left: 6px solid var(--gold);
+      margin-top: 20px;
+      animation: paperUnfold 0.5s ease;
+      text-align: left;
+    }
+
+    @keyframes paperUnfold {
+      0% { transform: scaleY(0.1); opacity: 0; }
+      100% { transform: scaleY(1); opacity: 1; }
+    }
+
+    .fortune-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--cocoa);
+      margin-bottom: 8px;
+    }
+
+    .fortune-promo-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #faf4e8;
+      border: 1px dashed var(--gold);
+      padding: 10px 16px;
+      border-radius: 12px;
+      margin-top: 14px;
+    }
+
+    /* 4. MENU SECTION WITH DIETARY FILTERS */
+    .menu-section { padding: 50px 0 80px; }
+
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .cat-pill {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cat-pill:hover {
+      border-color: var(--caramel);
+      color: var(--cocoa);
+    }
+
+    .cat-pill.active {
+      background: var(--cocoa);
+      color: #fff;
+      border-color: var(--cocoa);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cookie-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .cookie-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 15px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .cookie-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--peach);
+    }
+
+    .cookie-thumb {
+      aspect-ratio: 1/1;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: #f4eae0;
+      margin-bottom: 12px;
+    }
+
+    .cookie-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .cookie-card:hover .cookie-thumb img { transform: scale(1.06); }
+
+    .cookie-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(90, 45, 24, 0.88);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-bestseller { background: linear-gradient(135deg, #d48f3b, #bf7739); }
+
+    /* Drink Pairing Tag */
+    .drink-pairing-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      color: var(--cocoa);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .cookie-info { flex: 1; display: flex; flex-direction: column; }
+    .cookie-title { font-size: 1.1rem; font-weight: 600; color: var(--cocoa); margin-bottom: 3px; }
+    .cookie-desc { font-size: 0.84rem; color: var(--muted); margin-bottom: 10px; line-height: 1.35; flex: 1; }
+
+    .btn-nutrition {
+      background: none;
+      border: none;
+      color: var(--caramel);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-nutrition:hover { text-decoration: underline; }
+
+    .cookie-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid rgba(235, 220, 201, 0.6);
+    }
+
+    .cookie-price { font-size: 1.25rem; font-weight: 700; color: var(--caramel); }
+    .btn-add-cart {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--cocoa);
+      font-size: 1.25rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-add-cart:hover {
+      background: var(--cocoa);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    /* 5. COOKIE WARMING GUIDE & TIMER SECTION */
+    .warming-section {
+      padding: 50px 0 80px;
+    }
+
+    .warming-card {
+      background: var(--tan);
+      border-radius: 32px;
+      padding: 45px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .timer-widget {
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .timer-display {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: var(--cocoa);
+      line-height: 1;
+      margin: 14px 0 16px;
+    }
+
+    .timer-method-tabs {
+      display: flex;
+      background: var(--cream);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .timer-method-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 8px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .timer-method-btn.active {
+      background: var(--cocoa);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .timer-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* 6. GIFT SETS & PROMOTIONS */
+    .promo-section { padding: 40px 0 80px; }
+    .giftbox-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 28px; }
+    .gift-card { background: var(--paper); border: 1.5px solid var(--line); border-radius: 26px; padding: 30px 24px; display: flex; flex-direction: column; position: relative; transition: var(--transition); }
+    .gift-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .gift-card.featured { border-color: var(--caramel); background: #fffcf7; transform: scale(1.02); }
+    .featured-ribbon { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--caramel); color: #fff; padding: 4px 18px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; }
+    .gift-title { font-family: 'DM Serif Display', serif; font-size: 1.55rem; color: var(--cocoa); margin-bottom: 4px; }
+    .gift-price { font-size: 1.9rem; font-weight: 700; color: var(--caramel); margin: 10px 0 14px; }
+    .gift-price span { font-size: 0.9rem; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
+    .gift-perks { list-style: none; display: grid; gap: 8px; margin-bottom: 24px; flex: 1; font-size: 0.9rem; color: var(--muted); }
+    .gift-perks li::before { content: "✓ "; color: var(--caramel); font-weight: 700; }
+
+    /* Quality Story & Reviews */
+    .about-section { padding: 50px 0 80px; }
+    .quality-banner { background: #fffdf8; border: 1.5px solid var(--line); border-radius: 32px; padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .quality-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pillar-box { background: var(--cream); border: 1px solid var(--line); padding: 18px; border-radius: 18px; }
+    .pillar-box h4 { font-size: 1rem; color: var(--cocoa); margin: 6px 0 3px; }
+    .pillar-box p { font-size: 0.82rem; color: var(--muted); }
+
+    .reviews-section { padding: 40px 0 75px; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 22px; box-shadow: var(--shadow-sm); }
+    .review-stars { color: #e59d28; font-size: 1.1rem; margin-bottom: 10px; }
+    .review-quote { font-size: 0.92rem; color: var(--ink); line-height: 1.5; margin-bottom: 14px; }
+    .review-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--tan); display: grid; place-items: center; font-size: 1.1rem; }
+    .author-info strong { display: block; font-size: 0.9rem; color: var(--cocoa); }
+    .author-info span { font-size: 0.76rem; color: var(--muted); }
+
+    /* Footer */
+    footer { background: var(--cocoa-dark); color: #ebdcc9; padding: 45px 0 25px; border-top: 1px solid #4a2412; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+    .footer-brand img { height: 48px; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.88rem; color: #ebdcc9; max-width: 320px; line-height: 1.6; }
+    .footer-col h4 { color: #fff; font-size: 1rem; margin-bottom: 12px; }
+    .footer-col ul { list-style: none; display: grid; gap: 8px; font-size: 0.88rem; }
+    .footer-col a { color: #ebdcc9; transition: color 0.2s ease; }
+    .footer-col a:hover { color: var(--peach); }
+    .footer-bottom { text-align: center; font-size: 0.82rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; color: rgba(255,255,255,0.6); }
+
+    /* CART DRAWER & GIFT MODE */
+    .cart-drawer-overlay { position: fixed; inset: 0; background: rgba(40, 20, 10, 0.55); backdrop-filter: blur(4px); z-index: 200; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .cart-drawer-overlay.active { opacity: 1; visibility: visible; }
+    .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(450px, 100vw); background: #fff; box-shadow: var(--shadow-lg); z-index: 210; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1); display: flex; flex-direction: column; }
+    .cart-drawer.active { transform: translateX(0); }
+    .cart-drawer-header { padding: 20px 24px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: var(--cream); }
+    .cart-close-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); }
+    .cart-items-container { flex: 1; overflow-y: auto; padding: 18px 24px; display: flex; flex-direction: column; gap: 14px; }
+    .cart-empty-view { text-align: center; padding: 50px 20px; color: var(--muted); }
+    .cart-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 12px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .cart-item-thumb { width: 60px; height: 60px; border-radius: 10px; overflow: hidden; background: #f0e6da; }
+    .cart-item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-item-info h4 { font-size: 0.92rem; color: var(--cocoa); margin-bottom: 2px; }
+    .cart-item-price { font-size: 0.88rem; color: var(--caramel); font-weight: 600; }
+    .cart-qty-controls { display: inline-flex; align-items: center; gap: 6px; background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius-full); padding: 2px 8px; margin-top: 4px; }
+    .qty-btn { background: none; border: none; cursor: pointer; width: 18px; height: 18px; display: grid; place-items: center; }
+    .qty-val { font-size: 0.85rem; font-weight: 600; min-width: 16px; text-align: center; }
+    .cart-item-remove { background: none; border: none; color: #b54738; cursor: pointer; font-size: 1rem; }
+
+    /* Cart Gifting Box */
+    .gift-mode-box {
+      background: #fff8eb;
+      border: 1px solid var(--peach);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin: 8px 0 14px;
+      font-size: 0.85rem;
+    }
+
+    .gift-fields-wrapper {
+      display: none;
+      margin-top: 10px;
+      gap: 8px;
+      flex-direction: column;
+    }
+
+    .gift-fields-wrapper.active { display: flex; }
+
+    .cart-drawer-footer { padding: 18px 24px; border-top: 1px solid var(--line); background: #fffcf7; }
+    .coupon-box { display: flex; gap: 8px; margin-bottom: 12px; }
+    .coupon-input { flex: 1; padding: 8px 12px; border: 1.5px solid var(--line); border-radius: var(--radius-md); font-family: inherit; font-size: 0.85rem; }
+    .coupon-btn { padding: 8px 14px; background: var(--tan); color: var(--cocoa); border: none; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; }
+    .cart-summary-row { display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--muted); margin-bottom: 6px; }
+    .cart-summary-row.total { font-size: 1.2rem; font-weight: 700; color: var(--cocoa); margin: 10px 0 14px; padding-top: 8px; border-top: 1px dashed var(--line); }
+
+    /* MODALS & NOTIFICATIONS */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(40, 20, 10, 0.6); backdrop-filter: blur(5px); z-index: 250; display: none; place-items: center; padding: 20px; }
+    .modal-overlay.active { display: grid; }
+    .modal-card { background: #fff; border-radius: 28px; width: min(520px, 100%); padding: 32px; box-shadow: var(--shadow-lg); animation: modalPop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); max-height: 90vh; overflow-y: auto; }
+    @keyframes modalPop { 0% { transform: scale(0.92); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    /* Live Baking Progress Timeline in Checkout Modal */
+    .baking-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .timeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .timeline-step.active {
+      color: var(--cocoa);
+      font-weight: 600;
+    }
+
+    .timeline-step-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+    }
+
+    .timeline-step.active .timeline-step-icon {
+      background: var(--cocoa);
+      color: #fff;
+      border-color: var(--cocoa);
+      box-shadow: 0 0 0 4px rgba(90,45,24,0.15);
+    }
+
+    .timeline-step.done .timeline-step-icon {
+      background: #27ae60;
+      color: #fff;
+      border-color: #27ae60;
+    }
+
+    /* Slot Cookie Selector Modal */
+    .slot-modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .slot-select-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: left;
+    }
+
+    .slot-select-item:hover {
+      border-color: var(--caramel);
+      background: #fff;
+    }
+
+    .slot-select-item img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 100px); background: var(--cocoa-dark); color: #fff; padding: 12px 24px; border-radius: var(--radius-full); box-shadow: var(--shadow-lg); font-weight: 500; display: flex; align-items: center; gap: 10px; z-index: 300; opacity: 0; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); pointer-events: none; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .hero-grid, .builder-container, .warming-card, .quality-banner { grid-template-columns: 1fr; }
+      .cookie-grid { grid-template-columns: repeat(2, 1fr); }
+      .giftbox-grid, .reviews-grid, .footer-grid { grid-template-columns: 1fr; }
+      .mood-result-panel { grid-template-columns: 1fr; text-align: center; }
+      .mood-cookie-visual { max-width: 260px; margin: 0 auto; }
+      .flavor-profile, .mood-actions { justify-content: center; }
+    }
+
+    @media (max-width: 820px) {
+      .navlinks { display: none; position: absolute; top: 78px; left: 20px; right: 20px; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; flex-direction: column; align-items: stretch; box-shadow: var(--shadow-lg); }
+      .navlinks.show { display: flex; }
+      .mobile-toggle { display: block; }
+    }
+
+    @media (max-width: 480px) {
+      .cookie-grid { grid-template-columns: 1fr; }
+      .mood-options-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .mood-card-btn { padding: 10px 4px; }
+      .mood-sublabel { display: none; }
+      .builder-container, .mood-box-container, .warming-card { padding: 20px 14px; }
+      .baking-timeline { grid-template-columns: 1fr 1fr; gap: 12px; }
+    }
   </style>
 </head>
-<body class="bg-grid">
-  <!-- Animated Background Orbs -->
-  <div class="orb orb-1" aria-hidden="true"></div>
-  <div class="orb orb-2" aria-hidden="true"></div>
-  <div class="orb orb-3" aria-hidden="true"></div>
-  
-  <a class="sr-only" href="#intro">ข้ามไปยังเนื้อหา</a>
+<body>
+
+  <!-- Top Announcement & Live Batch Countdown Bar -->
+  <div class="topbar">
+    <div class="batch-timer-badge">
+      <span>🔥 รอบเตาอบสด:</span>
+      <strong id="batch-timer-display">18:45 นาที</strong>
+    </div>
+    <span>|</span>
+    <span>อบสดใหม่ทุกวัน ใช้เนยแท้ฝรั่งเศส 100%</span>
+    <span>|</span>
+    <span>สั่งครบ ฿350 ส่งฟรีทั่วไทย</span>
+  </div>
+
+  <!-- Sticky Header Navigation -->
   <header>
-    <div class="container nav">
-      <div class="brand"><span class="dot" aria-hidden="true"></span><span class="logotype">My Portfolio</span></div>
-      <nav class="menu" aria-label="Main">
-        <a href="#intro">Intro</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#achievements">Activities</a>
-        <a href="#contact">Contact</a>
-        <button id="theme" class="btn" aria-label="Toggle theme">🌓 สลับธีม</button>
+    <div class="nav container">
+      <a href="#home" class="brand" aria-label="Cookie Cozy หน้าแรก">
+        <img src="images/cookie-cozy/logo.png" alt="Cookie Cozy">
+      </a>
+
+      <nav class="navlinks" id="navlinks">
+        <a href="#home">หน้าแรก</a>
+        <a href="#mood-matcher" class="nav-highlight">✨ ทายคุกกี้ตามอารมณ์</a>
+        <a href="#box-builder">🎁 จัดกล่องเอง</a>
+        <a href="#fortune-cookie">🥠 เสี่ยงทาย</a>
+        <a href="#menu">เมนูทั้งหมด</a>
+        <a href="#warming-guide">♨️ วิธีอุ่น</a>
       </nav>
+
+      <div class="nav-actions">
+        <a href="auth.html" class="user-btn" id="user-header-btn">
+          <span class="user-avatar" id="nav-user-avatar">👤</span>
+          <span id="nav-user-text">เข้าสู่ระบบ</span>
+        </a>
+
+        <button class="btn-icon" onclick="toggleCartDrawer(true)" aria-label="เปิดตะกร้าสินค้า">
+          <span>🛒</span>
+          <span class="cart-badge" id="cart-badge-count">0</span>
+        </button>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="เปิดเมนู">☰</button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- 1. Introduction / Profile -->
-    <section id="intro" class="hero section reveal">
-      <div class="card intro-card">
-        <div class="intro-badge">👋 สวัสดี! ยินดีต้อนรับ</div>
-        <h1><span class="shine">ทักษิณ นิสภวาณิชย์</span> <span class="nickname"></span></h1>
-        <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span> <span class="nickname-en"></span></h2>
-        
-        <div class="intro-info">
-          <div class="info-item">
-            <span class="info-icon">🎓</span>
+  <main>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tag">✦ Artisan Homemade Bakery 100%</div>
+          <h1 class="hero-title">
+            กรอบนอก <em>นุ่มใน</em><br>อบด้วยใจ อร่อยทุกคำ
+          </h1>
+          <p class="hero-desc">
+            สัมผัสความฟินของคุกกี้โฮมเมดระดับพรีเมียม กลิ่นเนยแท้หอมกรุ่น ช็อกโกแลตเยิ้มฉ่ำ คัดสรรวัตถุดิบนำเข้าชั้นเลิศ เพื่อทุกช่วงเวลาที่แสน Cozy ของคุณ
+          </p>
+          <div class="hero-actions">
+            <a href="#mood-matcher" class="btn-accent">✨ ทายคุกกี้ตามอารมณ์</a>
+            <a href="#box-builder" class="btn-primary">🎁 จัดกล่องของขวัญเอง</a>
+            <a href="#menu" class="btn-secondary">ดูเมนู 🍪</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item"><span>✓</span> อบสดใหม่ตามออเดอร์</div>
+            <div class="trust-item"><span>✓</span> ไร้ไขมันทรานส์ 0%</div>
+            <div class="trust-item"><span>✓</span> เนยแท้ฝรั่งเศส</div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-card">
+            <img src="images/cookie-cozy/hero-banner.jpg" alt="Cookie Cozy Premium Showcase">
+          </div>
+          <div class="floating-badge badge-top">
+            <span class="badge-icon">🔥</span>
+            <div class="badge-text">
+              <strong>Best Seller Award</strong>
+              <span>Double Dark Fudge Sea Salt</span>
+            </div>
+          </div>
+          <div class="floating-badge badge-bottom">
+            <span class="badge-icon">⭐</span>
+            <div class="badge-text">
+              <strong>4.9 / 5.0 Rating</strong>
+              <span>จากลูกค้ารีวิวกว่า 1,200+ กล่อง</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Banner Strip -->
+    <div class="marquee-strip">
+      <div class="marquee-content">
+        <span>Freshly Baked Every Morning</span><b>✦</b>
+        <span>Pure French Butter</span><b>✦</b>
+        <span>Belgian Chocolate 70%</span><b>✦</b>
+        <span>ส่งมอบความสุขถึงหน้าบ้าน</span><b>✦</b>
+        <span>Cookie Cozy Made with Love</span><b>✦</b>
+        <span>Freshly Baked Every Morning</span><b>✦</b>
+        <span>Pure French Butter</span><b>✦</b>
+        <span>Belgian Chocolate 70%</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- 1. MOOD-BASED COOKIE MATCHER SECTION -->
+    <section id="mood-matcher" class="mood-section container">
+      <div class="mood-box-container">
+        <div class="section-head">
+          <span class="section-kicker">Interactive Mood Matcher</span>
+          <h2 class="section-title">วันนี้ใจคุณอยากได้คุกกี้รสไหน? 🔮</h2>
+          <p class="section-desc">เลือกอารมณ์ของคุณตอนนี้ แล้วให้เราจับคู่รสชาติความอร่อยที่ลงตัวที่สุดเพื่อฮีลใจคุณ</p>
+        </div>
+
+        <div class="mood-options-grid" id="mood-options"></div>
+
+        <div class="mood-result-panel" id="mood-result-box">
+          <div class="mood-cookie-visual">
+            <img id="mood-img" src="images/cookie-cozy/cookie-double-dark.jpg" alt="Recommended Cookie">
+          </div>
+          <div class="mood-result-info">
+            <span class="mood-quote" id="mood-quote">“เติมพลังเข้มข้น ปลุกความสดชื่นในตัวคุณ”</span>
+            <h3 id="mood-title">Double Dark Chocolate Sea Salt</h3>
+            <p class="mood-reason" id="mood-reason">
+              ช็อกโกแลตฟัดจ์เข้มข้น 70% ผสานเกล็ดเกลือทะเล Sea Salt ช่วยกระตุ้นเอนดอร์ฟินและเพิ่มเอเนอร์จี้ ให้คุณกลับมาสดใสพร้อมลุยต่อทันที
+            </p>
+            <div class="flavor-profile" id="mood-tags"></div>
+            <div class="mood-actions">
+              <span class="mood-price" id="mood-price">฿49</span>
+              <button class="btn-primary" onclick="addMoodCookieToCart()">
+                🛒 สั่งรสนี้เลย (+ใส่ตะกร้า)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CUSTOM BOX BUILDER SECTION (NEW) -->
+    <section id="box-builder" class="box-builder-section container">
+      <div class="section-head">
+        <span class="section-kicker">Create Your Dream Box</span>
+        <h2 class="section-title">จัดกล่องคุกกี้ตามใจฉัน 🎁</h2>
+        <p class="section-desc">เลือกรสชาติที่ชอบใส่กล่องได้เองตามต้องการ พร้อมเลือกสีริบบิ้นและการ์ดอวยพรเสมือนจริง</p>
+      </div>
+
+      <div class="builder-container">
+        <!-- Visual Box Slots Display -->
+        <div class="builder-box-view">
+          <div class="box-ribbon-preview" id="box-ribbon-tag">🎗️ ริบบิ้น: คาราเมลโกลด์</div>
+          <h4 style="color: var(--cocoa); margin-bottom: 4px;" id="box-view-title">กล่อง Cozy Classic (6 ชิ้น)</h4>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 12px;">คลิกที่ช่องว่าง (+) เพื่อเลือกรสชาติ</p>
+
+          <div class="slots-grid slots-6" id="box-slots-grid"></div>
+
+          <div style="font-size: 0.88rem; color: var(--caramel); font-weight: 600;" id="box-progress-text">
+            เลือกแล้ว 0 / 6 ชิ้น
+          </div>
+        </div>
+
+        <!-- Configuration Panel -->
+        <div class="builder-config-panel">
+          <h3>ปรับแต่งกล่องของขวัญ</h3>
+
+          <span class="builder-step-label">1. เลือกขนาดกล่อง</span>
+          <div class="size-selector">
+            <div class="size-btn" onclick="changeBoxSize(4, 189, 'Cozy Mini Box (4 ชิ้น)')" id="size-btn-4">
+              <strong>4 ชิ้น</strong>
+              <span>฿189</span>
+            </div>
+            <div class="size-btn active" onclick="changeBoxSize(6, 279, 'Cozy Classic Box (6 ชิ้น)')" id="size-btn-6">
+              <strong>6 ชิ้น (ฮิต)</strong>
+              <span>฿279</span>
+            </div>
+            <div class="size-btn" onclick="changeBoxSize(12, 529, 'Grand Party Box (12 ชิ้น)')" id="size-btn-12">
+              <strong>12 ชิ้น</strong>
+              <span>฿529</span>
+            </div>
+          </div>
+
+          <span class="builder-step-label">2. เลือกสีริบบิ้นผูกกล่อง</span>
+          <div class="ribbon-selector">
+            <div class="ribbon-pill active" onclick="setRibbon('คาราเมลโกลด์', '#bf7739')">
+              <span class="ribbon-dot" style="background: #bf7739;"></span> คาราเมล
+            </div>
+            <div class="ribbon-pill" onclick="setRibbon('ชมพูพีชบลอสซั่ม', '#e88b88')">
+              <span class="ribbon-dot" style="background: #e88b88;"></span> พีชบลอสซั่ม
+            </div>
+            <div class="ribbon-pill" onclick="setRibbon('แดงรูบี้คลาสสิก', '#b52c16')">
+              <span class="ribbon-dot" style="background: #b52c16;"></span> แดงรูบี้
+            </div>
+          </div>
+
+          <span class="builder-step-label">3. พิมพ์ข้อความบนการ์ดอวยพร (ฟรี)</span>
+          <div class="card-customizer">
+            <div class="card-input-row">
+              <input type="text" id="card-to" class="card-input" placeholder="ถึงคุณ (ชื่อผู้รับ)" value="คนพิเศษ">
+              <input type="text" id="card-from" class="card-input" placeholder="จาก (ชื่อผู้ส่ง)" value="เพื่อนที่น่ารัก">
+            </div>
+            <input type="text" id="card-msg" class="card-input" placeholder="ข้อความอวยพรอบอุ่น..." value="ขอให้ทุกวันของคุณหอมหวานและ Cozy เสมอ ♡">
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
             <div>
-              <strong>เทคโนโลยีสารสนเทศ</strong>
-              <p class="muted">มหาวิทยาลัยราชภัฏอุดรธานี • 2023 – Present • GPAX 3.51</p>
+              <span style="font-size: 0.85rem; color: var(--muted);">ราคากล่องเซ็ต:</span>
+              <div style="font-size: 1.6rem; font-weight: 700; color: var(--caramel);" id="builder-price-display">฿279</div>
             </div>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">💡</span>
-            <div>
-              <strong>สนใจด้าน</strong>
-              <p class="muted">Software Development • Web Development</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">🎯</span>
-            <div>
-              <strong>เป้าหมาย</strong>
-              <p class="muted">Software Developer • Web Developer</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="intro-actions">
-          <a href="#contact" class="btn-primary">
-            <span>📧 ติดต่อฉัน</span>
-          </a>
-          <a href="#projects" class="btn-secondary">
-            <span>👀 ดูผลงาน</span>
-          </a>
-        </div>
-        
-        <div class="intro-stats">
-          <div class="stat-item">
-            <div class="stat-value">2026</div>
-            <div class="stat-label">Internship</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">3.51</div>
-            <div class="stat-label">GPAX</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">4+</div>
-            <div class="stat-label">Core areas</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="card profile-card" aria-label="Profile image">
-        <div class="profile-wrapper">
-          <div class="profile-ring"></div>
-          <img loading="lazy" src="images/profile.jpg" alt="Profile" class="profile-img" />
-          <div class="profile-status">
-            <span class="status-dot"></span>
-            <span>Available for work</span>
-          </div>
-        </div>
-        <div class="social-links">
-          <a class="social-btn" href="https://github.com/taksin105" target="_blank" rel="noreferrer" title="GitHub">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          <a class="social-btn" href="https://www.facebook.com/tueng.cintn/" target="_blank" rel="noreferrer" title="Facebook">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-          <a class="social-btn" href="https://taksin105.github.io/" target="_blank" rel="noreferrer" title="Portfolio">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. Skills -->
-    <section id="skills" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ทักษะ (Skills)</h2></div>
-      
-      <!-- Programming Languages -->
-      <div class="skill-category">
-        <div class="category-header">
-          <span class="category-icon" aria-hidden="true">&lt;/&gt;</span>
-          <h3>Programming Languages</h3>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">PY</div>
-            <div class="skill-name">Python</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">JV</div>
-            <div class="skill-name">Java</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">TS</div>
-            <div class="skill-name">TypeScript</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">JS</div>
-            <div class="skill-name">JavaScript</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">PHP</div>
-            <div class="skill-name">PHP</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">API</div>
-            <div class="skill-name">REST API</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tools & Design -->
-      <div class="skill-category">
-        <div class="category-header">
-          <span class="category-icon" aria-hidden="true">⌘</span>
-          <h3>Frontend / Backend / Tools</h3>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-item">
-            <div class="skill-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <div class="skill-name">Git</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">VS</div>
-            <div class="skill-name">VS Code</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">FB</div>
-            <div class="skill-name">Firebase</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">DB</div>
-            <div class="skill-name">MongoDB</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">RE</div>
-            <div class="skill-name">React</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">BT</div>
-            <div class="skill-name">Bootstrap</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">NO</div>
-            <div class="skill-name">Node.js</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">EX</div>
-            <div class="skill-name">Express</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Soft Skills -->
-      <div class="skill-category">
-        <div class="category-header">
-          <span class="category-icon" aria-hidden="true">+</span>
-          <h3>Soft Skills</h3>
-        </div>
-        <div class="soft-skills">
-          <div class="soft-skill-item">
-            <span class="soft-icon" aria-hidden="true">01</span>
-            <span>การสื่อสาร</span>
-          </div>
-          <div class="soft-skill-item">
-            <span class="soft-icon" aria-hidden="true">02</span>
-            <span>ทำงานเป็นทีม</span>
-          </div>
-          <div class="soft-skill-item">
-            <span class="soft-icon" aria-hidden="true">03</span>
-            <span>แก้ปัญหา</span>
-          </div>
-          <div class="soft-skill-item">
-            <span class="soft-icon" aria-hidden="true">04</span>
-            <span>บริหารเวลา</span>
-          </div>
-          <div class="soft-skill-item">
-            <span class="soft-icon" aria-hidden="true">05</span>
-            <span>คิดสร้างสรรค์</span>
-          </div>
-          <div class="soft-skill-item">
-            <span class="soft-icon" aria-hidden="true">06</span>
-            <span>เรียนรู้ด้วยตนเอง</span>
+            <button class="btn-primary" onclick="addCustomBoxToCartFromBuilder()">
+              เพิ่มกล่องนี้ลงตะกร้า 🎁
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. Projects / Portfolio -->
-    <section id="projects" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ผลงานของผม 🔥 (Projects / Portfolio)</h2></div>
-      <div class="grid cols-3">
-        <!-- การ์ด 1: ShoppingCart -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/shopping-cart.png" alt="ShoppingCart Screenshot" /></div>
-          <h3>🛒 ShoppingCart</h3>
-          <p class="muted">ระบบตะกร้าสินค้าออนไลน์ • เพิ่ม/ลบสินค้า จัดการรายการ • HTML/CSS/JavaScript</p>
-          <div class="row">
-            <a href="https://github.com/taksin105/ShoppingCart" target="_blank" rel="noreferrer">GitHub Repo →</a>
-          </div>
-        </article>
-        <!-- การ์ด 2: ระบบเช่ารถยนต์ออนไลน์ -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/car-rent.png" alt="CarRent Screenshot" /></div>
-          <h3>🚗 ระบบเช่ารถยนต์ออนไลน์</h3>
-          <p class="muted">เว็บแอปพลิเคชันสำหรับจัดการการเช่ารถยนต์ออนไลน์ • HTML/CSS/PHP • ระบบจองและจัดการข้อมูลรถยนต์</p>
-          <div class="row">
-            <a href="https://github.com/taksin105/CarRent" target="_blank" rel="noreferrer">GitHub Repo →</a>
-          </div>
-        </article>
-        <!-- การ์ด 3: UX/UI Design E-commerce App -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/ecommerce-ui.png" alt="E-commerce UX/UI Design" /></div>
-          <h3>🎨 ออกแบบ UX/UI <br>แอป E-commerce</h3>
-          <p class="muted">ออกแบบส่วนติดต่อผู้ใช้และประสบการณ์ผู้ใช้ • Figma • UI Design, Wireframe, Prototype</p>
-          <div class="row">
-            <a href="https://www.figma.com/design/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&p=f&t=55swZ9OqjyWAwzol-0" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
-            <a href="https://www.figma.com/proto/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">Prototype →</a>
-          </div>
-        </article>
-        <!-- การ์ด 4: UX/UI Design Movie App -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/movie-ui.png" alt="Movie App UX/UI Design" /></div>
-          <h3>🎬 ออกแบบ UX/UI <br>แอปจองตั๋วภาพยนตร์</h3>
-          <p class="muted">ออกแบบแอปพลิเคชันสำหรับจองตั๋วภาพยนตร์ • Figma • Modern UI, User Experience Design</p>
-          <div class="row">
-            <a href="https://www.figma.com/design/5u0W6lUlA1FC1I3ztEZlXr/Untitled?t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
-            <a href="https://www.figma.com/proto/5u0W6lUlA1FC1I3ztEZlXr/Untitled?node-id=0-1&t=GMSH7Ll9guf6f7Uk-1" target="_blank" rel="noreferrer">Prototype →</a>
-          </div>
-        </article>
-        <!-- การ์ด 5: Widee -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/widee-homepage.png" alt="Widee website homepage" /></div>
-          <h3>Widee / Agent-One Backoffice</h3>
-          <p class="muted">มีส่วนช่วยพัฒนาระบบ SaaS Backoffice ระหว่างฝึกงาน • React, TypeScript, Node.js, Express, Firebase และ Firestore • พัฒนา API, แก้ไขบั๊ก และทดสอบระบบ</p>
-          <div class="row">
-            <a href="https://widee.tech" target="_blank" rel="noreferrer">ดูเว็บไซต์ Widee →</a>
-          </div>
-        </article>
-      </div>
-    </section>
+    <!-- 3. DAILY FORTUNE COOKIE SECTION (NEW) -->
+    <section id="fortune-cookie" class="fortune-section container">
+      <div class="fortune-container">
+        <span class="section-kicker" style="color: var(--peach);">Daily Inspiration & Discounts</span>
+        <h2 style="font-family: 'DM Serif Display', serif; font-size: 2.5rem; margin: 6px 0 10px;">คุกกี้เสี่ยงทายประจำวัน 🥠✨</h2>
+        <p style="color: #ebdcc9; font-weight: 300; font-size: 0.98rem;">คลิกที่คุกกี้เสี่ยงทายเพื่อเปิดรับข้อความฮีลใจและลุ้นรับโค้ดส่วนลดพิเศษสำหรับคุณวันนี้</p>
 
-    <!-- 3. Experience -->
-    <section id="experience" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ประสบการณ์ (Experience)</h2></div>
-      <div class="card">
-        <h3>Software / IT Intern — Next Triple Nine Co., Ltd.</h3>
-        <p class="muted">2026 • Widee / Agent-One Backoffice System</p>
-        <ul class="list">
-          <li>พัฒนา Frontend ด้วย React และ TypeScript</li>
-          <li>พัฒนา Backend API ด้วย Node.js, Express และ Firebase Functions</li>
-          <li>ทำงานกับ Firestore, Multi-tenant data, OAuth, Webhook และ REST API</li>
-          <li>ทดสอบระบบ แก้ไขข้อผิดพลาด และตรวจสอบคุณภาพฟีเจอร์</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 4. Education -->
-    <section id="education" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>การศึกษา (Education)</h2></div>
-      <div class="card timeline">
-        <div class="item">
-          <h3>ปัจจุบันกำลังศึกษาที่ สาขาเทคโนโลยีสารสนเทศ — มหาวิทยาลัยราชภัฏอุดรธานี</h3>
-          <p class="muted">2023 – Present • GPAX 3.51 </p>
-          <p>ศึกษาและพัฒนาทักษะด้านการพัฒนา Web Application ตั้งแต่การออกแบบและพัฒนา Frontend ไปจนถึง Backend, Database และการทดสอบระบบ โดยมีประสบการณ์ทำโครงงานด้านระบบคำนวณแคลอรีจากภาพอาหารและระบบเช่ารถยนต์อัจฉริยะ</p>
-        </div>
-        <div class="item">
-          <h3>ระดับ ปวช. — วิทยาลัยเทคนิคอุดรธานี</h3>
-          <p class="muted">2563 • เกรดเฉลี่ย 3.63 </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Certificates -->
-    <section id="certificates" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ใบประกาศนียบัตร (Certificates)</h2></div>
-      
-      <!-- Certificate Images Gallery -->
-      <div class="grid cols-2" style="margin-bottom:24px">
-        <article class="card project">
-          <div class="thumb">
-            <img loading="lazy" src="images/certificate-1.png" alt="Certificate 1" style="height:auto;object-fit:contain" />
-          </div>
-          <h3>ใบรับรองการเข้าร่วมโครงการ</h3>
-          <p class="muted">โครงการพัฒนาทักษะด้านเทคโนโลยีสารสนเทศ • เข้าร่วมกิจกรรมและฝึกอบรมเชิงปฏิบัติการ • ได้รับความรู้และประสบการณ์ในการทำงานเป็นทีม</p>
-        </article>
-        <article class="card project">
-          <div class="thumb">
-            <img loading="lazy" src="images/certificate-2.png" alt="Certificate 2" style="height:auto;object-fit:contain" />
-          </div>
-          <h3>ใบประกาศนียบัตรการอบรม</h3>
-          <p class="muted">หลักสูตรการพัฒนาซอฟต์แวร์และการเขียนโปรแกรม • เรียนรู้เทคนิคและเครื่องมือสมัยใหม่ • สามารถนำไปประยุกต์ใช้ในโครงงานจริง</p>
-        </article>
-      </div>
-
-
-    </section>
-
-    <!-- 6. Activities & Achievements -->
-    <section id="achievements" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>กิจกรรมและผลงานอื่น ๆ (Activities / Achievements)</h2></div>
-      
-      <!-- Featured Award: Christmas Design Contest -->
-      <article class="card project" style="margin-bottom:24px">
-        <div class="grid cols-2" style="gap:10px">
-          <div class="thumb">
-            <img loading="lazy" src="images/award-christmas-1.png" alt="รางวัลประกวดผลงานวันคริสต์มาส - ภาพที่ 1" style="height:auto;object-fit:cover" />
-          </div>
-          <div class="thumb">
-            <img loading="lazy" src="images/award-christmas-2.png" alt="รางวัลประกวดผลงานวันคริสต์มาส - ภาพที่ 2" style="height:auto;object-fit:cover" />
-          </div>
-        </div>
-        <h3>🏆 รางวัลชนะเลิศอันดับ 1 - ประกวดผลงานวันคริสต์มาสออนไลน์ วิทยาลัยเทคนิคอุดรธานี</h3>
-        <p class="muted">ประกวดออกแบบ Postcard ด้วยโปรแกรม Adobe Photoshop • ผลงานได้รับรางวัลชนะเลิศอันดับ 1 • แสดงความคิดสร้างสรรค์และทักษะการออกแบบกราฟิก</p>
-      </article>
-
-      <!-- Featured Activities Gallery -->
-      <div class="grid cols-2" style="margin-bottom:24px">
-        <article class="card project">
-          <div class="thumb">
-            <img loading="lazy" src="images/activity-waste.jpg" alt="กิจกรรมจิตอาสาส่งเสริมการเรียนรู้เรื่องการจัดการขยะ" style="height:auto;object-fit:cover" />
-          </div>
-          <h3>🌱 กิจกรรมจิตอาสา "ส่งเสริมการเรียนรู้เรื่องการจัดการขยะ"</h3>
-          <p class="muted">เข้าร่วมกิจกรรมจิตอาสาเพื่อส่งเสริมความรู้และความเข้าใจเกี่ยวกับการจัดการขยะอย่างถูกต้อง • สร้างจิตสำนึกด้านสิ่งแวดล้อมให้กับชุมชน • ร่วมกันสร้างสังคมที่ยั่งยืน</p>
-        </article>
-        
-        <article class="card project">
-          <div class="thumb">
-            <img loading="lazy" src="images/activity-ai-camp.jpg" alt="โครงการค่ายวิทย์น้อย AI เพื่อสิ่งแวดล้อม" style="height:auto;object-fit:cover" />
-          </div>
-          <h3>🤖 โครงการค่ายวิทย์น้อย "AI เพื่อสิ่งแวดล้อม"</h3>
-          <p class="muted">เข้าร่วมโครงการค่ายวิทย์น้อยเพื่อส่งเสริมการเรียนรู้เทคโนโลยี AI และการประยุกต์ใช้เพื่อแก้ปัญหาสิ่งแวดล้อม • ถ่ายทอดความรู้ให้กับเยาวชน • สร้างแรงบันดาลใจให้รุ่นน้อง</p>
-        </article>
-      </div>
-
-      <div class="grid cols-2"></div>
-        <div class="card">
-          <h3>กิจกรรม</h3>
-          <ul class="list">
-            <li>อาสาพัฒนาชุมชน/งานมหาวิทยาลัย</li>
-            <li>🌱 กิจกรรมจิตอาสา "ส่งเสริมการเรียนรู้เรื่องการจัดการขยะ"</li>
-            <li>🤖 โครงการค่ายวิทย์น้อย "AI เพื่อสิ่งแวดล้อม"</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>รางวัล/ความสำเร็จ</h3>
-          <ul class="list">
-            <li>🏆 รางวัลชนะเลิศอันดับ 1 - ประกวดผลงานวันคริสต์มาสออนไลน์ (Photoshop)</li>
-            <li>รางวัลชนะเลิศโครงงานด้าน IoT</li>
-            <li>ผลงานได้รับเลือกแสดงในนิทรรศการ</li>
-            <li>ใบประกาศนียบัตร/ทุนการศึกษา</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Contact -->
-    <section id="contact" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ติดต่อ (Contact)</h2></div>
-      <div class="grid cols-3">
-        <!-- Email -->
-        <div class="card contact-item">
-          <div class="contact-icon">📧</div>
-          <h3>Email</h3>
-          <a href="mailto:taksinonly@gmail.com" class="contact-link">taksinonly@gmail.com</a>
-        </div>
-        
-        <!-- Phone -->
-        <div class="card contact-item">
-          <div class="contact-icon">📞</div>
-          <h3>Phone</h3>
-          <a href="tel:0918483500" class="contact-link">091-848-3500</a>
-          <button class="btn-copy tip" id="copyPhone" aria-label="คัดลอกเบอร์">
-            <span>📋 คัดลอก</span>
-            <span class="tiptext" role="status">คัดลอกแล้ว!</span>
+        <div class="fortune-interactive-area">
+          <button class="fortune-cookie-btn" id="fortune-btn" onclick="crackFortuneCookie()" title="คลิกเพื่อกะเทาะคุกกี้!">
+            🥠
           </button>
-        </div>
-        
-        <!-- GitHub -->
-        <div class="card contact-item">
-          <div class="contact-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
+          <div style="font-size: 0.85rem; color: var(--peach); margin-top: 4px;" id="fortune-hint">
+            (แตะที่คุกกี้เพื่อกะเทาะเปิด)
           </div>
-          <h3>GitHub</h3>
-          <a href="https://github.com/taksin105" target="_blank" rel="noreferrer" class="contact-link">@taksin105</a>
-        </div>
-        
-        <!-- Facebook -->
-        <div class="card contact-item">
-          <div class="contact-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
+
+          <div class="fortune-paper-slip" id="fortune-slip">
+            <div class="fortune-text" id="fortune-quote">“วันนี้จะเป็นวันที่หอมหวานและเต็มไปด้วยรอยยิ้มของคุณ”</div>
+            <p style="font-size: 0.88rem; color: var(--muted);" id="fortune-desc">ใจดีกับตัวเองให้มากๆ แล้วอย่าลืมทานของอร่อยเพื่อเติมพลังนะ ♡</p>
+            
+            <div class="fortune-promo-box">
+              <div>
+                <span style="font-size: 0.78rem; color: var(--muted); display: block;">โค้ดส่วนลดพิเศษวันนี้:</span>
+                <strong style="font-size: 1.1rem; color: var(--cocoa);" id="fortune-code">LUCKY15</strong>
+              </div>
+              <button class="btn-accent" style="padding: 6px 14px; font-size: 0.85rem;" onclick="applyFortuneCodeToCart()">
+                ใช้โค้ดลด 15% ทันที ✨
+              </button>
+            </div>
           </div>
-          <h3>Facebook</h3>
-          <a href="https://www.facebook.com/tueng.cintn/" target="_blank" rel="noreferrer" class="contact-link">Taksin Nisaphawanit</a>
-        </div>
-        
-        <!-- Line -->
-        <div class="card contact-item">
-          <div class="contact-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-            </svg>
-          </div>
-          <h3>Line</h3>
-          <span class="contact-link" id="lineId">0918483500</span>
-          <button class="btn-copy tip" id="copyLine" aria-label="คัดลอกไลน์">
-            <span>📋 คัดลอก</span>
-            <span class="tiptext" role="status">คัดลอกแล้ว!</span>
-          </button>
-        </div>
-        
-        <!-- Location -->
-        <div class="card contact-item">
-          <div class="contact-icon">📍</div>
-          <h3>จังหวัด</h3>
-          <p class="contact-link muted">อุดรธานี</p>
         </div>
       </div>
     </section>
 
-    <!-- 8. Career Interest / Goal -->
-    <section id="goals" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>องค์ประกอบเสริม / เป้าหมายในอนาคต</h2></div>
-      <div class="card">
-        <p>สนใจงานด้าน: <strong>Software Development และ Web Development</strong></p>
-        <p>จุดแข็งที่ต้องการพัฒนาต่อ: <span class="muted">การสร้าง Web Application ที่เชื่อถือได้ การพัฒนา API และการทำงานร่วมกับทีม</span></p>
+    <!-- 4. MENU SECTION WITH DIETARY FILTERS -->
+    <section id="menu" class="menu-section container">
+      <div class="section-head">
+        <span class="section-kicker">Fresh From The Oven</span>
+        <h2 class="section-title">เมนูคุกกี้สุด Cozy</h2>
+        <p class="section-desc">คัดสรรวัตถุดิบพรีเมียม อบสดใหม่ชิ้นต่อชิ้น พร้อมข้อมูลโภชนาการและการจับคู่เครื่องดื่ม</p>
+      </div>
+
+      <div class="category-nav">
+        <button class="cat-pill active" onclick="filterMenu('all')">ทั้งหมด (All)</button>
+        <button class="cat-pill" onclick="filterMenu('choco')">ช็อกโกแลตเลิฟเวอร์</button>
+        <button class="cat-pill" onclick="filterMenu('special')">ซิกเนเจอร์ลาวา</button>
+        <button class="cat-pill" onclick="filterMenu('tea')">ชาและผลไม้</button>
+        <button class="cat-pill" onclick="filterMenu('less-sweet')">🍯 หวานน้อย (Low Sugar)</button>
+        <button class="cat-pill" onclick="filterMenu('nut-free')">🥜 ปลอดภัยไร้ถั่ว (Nut-Free)</button>
+      </div>
+
+      <div class="cookie-grid" id="cookie-grid"></div>
+    </section>
+
+    <!-- 5. COOKIE WARMING GUIDE & TIMER (NEW) -->
+    <section id="warming-guide" class="warming-section container">
+      <div class="warming-card">
+        <div>
+          <span class="section-kicker" style="color: var(--cocoa);">Pro Baker Tips</span>
+          <h2 style="font-family: 'DM Serif Display', serif; font-size: 2.3rem; color: var(--cocoa); margin: 6px 0 14px;">
+            วิธีอุ่นคุกกี้ให้อร่อยเหมือนเพิ่งออกจากเตา ♨️
+          </h2>
+          <p style="color: #6a4836; line-height: 1.65; margin-bottom: 20px; font-size: 0.95rem;">
+            เพิ่มความฟินขั้นสุดด้วยการอุ่นคุกกี้ก่อนทาน เพื่อให้ได้สัมผัสช็อกโกแลตเยิ้มๆ หรือขอบกรอบหอมเนยตามสไตล์ที่คุณชอบ
+          </p>
+          <div style="display: grid; gap: 10px; font-size: 0.9rem; color: #5a3826;">
+            <div><strong>♨️ ไมโครเวฟ (800W)</strong>: 10 - 15 วินาที สำหรับคนชอบไส้ลาวาเยิ้มละมุน</div>
+            <div><strong>🎛️ หม้อทอดไร้น้ำมัน / เตาอบ (160°C)</strong>: 2 - 3 นาที สำหรับคนชอบกรอบนอกนุ่มหนึบ</div>
+          </div>
+        </div>
+
+        <div class="timer-widget">
+          <div class="timer-method-tabs">
+            <button class="timer-method-btn active" onclick="setTimerMode('micro', 15)">♨️ ไมโครเวฟ (15 วิ)</button>
+            <button class="timer-method-btn" onclick="setTimerMode('oven', 120)">🎛️ เตาอบ/หม้อทอด (2 นาที)</button>
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--muted);">ตัวนับเวลาอุ่นคุกกี้</div>
+          <div class="timer-display" id="timer-display-num">00:15</div>
+
+          <div class="timer-controls">
+            <button class="btn-primary" id="timer-start-btn" onclick="toggleTimer()">เริ่มจับเวลา ⏱️</button>
+            <button class="btn-secondary" onclick="resetTimer()">รีเซ็ต</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. GIFT BOXES & SPECIAL PROMOTIONS -->
+    <section id="promo" class="promo-section container">
+      <div class="section-head">
+        <span class="section-kicker">Pre-Packed Deals</span>
+        <h2 class="section-title">เซ็ตกล่องของขวัญสำเร็จรูป 🎁</h2>
+      </div>
+
+      <div class="giftbox-grid">
+        <div class="gift-card">
+          <h3 class="gift-title">Cozy Duo Set</h3>
+          <p style="color: var(--muted); font-size: 0.88rem;">เซ็ตคู่หู 2 ชิ้น อิ่มอร่อยกำลังดี</p>
+          <div class="gift-price">฿95 <span>฿110</span></div>
+          <ul class="gift-perks">
+            <li>เลือกคุกกี้รสโปรดได้ 2 ชิ้น</li>
+            <li>บรรจุซองแยกชิ้นเก็บความสด</li>
+            <li>เหมาะสำหรับพกพาหรือของว่างยามบ่าย</li>
+          </ul>
+          <button class="btn-secondary" onclick="addCustomBoxToCart('Cozy Duo Set (2 ชิ้น)', 95)">เพิ่มลงตะกร้า 🛒</button>
+        </div>
+
+        <div class="gift-card featured">
+          <div class="featured-ribbon">⭐ ยอดนิยมสุดคุ้ม</div>
+          <h3 class="gift-title">Cozy Classic Box</h3>
+          <p style="color: var(--muted); font-size: 0.88rem;">กล่องของขวัญ 6 ชิ้น พร้อมการ์ดอวยพร</p>
+          <div class="gift-price">฿279 <span>฿320</span></div>
+          <ul class="gift-perks">
+            <li>คละรสยอดฮิต 6 ชิ้น (หรือเลือกรสเองได้)</li>
+            <li>กล่องพรีเมียมผูกโบว์แสนอบอุ่น</li>
+            <li>ฟรี! การ์ดอวยพรเขียนข้อความได้</li>
+            <li>ลดทันที 10% จากราคาปกติ</li>
+          </ul>
+          <button class="btn-primary" onclick="addCustomBoxToCart('Cozy Classic Box (6 ชิ้น)', 279)">สั่งซื้อเซ็ตนี้ 🎁</button>
+        </div>
+
+        <div class="gift-card">
+          <h3 class="gift-title">Grand Party Box</h3>
+          <p style="color: var(--muted); font-size: 0.88rem;">กล่องใหญ่จุใจ 12 ชิ้น สำหรับปาร์ตี้/ครอบครัว</p>
+          <div class="gift-price">฿529 <span>฿620</span></div>
+          <ul class="gift-perks">
+            <li>ครบทุกรสชาติ 12 ชิ้น จุใจ</li>
+            <li>กล่องใหญ่ลาย Exclusive Cookie Cozy</li>
+            <li>ฟรี! จัดส่งด่วนพิเศษทั่วประเทศ</li>
+            <li>แถมฟรี Cookie Points x2</li>
+          </ul>
+          <button class="btn-secondary" onclick="addCustomBoxToCart('Grand Party Box (12 ชิ้น)', 529)">เพิ่มลงตะกร้า 🛒</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. REVIEWS & QUALITY STORY -->
+    <section class="reviews-section container">
+      <div class="section-head">
+        <span class="section-kicker">Loved By Cookie Lovers</span>
+        <h2 class="section-title">เสียงตอบรับจากครอบครัว Cozy ♡</h2>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">“Double Dark คือที่สุดของความเข้มข้น! อุ่นไมโครเวฟ 15 วิ ช็อกโกแลตเยิ้มฟินมาก สั่งซ้ำรอบที่ 4 แล้วค่ะ”</p>
+          <div class="review-author">
+            <div class="author-avatar">👩</div>
+            <div class="author-info"><strong>คุณ มินตรา พ.</strong><span>Verified Buyer</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">“ชอบฟีเจอร์จัดกล่องของขวัญเองมาก เลือกรสได้ตามใจ แถมพิมพ์ข้อความบนการ์ดน่ารักมาก ผู้รับประทับใจสุดๆ”</p>
+          <div class="review-author">
+            <div class="author-avatar">👨</div>
+            <div class="author-info"><strong>คุณ ธนภัทร ส.</strong><span>Verified Buyer</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">“Red Velvet Cream Cheese ไส้แน่นมาก หวานอมเปรี้ยวกำลังดี คุกกี้เสี่ยงทายแจกโค้ดส่วนลดก็สนุกมากค่ะ”</p>
+          <div class="review-author">
+            <div class="author-avatar">👩</div>
+            <div class="author-info"><strong>คุณ กานดา ว.</strong><span>Verified Buyer</span></div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="container reveal">
-    <div class="row" style="align-items:center;justify-content:space-between">
-      <p class="muted">© <span id="year"></span> • Taksin.io</p>
-      <a class="tag" href="#intro">กลับขึ้นบน ↑</a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="images/cookie-cozy/logo.png" alt="Cookie Cozy Logo">
+        <p>คุกกี้โฮมเมดอบสด กรอบนอก นุ่มใน อร่อยทุกคำ พร้อมเสิร์ฟความสุขและความอบอุ่นให้ทุกวันของคุณ</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>เมนูลัด</h4>
+        <ul>
+          <li><a href="#home">หน้าแรก</a></li>
+          <li><a href="#mood-matcher">ทายคุกกี้ตามอารมณ์</a></li>
+          <li><a href="#box-builder">จัดกล่องของขวัญเอง</a></li>
+          <li><a href="#fortune-cookie">คุกกี้เสี่ยงทาย</a></li>
+          <li><a href="#menu">เมนูคุกกี้ทั้งหมด</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Cookie Cozy Club</h4>
+        <ul>
+          <li><a href="auth.html">เข้าสู่ระบบสมาชิก</a></li>
+          <li><a href="auth.html?tab=register">สะสม Cookie Points</a></li>
+          <li><a href="auth.html">ศูนย์แลกของรางวัล</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Cookie Cozy Bakery. All Rights Reserved. Baked with lots of love ♡
     </div>
   </footer>
 
-  <!-- Floating Back-to-Top Button -->
-  <button id="backTop" class="fab" aria-label="กลับขึ้นบน">↑ กลับขึ้นบน</button>
+  <!-- SLIDE-OVER CART DRAWER WITH GIFTING MODE -->
+  <div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCartDrawer(false)"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>🛒 ตะกร้าสินค้า (<span id="cart-item-count-text">0</span>)</h3>
+      <button class="cart-close-btn" onclick="toggleCartDrawer(false)">✕</button>
+    </div>
 
+    <div class="cart-items-container" id="cart-items-container"></div>
+
+    <div class="cart-drawer-footer">
+      <!-- Send as a Gift Checkbox -->
+      <div class="gift-mode-box">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; color: var(--cocoa);">
+          <input type="checkbox" id="gift-mode-check" onchange="toggleGiftMode(this.checked)" style="accent-color: var(--caramel);">
+          🎁 สั่งส่งเป็นของขวัญให้เพื่อน (ซ่อนราคา)
+        </label>
+
+        <div class="gift-fields-wrapper" id="gift-fields">
+          <input type="text" id="gift-recipient-name" class="card-input" placeholder="ชื่อผู้รับของขวัญ">
+          <input type="tel" id="gift-recipient-phone" class="card-input" placeholder="เบอร์โทรผู้รับ">
+          <input type="text" id="gift-recipient-addr" class="card-input" placeholder="ที่อยู่จัดส่งของผู้รับ">
+        </div>
+      </div>
+
+      <div class="coupon-box">
+        <input type="text" id="coupon-code-input" class="coupon-input" placeholder="ใส่โค้ดส่วนลด (เช่น LUCKY15, COZY10)">
+        <button class="coupon-btn" onclick="applyCoupon()">ใช้โค้ด</button>
+      </div>
+
+      <div class="cart-summary-row">
+        <span>ยอดรวมสินค้า:</span>
+        <strong id="cart-subtotal">฿0</strong>
+      </div>
+      <div class="cart-summary-row" id="discount-row" style="display: none; color: #216d26;">
+        <span>ส่วนลดโปรโมชั่น:</span>
+        <strong id="cart-discount">-฿0</strong>
+      </div>
+      <div class="cart-summary-row">
+        <span>ค่าจัดส่ง:</span>
+        <strong id="cart-shipping">฿40</strong>
+      </div>
+      <div class="cart-summary-row total">
+        <span>ยอดชำระสุทธิ:</span>
+        <strong id="cart-grandtotal" style="color: var(--caramel);">฿0</strong>
+      </div>
+
+      <button class="btn-primary" style="width: 100%; border-radius: var(--radius-md);" onclick="handleCheckout()">
+        ดำเนินการสั่งซื้อ / ชำระเงิน ✨
+      </button>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT & LIVE BAKING TRACKER MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-card" style="text-align: center;">
+      <div style="font-size: 3.2rem; margin-bottom: 8px;">🎉</div>
+      <h3 style="font-size: 1.7rem; color: var(--cocoa); margin-bottom: 6px;">รับคำสั่งซื้อเรียบร้อยแล้ว!</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 16px;">
+        รหัสคำสั่งซื้อของคุณคือ <strong id="order-id" style="color: var(--caramel);">#CCZ-94821</strong>
+      </p>
+
+      <!-- Live 4-Step Baking Status Timeline -->
+      <div style="background: var(--cream); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin-bottom: 18px;">
+        <span style="font-size: 0.82rem; color: var(--caramel); font-weight: 600;">🚚 ติดตามสถานะการอบสดแบบเรียลไทม์:</span>
+        <div class="baking-timeline">
+          <div class="timeline-step done" id="step-1">
+            <div class="timeline-step-icon">✓</div>
+            <span>รับออเดอร์</span>
+          </div>
+          <div class="timeline-step active" id="step-2">
+            <div class="timeline-step-icon">🥣</div>
+            <span>กำลังอบสด</span>
+          </div>
+          <div class="timeline-step" id="step-3">
+            <div class="timeline-step-icon">🎁</div>
+            <span>บรรจุกล่อง</span>
+          </div>
+          <div class="timeline-step" id="step-4">
+            <div class="timeline-step-icon">🛵</div>
+            <span>กำลังนำส่ง</span>
+          </div>
+        </div>
+        <button class="btn-secondary" style="font-size: 0.8rem; padding: 5px 12px;" onclick="simulateNextBakingStep()">
+          ▶️ จำลองความคืบหน้าสถานะ
+        </button>
+      </div>
+
+      <button class="btn-primary" style="width: 100%;" onclick="closeCheckoutModal()">
+        ตกลง กลับหน้าหลัก ♡
+      </button>
+    </div>
+  </div>
+
+  <!-- NUTRITION FACTS MODAL -->
+  <div class="modal-overlay" id="nutrition-modal">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--line); padding-bottom: 12px;">
+        <h3 id="nutrition-cookie-name" style="color: var(--cocoa); font-size: 1.3rem;">ข้อมูลโภชนาการ</h3>
+        <button onclick="closeNutritionModal()" style="background: none; border: none; font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div style="background: var(--cream); border: 1.5px solid var(--line); border-radius: 16px; padding: 18px; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; color: var(--cocoa); font-size: 1.1rem; border-bottom: 2px solid var(--line); padding-bottom: 6px;">
+          <span>พลังงานทั้งหมด (Calories)</span>
+          <span id="nutri-cal">260 kcal</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>โปรตีน (Protein)</span><strong id="nutri-pro">4 g</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>คาร์โบไฮเดรต (Carbs)</span><strong id="nutri-carb">32 g</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>ไขมันทั้งหมด (Total Fat)</span><strong id="nutri-fat">14 g</strong></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span>น้ำตาล (Sugar)</span><strong id="nutri-sugar">16 g</strong></div>
+        <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 0.82rem; color: #a13d2d;">
+          ⚠️ <strong>ข้อมูลสำหรับผู้แพ้อาหาร:</strong> <span id="nutri-allergen">มีส่วนผสมของแป้งสาลี เนยแท้ ไข่ไก่</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLOT COOKIE PICKER MODAL -->
+  <div class="modal-overlay" id="slot-picker-modal">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="color: var(--cocoa); font-size: 1.25rem;">เลือกรสชาติสำหรับช่องนี้</h3>
+        <button onclick="closeSlotPicker()" style="background: none; border: none; font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+      <div class="slot-modal-grid" id="slot-picker-items"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast-msg">
+    <span>🍪</span> <span id="toast-text">เพิ่มลงตะกร้าแล้ว ♡</span>
+  </div>
+
+  <!-- MAIN SCRIPT -->
   <script>
-    // ===== Theme: set initial from localStorage or prefers-color-scheme =====
-    const root = document.documentElement;
-    const btn = document.getElementById('theme');
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = savedTheme || (prefersDark ? 'dark' : 'light');
-    root.setAttribute('data-theme', initial);
+    // 1. DATA DEFINITIONS
+    const COOKIE_DATA = [
+      {
+        id: 'chocochip',
+        name: 'Classic Choco Chip',
+        desc: 'ช็อกโกแลตชิพคลาสสิก หอมเนยฝรั่งเศส กรอบนอกนุ่มใน',
+        price: 45,
+        category: 'choco',
+        rating: '4.9',
+        badge: 'Best Seller',
+        badgeClass: 'badge-bestseller',
+        drinkPair: '☕ Drip Coffee / นมสดเย็น',
+        isLessSweet: false,
+        isNutFree: true,
+        cal: '250 kcal', pro: '4 g', carb: '32 g', fat: '13 g', sugar: '15 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ ไข่ไก่ (ไร้ถั่ว 100%)',
+        img: 'images/cookie-cozy/cookie-chocochip.jpg'
+      },
+      {
+        id: 'double-dark',
+        name: 'Double Dark Fudge Sea Salt',
+        desc: 'ดาร์กช็อกโกแลตฟัดจ์เข้มข้น 70% โรยเกล็ดเกลือทะเลเบลเยียม',
+        price: 49,
+        category: 'choco',
+        rating: '5.0',
+        badge: 'Hot!',
+        badgeClass: 'badge-bestseller',
+        drinkPair: '☕ Hot Latte / เอสเพรสโซ',
+        isLessSweet: true,
+        isNutFree: true,
+        cal: '260 kcal', pro: '5 g', carb: '28 g', fat: '15 g', sugar: '11 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ ดาร์กโกโก้ (ไร้ถั่ว)',
+        img: 'images/cookie-cozy/cookie-double-dark.jpg'
+      },
+      {
+        id: 'matcha-macadamia',
+        name: 'Ceremonial Matcha Macadamia',
+        desc: 'มัทฉะอุจิแท้เกรดพรีเมียม ไวท์ช็อกโกแลต และถั่วแมคคาเดเมียกรุบกรอบ',
+        price: 55,
+        category: 'special',
+        rating: '4.9',
+        badge: 'Signature',
+        badgeClass: '',
+        drinkPair: '🍵 Iced Matcha / ชาข้าวคั่ว',
+        isLessSweet: true,
+        isNutFree: false,
+        cal: '275 kcal', pro: '5 g', carb: '29 g', fat: '16 g', sugar: '12 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ ถั่วแมคคาเดเมีย',
+        img: 'images/cookie-cozy/cookie-matcha.jpg'
+      },
+      {
+        id: 'red-velvet',
+        name: 'Red Velvet Cream Cheese Lava',
+        desc: 'เรดเวลเวตสีทับทิม สอดไส้ครีมชีสแท้เปรี้ยวอมหวานฉ่ำละมุน',
+        price: 55,
+        category: 'special',
+        rating: '4.9',
+        badge: 'Must Try',
+        badgeClass: '',
+        drinkPair: '☕ ช็อกโกแลตร้อน / คาปูชิโน',
+        isLessSweet: false,
+        isNutFree: true,
+        cal: '280 kcal', pro: '4.5 g', carb: '34 g', fat: '15 g', sugar: '16 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ ครีมชีส (ไร้ถั่ว)',
+        img: 'images/cookie-cozy/cookie-redvelvet.jpg'
+      },
+      {
+        id: 'smores',
+        name: 'Campfire S’mores Delight',
+        desc: 'มาร์ชเมลโลว์ยืดสะใจ ดาร์กช็อกโกแลต และแครกเกอร์กรอบหอม',
+        price: 55,
+        category: 'special',
+        rating: '4.8',
+        badge: 'Popular',
+        badgeClass: '',
+        drinkPair: '🥛 นมสดอุ่น / ชาเอิร์ลเกรย์',
+        isLessSweet: false,
+        isNutFree: true,
+        cal: '270 kcal', pro: '3.8 g', carb: '36 g', fat: '13 g', sugar: '18 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ เจลาตินมาร์ชเมลโลว์ (ไร้ถั่ว)',
+        img: 'images/cookie-cozy/cookie-smores.jpg'
+      },
+      {
+        id: 'salted-caramel',
+        name: 'Salted Caramel Pretzel',
+        desc: 'เนยคาราเมลเคี่ยวสด โรยเกล็ดเกลือทะเลและมินิเพรตเซลกรอบมัน',
+        price: 50,
+        category: 'choco',
+        rating: '4.9',
+        badge: 'Chef Pick',
+        badgeClass: '',
+        drinkPair: '☕ อเมริกาโน่เย็น / ดริปร้อน',
+        isLessSweet: false,
+        isNutFree: true,
+        cal: '265 kcal', pro: '4 g', carb: '35 g', fat: '13.5 g', sugar: '15 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ เพรตเซล (ไร้ถั่ว)',
+        img: 'images/cookie-cozy/cookie-caramel.jpg'
+      },
+      {
+        id: 'white-choc-berry',
+        name: 'White Choc Berry Ruby',
+        desc: 'แครนเบอร์รีและสตรอว์เบอร์รีฟรีซดราย ผสานไวท์ช็อกโกแลตหอมหวาน',
+        price: 52,
+        category: 'tea',
+        rating: '4.8',
+        badge: 'New',
+        badgeClass: '',
+        drinkPair: '🫖 ชากุหลาบ / ชาผลไม้พีช',
+        isLessSweet: false,
+        isNutFree: true,
+        cal: '255 kcal', pro: '3.5 g', carb: '33 g', fat: '13 g', sugar: '16 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ นมผง (ไร้ถั่ว)',
+        img: 'images/cookie-cozy/cookie-berry.jpg'
+      },
+      {
+        id: 'thai-tea',
+        name: 'Aromatic Thai Tea Crumble',
+        desc: 'ใบชาไทยคัดพิเศษหอมละมุน ราดเกลซนมข้นและครัมเบิลกรุบกรอบ',
+        price: 48,
+        category: 'tea',
+        rating: '4.9',
+        badge: 'Seasonal',
+        badgeClass: '',
+        drinkPair: '🥛 นมสดจืด / ชาไทยเย็น',
+        isLessSweet: true,
+        isNutFree: true,
+        cal: '250 kcal', pro: '4 g', carb: '31 g', fat: '12.5 g', sugar: '13 g',
+        allergen: 'มีส่วนผสมของแป้งสาลี เนยแท้ นมข้น (ไร้ถั่ว)',
+        img: 'images/cookie-cozy/cookie-thaitea.jpg'
+      }
+    ];
 
-    function toggleTheme(){
-      const curr = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      root.setAttribute('data-theme', curr);
-      localStorage.setItem('theme', curr);
+    const MOOD_DATA = [
+      {
+        id: 'tired', icon: '🔋', label: 'หมดพลัง / เพลีย', sublabel: 'ต้องการบูสต์เอเนอร์จี้', cookieId: 'double-dark',
+        quote: '“เติมพลังเข้มข้น ปลุกความสดชื่นในตัวคุณ”',
+        reason: 'ช็อกโกแลตฟัดจ์เข้มข้น 70% ผสานเกล็ด Sea Salt ช่วยกระตุ้นเอนดอร์ฟิน ปลุกพลังให้พร้อมลุยต่อทันที',
+        tags: ['🍫 ดาร์กช็อกโกแลตเข้มข้น 5/5', '🍯 หวานน้อย 2/5', '✨ เนื้อหนึบฟัดจี้']
+      },
+      {
+        id: 'comfort', icon: '💖', label: 'ต้องการฮีลใจ', sublabel: 'อยากได้ความอบอุ่น', cookieId: 'red-velvet',
+        quote: '“โอบกอดหัวใจด้วยความนุ่มละมุน”',
+        reason: 'เรดเวลเวตสอดไส้ครีมชีสลาวาเยิ้มๆ รสสัมผัสเปรี้ยวอมหวาน ช่วยบรรเทาความเครียดและสร้างรอยยิ้มได้ทันที',
+        tags: ['🍰 ครีมชีสลาวาเยิ้ม', '🍯 ความหวาน 3/5', '✨ หอมเนยและวานิลลา']
+      },
+      {
+        id: 'chill', icon: '🧘', label: 'ผ่อนคลาย / ชิลล์', sublabel: 'ฟีลลิ่งสงบ สบายๆ', cookieId: 'matcha-macadamia',
+        quote: '“ดื่มด่ำความสงบและกลิ่นหอมชาเขียวแท้”',
+        reason: 'มัทฉะอุจิแท้มี L-Theanine ช่วยให้สมองผ่อนคลาย เคี้ยวเพลินไปกับถั่วแมคคาเดเมียอบหอม',
+        tags: ['🍵 มัทฉะเข้มข้นเกรดพิธีการ', '🥜 แมคคาเดเมียกรุบกรอบ', '✨ หวานน้อยกลมกล่อม']
+      },
+      {
+        id: 'happy', icon: '🥳', label: 'ร่าเริง / แฮปปี้', sublabel: 'อยากฉลองความสนุก', cookieId: 'smores',
+        quote: '“ปาร์ตี้ความอร่อยที่ยืดได้สะใจ!”',
+        reason: 'มาร์ชเมลโลว์ยืดๆ ดาร์กช็อกโกแลตและแครกเกอร์กรุบกรอบ เติมเต็มช่วงเวลาแห่งความสุขให้สนุกยิ่งขึ้น',
+        tags: ['🔥 มาร์ชเมลโลว์ยืด', '🍪 แครกเกอร์กรุบกรอบ', '✨ ฟีลแคมป์ไฟอบอุ่น']
+      },
+      {
+        id: 'focus', icon: '☕', label: 'นั่งทำงาน / สมาธิ', sublabel: 'คู่กาแฟแก้วโปรด', cookieId: 'salted-caramel',
+        quote: '“กลิ่นคาราเมลหอมกรุ่น เคี้ยวเพลินแก้ง่วง”',
+        reason: 'คาราเมลเคี่ยวสดตัดกับเกลือสมุทรและเพรตเซลกรอบมัน เหมาะที่สุดสำหรับทานคู่กับกาแฟดริปหรือลาเต้',
+        tags: ['🥨 เพรตเซลกรุบกรอบ', '🍯 ซอสคาราเมลโฮมเมด', '✨ ทานคู่กาแฟลงตัวสุด']
+      },
+      {
+        id: 'fresh', icon: '🌸', label: 'สดชื่น / ร่าเริง', sublabel: 'เบอร์รีหวานอมเปรี้ยว', cookieId: 'white-choc-berry',
+        quote: '“สัมผัสความสดชื่น เติมความหวานน่ารัก”',
+        reason: 'แครนเบอร์รีและสตรอว์เบอร์รีเปรี้ยวอมหวาน ตัดกับไวท์ช็อกโกแลตเนื้อเนียน ให้ความรู้สึกสดชื่นกระปรี้กระเปร่า',
+        tags: ['🍓 เบอร์รีฟรีซดรายแท้', '🤍 ไวท์ช็อกโกแลตพรีเมียม', '✨ รสเปรี้ยวอมหวาน']
+      }
+    ];
+
+    const FORTUNES = [
+      { quote: '“วันนี้จะเป็นวันที่หอมหวานและเต็มไปด้วยรอยยิ้มของคุณ”', desc: 'ใจดีกับตัวเองให้มากๆ แล้วอย่าลืมทานของอร่อยเพื่อเติมพลังนะ ♡', code: 'LUCKY15' },
+      { quote: '“สิ่งดีๆ กำลังเดินทางมาหาคุณเหมือนกลิ่นคุกกี้ที่อบเสร็จใหม่ๆ”', desc: 'ผ่อนคลายและเชื่อมั่นในก้าวต่อไปของคุณ', code: 'SWEET12' },
+      { quote: '“ความสุขที่แท้จริง ซ่อนอยู่ในความเรียบง่ายและคุกกี้หนึ่งชิ้น”', desc: 'ให้ Cookie Cozy ร่วมเป็นส่วนหนึ่งของวันดีๆ ของคุณ', code: 'COZYGIFT' }
+    ];
+
+    // 2. STATE
+    let cart = JSON.parse(localStorage.getItem('cookieCozyCart')) || [];
+    let discountRate = 0;
+    let appliedCoupon = '';
+    let currentMood = MOOD_DATA[0];
+
+    // Custom Box Builder State
+    let boxCapacity = 6;
+    let boxPrice = 279;
+    let boxTitle = 'Cozy Classic Box (6 ชิ้น)';
+    let boxRibbon = 'คาราเมลโกลด์';
+    let boxSlots = Array(6).fill(null);
+    let activeSlotIndex = null;
+
+    // Timer State
+    let timerInterval = null;
+    let timerSeconds = 15;
+    let isTimerRunning = false;
+
+    // 3. INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      startBatchCountdown();
+      renderMoodButtons();
+      selectMood(MOOD_DATA[0].id);
+      renderCookieMenu('all');
+      renderBoxSlots();
+      updateCartUI();
+      checkUserAuth();
+
+      // Mobile Menu
+      const toggle = document.getElementById('mobile-toggle');
+      const navlinks = document.getElementById('navlinks');
+      toggle.addEventListener('click', () => navlinks.classList.toggle('show'));
+      navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('show')));
+    });
+
+    // Batch Countdown Timer
+    function startBatchCountdown() {
+      let timeLeft = 18 * 60 + 45;
+      const display = document.getElementById('batch-timer-display');
+      setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) timeLeft = 25 * 60;
+        const mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const secs = String(timeLeft % 60).padStart(2, '0');
+        if (display) display.textContent = `${mins}:${secs} นาที`;
+      }, 1000);
     }
-    btn.addEventListener('click', toggleTheme);
-    // shortcut key: press "t" to toggle theme
-    document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='t' && !/input|textarea/i.test(document.activeElement.tagName)){ toggleTheme(); }});
 
-    // ===== Active nav on scroll =====
-    const sections = [...document.querySelectorAll('main section')];
-    const menuLinks = [...document.querySelectorAll('nav.menu a')];
-    const byId = id => document.querySelector(`a[href="#${id}"]`);
-    const observerNav = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          menuLinks.forEach(a=>a.classList.remove('active'));
-          const link = byId(entry.target.id); if(link) link.classList.add('active');
+    function checkUserAuth() {
+      const storedUser = localStorage.getItem('cookieCozyUser');
+      const userText = document.getElementById('nav-user-text');
+      const userAvatar = document.getElementById('nav-user-avatar');
+      if (storedUser) {
+        try {
+          const user = JSON.parse(storedUser);
+          userText.textContent = `${user.name} (${user.points || 0} pts)`;
+          userAvatar.textContent = '🍪';
+        } catch(e) {}
+      }
+    }
+
+    // 4. MOOD MATCHER
+    function renderMoodButtons() {
+      const container = document.getElementById('mood-options');
+      container.innerHTML = MOOD_DATA.map(m => `
+        <button class="mood-card-btn ${m.id === currentMood.id ? 'active' : ''}" onclick="selectMood('${m.id}')" id="btn-mood-${m.id}">
+          <span class="mood-icon">${m.icon}</span>
+          <span class="mood-label">${m.label}</span>
+          <span class="mood-sublabel">${m.sublabel}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectMood(moodId) {
+      const mood = MOOD_DATA.find(m => m.id === moodId);
+      if (!mood) return;
+      currentMood = mood;
+
+      document.querySelectorAll('.mood-card-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-mood-${moodId}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const cookie = COOKIE_DATA.find(c => c.id === mood.cookieId);
+      if (!cookie) return;
+
+      const panel = document.getElementById('mood-result-box');
+      panel.style.opacity = '0';
+      panel.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        document.getElementById('mood-img').src = cookie.img;
+        document.getElementById('mood-quote').textContent = mood.quote;
+        document.getElementById('mood-title').textContent = cookie.name;
+        document.getElementById('mood-reason').textContent = mood.reason;
+        document.getElementById('mood-price').textContent = `฿${cookie.price}`;
+        document.getElementById('mood-tags').innerHTML = mood.tags.map(t => `<span class="tag-badge">${t}</span>`).join('');
+
+        panel.style.transition = 'all 0.3s ease';
+        panel.style.opacity = '1';
+        panel.style.transform = 'translateY(0)';
+      }, 150);
+    }
+
+    function addMoodCookieToCart() {
+      const cookie = COOKIE_DATA.find(c => c.id === currentMood.cookieId);
+      if (cookie) addToCart(cookie.id);
+    }
+
+    // 5. CUSTOM BOX BUILDER LOGIC
+    function changeBoxSize(size, price, title) {
+      boxCapacity = size;
+      boxPrice = price;
+      boxTitle = title;
+      boxSlots = Array(size).fill(null);
+
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`size-btn-${size}`).classList.add('active');
+
+      const grid = document.getElementById('box-slots-grid');
+      grid.className = `slots-grid slots-${size}`;
+      document.getElementById('box-view-title').textContent = title;
+      document.getElementById('builder-price-display').textContent = `฿${price}`;
+
+      renderBoxSlots();
+    }
+
+    function setRibbon(name, colorHex) {
+      boxRibbon = name;
+      document.querySelectorAll('.ribbon-pill').forEach(p => p.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const tag = document.getElementById('box-ribbon-tag');
+      tag.textContent = `🎗️ ริบบิ้น: ${name}`;
+      tag.style.background = colorHex;
+    }
+
+    function renderBoxSlots() {
+      const grid = document.getElementById('box-slots-grid');
+      grid.innerHTML = boxSlots.map((item, index) => {
+        if (item) {
+          return `
+            <div class="box-slot filled" title="${item.name}">
+              <img src="${item.img}" alt="${item.name}">
+              <button class="slot-remove" onclick="removeSlotItem(${index}, event)">✕</button>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="box-slot" onclick="openSlotPicker(${index})">
+              <span class="slot-empty-icon">+</span>
+              <span class="slot-empty-text">ชิ้นที่ ${index + 1}</span>
+            </div>
+          `;
         }
-      })
-    }, {rootMargin: '-40% 0px -55% 0px', threshold: 0.01});
-    sections.forEach(sec=>observerNav.observe(sec));
+      }).join('');
 
-    // ===== Scroll reveal =====
-    const revealEls = document.querySelectorAll('.reveal');
-    const ro = new IntersectionObserver((entries, obs)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }});
-    }, {threshold: .12});
-    revealEls.forEach(el=>ro.observe(el));
-
-    // ===== Copy buttons with tooltip =====
-    function copyWithTip(text, btn){
-      navigator.clipboard.writeText(text).then(()=>{
-        btn.classList.add('show');
-        setTimeout(()=>btn.classList.remove('show'), 1000);
-      }).catch(()=>{});
+      const filledCount = boxSlots.filter(Boolean).length;
+      document.getElementById('box-progress-text').textContent = `เลือกแล้ว ${filledCount} / ${boxCapacity} ชิ้น`;
     }
-    const emailText = document.getElementById('emailText')?.textContent?.trim() || '';
-    const copyEmailBtn = document.getElementById('copyEmail');
-    copyEmailBtn?.addEventListener('click', ()=>copyWithTip(emailText, copyEmailBtn));
 
-    const phone = '0918483500';
-    const copyPhoneBtn = document.getElementById('copyPhone');
-    copyPhoneBtn?.addEventListener('click', (e)=>{
-      e.stopPropagation();
-      copyWithTip(phone, copyPhoneBtn);
-    });
+    function openSlotPicker(index) {
+      activeSlotIndex = index;
+      const modal = document.getElementById('slot-picker-modal');
+      const itemsContainer = document.getElementById('slot-picker-items');
 
-    const lineId = document.getElementById('lineId')?.textContent?.trim() || '';
-    const copyLineBtn = document.getElementById('copyLine');
-    copyLineBtn?.addEventListener('click', (e)=>{
-      e.stopPropagation();
-      copyWithTip(lineId, copyLineBtn);
-    });
+      itemsContainer.innerHTML = COOKIE_DATA.map(c => `
+        <div class="slot-select-item" onclick="selectCookieForSlot('${c.id}')">
+          <img src="${c.img}" alt="${c.name}">
+          <div>
+            <strong style="font-size: 0.88rem; color: var(--cocoa);">${c.name}</strong>
+            <span style="font-size: 0.76rem; color: var(--caramel); display: block;">฿${c.price}</span>
+          </div>
+        </div>
+      `).join('');
 
-    // ===== Make contact cards clickable =====
-    document.querySelectorAll('.contact-item').forEach(card=>{
-      const link = card.querySelector('a.contact-link');
-      const copyBtn = card.querySelector('.btn-copy');
-      if(link && !copyBtn){
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', ()=>link.click());
-      }
-    });
-    // Prevent button clicks from triggering card click
-    document.querySelectorAll('.btn-copy').forEach(btn=>{
-      btn.addEventListener('click', (e)=>e.stopPropagation());
-    });
+      modal.classList.add('active');
+    }
 
-    // ===== Back to top =====
-    const fab = document.getElementById('backTop');
-    fab.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
-    const showFab = ()=>{ fab.classList.toggle('show', window.scrollY > 550); };
-    showFab();
-    window.addEventListener('scroll', showFab, {passive:true});
-
-    // ===== Current year =====
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ===== Create floating particles =====
-    function createParticles(){
-      const count = 15;
-      for(let i=0; i<count; i++){
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-        document.body.appendChild(particle);
+    function selectCookieForSlot(cookieId) {
+      const cookie = COOKIE_DATA.find(c => c.id === cookieId);
+      if (cookie && activeSlotIndex !== null) {
+        boxSlots[activeSlotIndex] = cookie;
+        renderBoxSlots();
+        closeSlotPicker();
       }
     }
-    // Only create particles if user doesn't prefer reduced motion
-    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      createParticles();
+
+    function removeSlotItem(index, e) {
+      e.stopPropagation();
+      boxSlots[index] = null;
+      renderBoxSlots();
     }
 
-    // ===== Image Slider =====
-    let currentSlide = 0;
-    const sliderWrapper = document.getElementById('sliderWrapper');
-    const slides = sliderWrapper?.querySelectorAll('img') || [];
-    const totalSlides = slides.length;
-    const dotsContainer = document.getElementById('sliderDots');
-
-    // Create dots
-    for(let i = 0; i < totalSlides; i++){
-      const dot = document.createElement('span');
-      dot.className = 'slider-dot';
-      if(i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
+    function closeSlotPicker() {
+      document.getElementById('slot-picker-modal').classList.remove('active');
+      activeSlotIndex = null;
     }
 
-    function updateSlider(){
-      sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-      const dots = dotsContainer.querySelectorAll('.slider-dot');
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentSlide);
-      });
+    function addCustomBoxToCartFromBuilder() {
+      const filledCount = boxSlots.filter(Boolean).length;
+      if (filledCount === 0) {
+        showToast('กรุณาเลือกคุกกี้ใส่กล่องอย่างน้อย 1 ชิ้นค่ะ');
+        return;
+      }
+
+      const to = document.getElementById('card-to').value || 'คนพิเศษ';
+      const from = document.getElementById('card-from').value || 'ฉันเอง';
+      const msg = document.getElementById('card-msg').value || 'Cozy everyday ♡';
+
+      const customBoxItem = {
+        id: 'custombox-' + Date.now(),
+        name: `${boxTitle} (ริบบิ้น ${boxRibbon})`,
+        price: boxPrice,
+        img: 'images/cookie-cozy/hero-banner.jpg',
+        qty: 1,
+        giftDetails: `ถึง: ${to} | จาก: ${from} | ข้อความ: "${msg}"`
+      };
+
+      cart.push(customBoxItem);
+      saveCart();
+      updateCartUI();
+      toggleCartDrawer(true);
+      showToast(`เพิ่มกล่อง ${boxTitle} ลงตะกร้าแล้ว 🎁`);
     }
 
-    function moveSlide(direction){
-      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-      updateSlider();
+    // 6. DAILY FORTUNE COOKIE
+    function crackFortuneCookie() {
+      const btn = document.getElementById('fortune-btn');
+      const slip = document.getElementById('fortune-slip');
+      const hint = document.getElementById('fortune-hint');
+
+      btn.style.transform = 'scale(1.2) rotate(15deg)';
+      setTimeout(() => {
+        btn.textContent = '✨🥠✨';
+        const randomFortune = FORTUNES[Math.floor(Math.random() * FORTUNES.length)];
+        document.getElementById('fortune-quote').textContent = randomFortune.quote;
+        document.getElementById('fortune-desc').textContent = randomFortune.desc;
+        document.getElementById('fortune-code').textContent = randomFortune.code;
+
+        slip.style.display = 'block';
+        hint.style.display = 'none';
+        showToast('กะเทาะคุกกี้เสี่ยงทายสำเร็จ! ได้รับโค้ดส่วนลด ✨');
+      }, 300);
     }
 
-    function goToSlide(index){
-      currentSlide = index;
-      updateSlider();
+    function applyFortuneCodeToCart() {
+      const code = document.getElementById('fortune-code').textContent;
+      document.getElementById('coupon-code-input').value = code;
+      applyCoupon();
+      toggleCartDrawer(true);
     }
 
-    // Auto slide every 5 seconds
-    setInterval(() => {
-      moveSlide(1);
-    }, 5000);
+    // 7. MENU FILTER & NUTRITION FACTS
+    function renderCookieMenu(category) {
+      const grid = document.getElementById('cookie-grid');
+      let filtered = COOKIE_DATA;
+
+      if (category === 'less-sweet') {
+        filtered = COOKIE_DATA.filter(c => c.isLessSweet);
+      } else if (category === 'nut-free') {
+        filtered = COOKIE_DATA.filter(c => c.isNutFree);
+      } else if (category !== 'all') {
+        filtered = COOKIE_DATA.filter(c => c.category === category);
+      }
+
+      grid.innerHTML = filtered.map(c => `
+        <article class="cookie-card">
+          <div class="cookie-thumb">
+            <img src="${c.img}" alt="${c.name}" loading="lazy">
+            ${c.badge ? `<span class="cookie-card-badge ${c.badgeClass}">${c.badge}</span>` : ''}
+            <div class="drink-pairing-tag">
+              <span>☕ คู่กับ:</span> <span>${c.drinkPair}</span>
+            </div>
+          </div>
+          <div class="cookie-info">
+            <h3 class="cookie-title">${c.name}</h3>
+            <p class="cookie-desc">${c.desc}</p>
+            <button class="btn-nutrition" onclick="openNutritionModal('${c.id}')">
+              ℹ️ ข้อมูลโภชนาการ (Nutrition Facts)
+            </button>
+            <div class="cookie-meta">
+              <span class="cookie-price">฿${c.price}</span>
+              <button class="btn-add-cart" onclick="addToCart('${c.id}')" aria-label="เพิ่มลงตะกร้า">+</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterMenu(cat) {
+      document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderCookieMenu(cat);
+    }
+
+    function openNutritionModal(cookieId) {
+      const cookie = COOKIE_DATA.find(c => c.id === cookieId);
+      if (!cookie) return;
+
+      document.getElementById('nutrition-cookie-name').textContent = `${cookie.name} - Nutrition Facts`;
+      document.getElementById('nutri-cal').textContent = cookie.cal;
+      document.getElementById('nutri-pro').textContent = cookie.pro;
+      document.getElementById('nutri-carb').textContent = cookie.carb;
+      document.getElementById('nutri-fat').textContent = cookie.fat;
+      document.getElementById('nutri-sugar').textContent = cookie.sugar;
+      document.getElementById('nutri-allergen').textContent = cookie.allergen;
+
+      document.getElementById('nutrition-modal').classList.add('active');
+    }
+
+    function closeNutritionModal() {
+      document.getElementById('nutrition-modal').classList.remove('active');
+    }
+
+    // 8. WARMING TIMER LOGIC
+    function setTimerMode(mode, sec) {
+      document.querySelectorAll('.timer-method-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      resetTimer();
+      timerSeconds = sec;
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const s = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('timer-display-num').textContent = `${m}:${s}`;
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('timer-start-btn');
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        btn.textContent = 'เริ่มต่อ ⏱️';
+      } else {
+        isTimerRunning = true;
+        btn.textContent = 'พักชั่วคราว ⏸️';
+        timerInterval = setInterval(() => {
+          timerSeconds--;
+          updateTimerDisplay();
+          if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            btn.textContent = 'เริ่มใหม่ ⏱️';
+            showToast('🔔 ติ๊ง! คุกกี้อุ่นพร้อมเสิร์ฟความเยิ้มแล้วค่ะ!');
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      timerSeconds = 15;
+      updateTimerDisplay();
+      document.getElementById('timer-start-btn').textContent = 'เริ่มจับเวลา ⏱️';
+    }
+
+    // 9. CART & CHECKOUT
+    function addToCart(cookieId) {
+      const cookie = COOKIE_DATA.find(c => c.id === cookieId);
+      if (!cookie) return;
+
+      const existing = cart.find(item => item.id === cookieId);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ id: cookie.id, name: cookie.name, price: cookie.price, img: cookie.img, qty: 1 });
+      }
+
+      saveCart();
+      updateCartUI();
+      showToast(`เพิ่ม ${cookie.name} ลงในตะกร้าแล้ว 🍪`);
+    }
+
+    function addCustomBoxToCart(title, price) {
+      cart.push({ id: 'box-' + Date.now(), name: title, price: price, img: 'images/cookie-cozy/hero-banner.jpg', qty: 1 });
+      saveCart();
+      updateCartUI();
+      toggleCartDrawer(true);
+      showToast(`เพิ่ม ${title} ลงในตะกร้าแล้ว 🎁`);
+    }
+
+    function updateItemQty(id, delta) {
+      const index = cart.findIndex(item => item.id === id);
+      if (index === -1) return;
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart();
+      updateCartUI();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+      updateCartUI();
+    }
+
+    function saveCart() { localStorage.setItem('cookieCozyCart', JSON.stringify(cart)); }
+
+    function updateCartUI() {
+      const badge = document.getElementById('cart-badge-count');
+      const countText = document.getElementById('cart-item-count-text');
+      const container = document.getElementById('cart-items-container');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      badge.textContent = totalItems;
+      countText.textContent = `${totalItems} รายการ`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty-view">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🍪</div>
+            <h4 style="color: var(--cocoa); margin-bottom: 4px;">ตะกร้าของคุณยังว่างอยู่</h4>
+            <p style="font-size: 0.85rem;">เลือกคุกกี้อบสดใหม่ แล้วเพิ่มลงตะกร้าได้เลย!</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = cart.map(item => `
+          <div class="cart-item">
+            <div class="cart-item-thumb"><img src="${item.img}" alt="${item.name}"></div>
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <div class="cart-item-price">฿${item.price}</div>
+              ${item.giftDetails ? `<div style="font-size: 0.72rem; color: var(--caramel);">${item.giftDetails}</div>` : ''}
+              <div class="cart-qty-controls">
+                <button class="qty-btn" onclick="updateItemQty('${item.id}', -1)">-</button>
+                <span class="qty-val">${item.qty}</span>
+                <button class="qty-btn" onclick="updateItemQty('${item.id}', 1)">+</button>
+              </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">🗑️</button>
+          </div>
+        `).join('');
+      }
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const discount = subtotal * discountRate;
+      const shipping = subtotal >= 350 || subtotal === 0 ? 0 : 40;
+      const grandTotal = Math.max(0, subtotal - discount + shipping);
+
+      document.getElementById('cart-subtotal').textContent = `฿${subtotal.toLocaleString()}`;
+      document.getElementById('cart-shipping').textContent = shipping === 0 ? (subtotal === 0 ? '฿0' : 'ฟรี ฿0') : `฿${shipping}`;
+      document.getElementById('cart-grandtotal').textContent = `฿${Math.round(grandTotal).toLocaleString()}`;
+
+      const discountRow = document.getElementById('discount-row');
+      if (discount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('cart-discount').textContent = `-฿${Math.round(discount).toLocaleString()} (${appliedCoupon})`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+    }
+
+    function toggleCartDrawer(open) {
+      document.getElementById('cart-drawer').classList.toggle('active', open);
+      document.getElementById('cart-overlay').classList.toggle('active', open);
+    }
+
+    function toggleGiftMode(isChecked) {
+      document.getElementById('gift-fields').classList.toggle('active', isChecked);
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('coupon-code-input').value.trim().toUpperCase();
+      if (code === 'COZY10') {
+        discountRate = 0.10;
+        appliedCoupon = 'COZY10 (-10%)';
+        showToast('ใช้โค้ด COZY10 ลด 10% เรียบร้อย ✨');
+      } else if (code === 'LUCKY15') {
+        discountRate = 0.15;
+        appliedCoupon = 'LUCKY15 (-15%)';
+        showToast('ใช้โค้ดเสี่ยงทาย LUCKY15 ลด 15% เรียบร้อย 🎉');
+      } else if (code === 'SWEET12') {
+        discountRate = 0.12;
+        appliedCoupon = 'SWEET12 (-12%)';
+        showToast('ใช้โค้ด SWEET12 ลด 12% เรียบร้อย 💖');
+      } else if (code === 'FREESHIP') {
+        discountRate = 0;
+        appliedCoupon = 'FREESHIP';
+        showToast('ใช้โค้ด FREESHIP ส่งฟรีเรียบร้อย 🚚');
+      } else if (code === '') {
+        showToast('กรุณากรอกโค้ดส่วนลด');
+        return;
+      } else {
+        showToast('โค้ดส่วนลดไม่ถูกต้องหรือหมดอายุ');
+        return;
+      }
+      updateCartUI();
+    }
+
+    function handleCheckout() {
+      if (cart.length === 0) {
+        showToast('กรุณาเลือกคุกกี้ใส่ตะกร้าก่อนสั่งซื้อนะคะ');
+        return;
+      }
+
+      toggleCartDrawer(false);
+      const randomOrder = 'CCZ-' + Math.floor(10000 + Math.random() * 90000);
+      document.getElementById('order-id').textContent = '#' + randomOrder;
+
+      // Reset Baking tracker to step 2
+      currentBakingStep = 2;
+      updateBakingTimelineUI();
+
+      document.getElementById('checkout-modal').classList.add('active');
+
+      cart = [];
+      discountRate = 0;
+      appliedCoupon = '';
+      saveCart();
+      updateCartUI();
+    }
+
+    let currentBakingStep = 2;
+    function simulateNextBakingStep() {
+      currentBakingStep++;
+      if (currentBakingStep > 4) currentBakingStep = 1;
+      updateBakingTimelineUI();
+    }
+
+    function updateBakingTimelineUI() {
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById(`step-${i}`);
+        el.className = 'timeline-step';
+        if (i < currentBakingStep) el.classList.add('done');
+        else if (i === currentBakingStep) el.classList.add('active');
+      }
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.remove('active');
+    }
+
+    let toastTimeout;
+    function showToast(text) {
+      const toast = document.getElementById('toast-msg');
+      document.getElementById('toast-text').textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5a2d18">
+  <title>เข้าสู่ระบบ & สมัครสมาชิก | Cookie Cozy Member Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff9f0;
+      --paper: #ffffff;
+      --tan: #f5dfbc;
+      --peach: #f1c982;
+      --caramel: #bf7739;
+      --caramel-hover: #a36129;
+      --cocoa: #5a2d18;
+      --cocoa-dark: #3f1d0d;
+      --ink: #321f17;
+      --muted: #806454;
+      --line: #ebdcc9;
+      --shadow-sm: 0 4px 12px rgba(90, 45, 24, 0.06);
+      --shadow-md: 0 12px 30px rgba(90, 45, 24, 0.12);
+      --shadow-lg: 0 20px 50px rgba(90, 45, 24, 0.18);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Kanit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background-image: radial-gradient(#dfbf92 0.75px, transparent 0.75px);
+      background-size: 18px 18px;
+      mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
+    }
+
+    .auth-header {
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+
+    .brand-logo img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--cocoa);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .back-home:hover {
+      background: var(--cocoa);
+      color: #fff;
+      transform: translateX(-3px);
+    }
+
+    .auth-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      max-width: 1100px;
+      width: calc(100% - 40px);
+      margin: 10px auto 40px;
+      background: var(--paper);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Left Side */
+    .auth-banner {
+      background: linear-gradient(145deg, #5a2d18 0%, #3e1e0e 100%);
+      color: #fff;
+      padding: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('images/cookie-cozy/hero-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.22;
+      mix-blend-mode: overlay;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .banner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(241, 201, 130, 0.2);
+      color: var(--peach);
+      border: 1px solid rgba(241, 201, 130, 0.35);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .banner-content h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #fff8ee;
+    }
+
+    .banner-content h1 em {
+      font-style: italic;
+      color: var(--peach);
+    }
+
+    .banner-content p {
+      color: #ebdcc9;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .club-perks {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 25px;
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(6px);
+    }
+
+    .perk-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--peach);
+      color: var(--cocoa);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .perk-text h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .perk-text p {
+      font-size: 0.82rem;
+      color: #ebdcc9;
+      margin: 0;
+    }
+
+    .banner-footer {
+      position: relative;
+      z-index: 2;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.65);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 16px;
+    }
+
+    /* Right Side */
+    .auth-form-card {
+      padding: 38px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--paper);
+    }
+
+    .tab-nav {
+      display: flex;
+      background: var(--cream);
+      padding: 5px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 10px 16px;
+      border-radius: var(--radius-full);
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--cocoa);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-pane {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .form-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-title {
+      font-size: 1.55rem;
+      color: var(--cocoa);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--cocoa);
+      margin-bottom: 6px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px 16px;
+      padding-right: 42px;
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-md);
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: #faf7f2;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--caramel);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(191, 119, 57, 0.12);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 1.1rem;
+      padding: 4px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 14px 0 20px;
+      font-size: 0.88rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .checkbox-label input {
+      accent-color: var(--caramel);
+      width: 16px;
+      height: 16px;
+    }
+
+    .forgot-link {
+      color: var(--caramel);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--cocoa);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: 'Kanit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      background: var(--caramel-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 18px 0 16px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .divider span {
+      padding: 0 12px;
+    }
+
+    .social-auth {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #faf7f2;
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: #fff;
+      border-color: var(--caramel);
+      transform: translateY(-2px);
+    }
+
+    .auth-alert {
+      display: none;
+      padding: 11px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .auth-alert.show {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .auth-alert.success {
+      background: #eef8ee;
+      border: 1px solid #bce2be;
+      color: #216d26;
+    }
+
+    .auth-alert.error {
+      background: #fdf0ed;
+      border: 1px solid #f6c4bb;
+      color: #b52c16;
+    }
+
+    /* Logged in state & Rewards Store */
+    .logged-in-card {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .user-profile-header {
+      text-align: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+
+    .user-avatar-large {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--peach);
+      color: var(--cocoa);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      margin: 0 auto 12px;
+      border: 3px solid var(--caramel);
+    }
+
+    .points-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff4e0;
+      color: var(--caramel);
+      border: 1px solid var(--peach);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      margin: 8px 0 14px;
+    }
+
+    /* Rewards Store Grid */
+    .rewards-section-title {
+      font-size: 1.1rem;
+      color: var(--cocoa);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rewards-list {
+      display: grid;
+      gap: 10px;
+      max-height: 240px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      padding-right: 4px;
+    }
+
+    .reward-item-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #faf7f2;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+    }
+
+    .reward-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reward-item-left .r-icon {
+      font-size: 1.5rem;
+    }
+
+    .reward-item-left strong {
+      display: block;
+      color: var(--cocoa);
+      font-size: 0.92rem;
+    }
+
+    .reward-item-left span {
+      color: var(--caramel);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .btn-redeem {
+      background: var(--cocoa);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-redeem:hover {
+      background: var(--caramel);
+    }
+
+    @media (max-width: 880px) {
+      .auth-container {
+        grid-template-columns: 1fr;
+      }
+      .auth-banner {
+        padding: 30px 20px;
+      }
+      .auth-form-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="auth-header">
+    <a href="index.html" class="brand-logo">
+      <img src="images/cookie-cozy/logo.png" alt="Cookie Cozy Logo">
+    </a>
+    <a href="index.html" class="back-home">
+      ← กลับหน้าแรก
+    </a>
+  </header>
+
+  <div class="auth-container">
+    <!-- Left Banner -->
+    <div class="auth-banner">
+      <div class="banner-content">
+        <div class="banner-badge">✨ Cookie Cozy Member Club</div>
+        <h1>ร่วมเป็นครอบครัว<br><em>Cookie Cozy</em> วันนี้</h1>
+        <p>สะสมแต้มความสุข แลกรับของรางวัลสุดน่ารัก และเพลิดเพลินกับสิทธิพิเศษที่อบใหม่เพื่อคุณ</p>
+
+        <div class="club-perks">
+          <div class="perk-item">
+            <div class="perk-icon">🍪</div>
+            <div class="perk-text">
+              <h4>รับฟรี! คุกกี้ 1 ชิ้นในเดือนเกิด</h4>
+              <p>เลือกรสชาติใดก็ได้ในร้าน อบสดพร้อมส่งให้คุณ</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">💎</div>
+            <div class="perk-text">
+              <h4>สะสม Cookie Points (1 แต้ม ทุก ฿50)</h4>
+              <p>ใช้เป็นส่วนลด หรือแลกรับกระเป๋าผ้า & แก้วเซรามิก</p>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">⚡</div>
+            <div class="perk-text">
+              <h4>สิทธิ์ลอง Seasonal Menu ก่อนใคร</h4>
+              <p>ชิมรสชาติพิเศษประจำฤดูกาลก่อนวางจำหน่ายจริง</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner-footer">
+        © 2026 Cookie Cozy Bakery Co., Ltd. อบด้วยความใส่ใจในทุกขั้นตอน
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="auth-form-card">
+      <div id="auth-alert" class="auth-alert"></div>
+
+      <!-- Guest Forms -->
+      <div id="auth-forms-wrapper">
+        <div class="tab-nav">
+          <button class="tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">เข้าสู่ระบบ</button>
+          <button class="tab-btn" id="tab-register-btn" onclick="switchAuthTab('register')">สมัครสมาชิกใหม่</button>
+        </div>
+
+        <!-- Login Pane -->
+        <div class="form-pane active" id="login-pane">
+          <h2 class="form-title">ยินดีต้อนรับกลับมา ♡</h2>
+          <p class="form-subtitle">เข้าสู่ระบบเพื่อสะสมแต้มและจัดการออเดอร์คุกกี้ของคุณ</p>
+
+          <form id="login-form" onsubmit="handleLoginSubmit(event)">
+            <div class="form-group">
+              <label class="form-label" for="login-email">อีเมล หรือ เบอร์โทรศัพท์</label>
+              <div class="input-wrapper">
+                <input type="text" id="login-email" class="form-input" placeholder="example@email.com" required value="cozylover@cookiecozy.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-password">รหัสผ่าน</label>
+              <div class="input-wrapper">
+                <input type="password" id="login-password" class="form-input" placeholder="••••••••" required value="password123">
+                <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login-password')">👁️</button>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <label class="checkbox-label">
+                <input type="checkbox" id="remember-me" checked> จำฉันไว้ในระบบ
+              </label>
+              <a href="javascript:void(0)" onclick="showAlert('ระบบส่งลิงก์รีเซ็ตรหัสผ่านไปยังอีเมลของคุณแล้ว', 'success')" class="forgot-link">ลืมรหัสผ่าน?</a>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              เข้าสู่ระบบ 🍪
+            </button>
+          </form>
+
+          <div class="divider">
+            <span>หรือเข้าสู่ระบบด้วย</span>
+          </div>
+
+          <div class="social-auth">
+            <button class="social-btn" onclick="quickSocialLogin('Google')"><span>🌐 Google</span></button>
+            <button class="social-btn" onclick="quickSocialLogin('LINE')"><span>💬 LINE</span></button>
+            <button class="social-btn" onclick="quickSocialLogin('Apple')"><span>🍎 Apple</span></button>
+          </div>
+        </div>
+
+        <!-- Register Pane -->
+        <div class="form-pane" id="register-pane">
+          <h2 class="form-title">สมัครสมาชิก Cookie Club</h2>
+          <p class="form-subtitle">รับฟรีคะแนนต้อนรับ 50 Points ทันที!</p>
+
+          <form id="register-form" onsubmit="handleRegisterSubmit(event)">
+            <div class="form-group">
+              <label class="form-label" for="reg-name">ชื่อ - นามสกุล หรือ ชื่อเล่น</label>
+              <input type="text" id="reg-name" class="form-input" placeholder="สมหญิง คุกกี้เลิฟเวอร์" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-email">อีเมล</label>
+                <input type="email" id="reg-email" class="form-input" placeholder="name@email.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-phone">เบอร์โทรศัพท์</label>
+                <input type="tel" id="reg-phone" class="form-input" placeholder="08x-xxx-xxxx" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-birthdate">วัน/เดือน เกิด (เพื่อรับคุกกี้ฟรีวันเกิด)</label>
+              <input type="date" id="reg-birthdate" class="form-input">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-password">กำหนดรหัสผ่าน</label>
+                <div class="input-wrapper">
+                  <input type="password" id="reg-password" class="form-input" placeholder="อย่างน้อย 6 ตัวอักษร" required minlength="6">
+                  <button type="button" class="toggle-password" onclick="togglePasswordVisibility('reg-password')">👁️</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-confirm-password">ยืนยันรหัสผ่าน</label>
+                <div class="input-wrapper">
+                  <input type="password" id="reg-confirm-password" class="form-input" placeholder="ยืนยันอีกครั้ง" required minlength="6">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <label class="checkbox-label">
+                <input type="checkbox" id="reg-terms" required checked> ฉันยอมรับเงื่อนไขและข้อตกลงสมาชิก
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              สมัครสมาชิกรับโบนัส 50 Pts ✨
+            </button>
+          </form>
+
+          <div class="divider">
+            <span>หรือสมัครด่วนด้วย</span>
+          </div>
+
+          <div class="social-auth">
+            <button class="social-btn" onclick="quickSocialLogin('Google')"><span>🌐 Google</span></button>
+            <button class="social-btn" onclick="quickSocialLogin('LINE')"><span>💬 LINE</span></button>
+            <button class="social-btn" onclick="quickSocialLogin('Apple')"><span>🍎 Apple</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logged In Member Profile & Rewards Store -->
+      <div id="logged-in-view" class="logged-in-card">
+        <div class="user-profile-header">
+          <div class="user-avatar-large" id="profile-avatar">🍪</div>
+          <h2 class="form-title" id="profile-name">คุณ สมหญิง</h2>
+          <p class="form-subtitle" id="profile-email">cozylover@cookiecozy.com</p>
+          <div class="points-pill">
+            <span>✨ คะแนนสะสม:</span>
+            <strong id="profile-points">120 Points</strong>
+          </div>
+        </div>
+
+        <div class="rewards-section-title">
+          <span>🎁 ศูนย์แลกของรางวัล (Rewards Store)</span>
+        </div>
+
+        <div class="rewards-list">
+          <div class="reward-item-box">
+            <div class="reward-item-left">
+              <span class="r-icon">🍪</span>
+              <div>
+                <strong>คุกกี้ฟรี 1 ชิ้น (เลือกรสใดก็ได้)</strong>
+                <span>ใช้ 50 Points</span>
+              </div>
+            </div>
+            <button class="btn-redeem" onclick="redeemReward('คุกกี้ฟรี 1 ชิ้น', 50, 'FREECOOKIE')">แลกรับ</button>
+          </div>
+
+          <div class="reward-item-box">
+            <div class="reward-item-left">
+              <span class="r-icon">📌</span>
+              <div>
+                <strong>Golden Cookie Cozy Pin</strong>
+                <span>ใช้ 80 Points</span>
+              </div>
+            </div>
+            <button class="btn-redeem" onclick="redeemReward('Golden Cookie Pin', 80, 'FREEPIN')">แลกรับ</button>
+          </div>
+
+          <div class="reward-item-box">
+            <div class="reward-item-left">
+              <span class="r-icon">👜</span>
+              <div>
+                <strong>Cozy Canvas Tote Bag</strong>
+                <span>ใช้ 150 Points</span>
+              </div>
+            </div>
+            <button class="btn-redeem" onclick="redeemReward('Cozy Canvas Bag', 150, 'FREEBAG')">แลกรับ</button>
+          </div>
+
+          <div class="reward-item-box">
+            <div class="reward-item-left">
+              <span class="r-icon">☕</span>
+              <div>
+                <strong>Cozy Ceramic Mug (Handcrafted)</strong>
+                <span>ใช้ 200 Points</span>
+              </div>
+            </div>
+            <button class="btn-redeem" onclick="redeemReward('Cozy Ceramic Mug', 200, 'FREEMUG')">แลกรับ</button>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <a href="index.html" class="submit-btn" style="text-decoration: none; flex: 1.2;">
+            ไปเลือกซื้อคุกกี้ 🍪
+          </a>
+          <button onclick="handleLogout()" class="submit-btn" style="background: #e2d2c0; color: var(--cocoa); flex: 0.8;">
+            ออกจากระบบ
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function switchAuthTab(tab) {
+      const loginBtn = document.getElementById('tab-login-btn');
+      const regBtn = document.getElementById('tab-register-btn');
+      const loginPane = document.getElementById('login-pane');
+      const regPane = document.getElementById('register-pane');
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.className = 'auth-alert';
+
+      if (tab === 'login') {
+        loginBtn.classList.add('active');
+        regBtn.classList.remove('active');
+        loginPane.classList.add('active');
+        regPane.classList.remove('active');
+      } else {
+        regBtn.classList.add('active');
+        loginBtn.classList.remove('active');
+        regPane.classList.add('active');
+        loginPane.classList.remove('active');
+      }
+    }
+
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+
+    function showAlert(msg, type = 'success') {
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.textContent = msg;
+      alertBox.className = `auth-alert show ${type}`;
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const user = {
+        name: email.split('@')[0] || 'Cookie Lover',
+        email: email,
+        points: 120,
+        memberTier: 'Gold Member'
+      };
+
+      localStorage.setItem('cookieCozyUser', JSON.stringify(user));
+      showAlert('เข้าสู่ระบบสำเร็จ! กำลังพาคุณไปยังหน้าหลัก...', 'success');
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const pass = document.getElementById('reg-password').value;
+      const confirmPass = document.getElementById('reg-confirm-password').value;
+
+      if (pass !== confirmPass) {
+        showAlert('รหัสผ่านและการยืนยันรหัสผ่านไม่ตรงกัน กรุณาตรวจสอบอีกครั้ง', 'error');
+        return;
+      }
+
+      const user = {
+        name: name,
+        email: email,
+        points: 50,
+        memberTier: 'Silver Member'
+      };
+
+      localStorage.setItem('cookieCozyUser', JSON.stringify(user));
+      showAlert('ยินดีต้อนรับสู่ Cookie Club! ได้รับโบนัสต้อนรับ 50 Points เรียบร้อย', 'success');
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1200);
+    }
+
+    function quickSocialLogin(provider) {
+      const user = {
+        name: `ผู้ใช้ ${provider}`,
+        email: `user_${provider.toLowerCase()}@cookiecozy.com`,
+        points: 100,
+        memberTier: 'Gold Member'
+      };
+
+      localStorage.setItem('cookieCozyUser', JSON.stringify(user));
+      showAlert(`เข้าสู่ระบบด้วย ${provider} สำเร็จ!`, 'success');
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 900);
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('cookieCozyUser');
+      checkCurrentUser();
+      showAlert('ออกจากระบบเรียบร้อยแล้ว', 'success');
+    }
+
+    function checkCurrentUser() {
+      const stored = localStorage.getItem('cookieCozyUser');
+      const formsWrapper = document.getElementById('auth-forms-wrapper');
+      const loggedInView = document.getElementById('logged-in-view');
+
+      if (stored) {
+        try {
+          const user = JSON.parse(stored);
+          formsWrapper.style.display = 'none';
+          loggedInView.style.display = 'block';
+          document.getElementById('profile-name').textContent = `สวัสดีคุณ ${user.name} ♡`;
+          document.getElementById('profile-email').textContent = user.email;
+          document.getElementById('profile-points').textContent = `${user.points || 0} Cookie Points`;
+        } catch(e) {
+          formsWrapper.style.display = 'block';
+          loggedInView.style.display = 'none';
+        }
+      } else {
+        formsWrapper.style.display = 'block';
+        loggedInView.style.display = 'none';
+      }
+    }
+
+    function redeemReward(name, pointsCost, promoCode) {
+      const stored = localStorage.getItem('cookieCozyUser');
+      if (!stored) return;
+      let user = JSON.parse(stored);
+
+      if ((user.points || 0) < pointsCost) {
+        showAlert(`คะแนนไม่เพียงพอ (ต้องการ ${pointsCost} Points)`, 'error');
+        return;
+      }
+
+      user.points -= pointsCost;
+      localStorage.setItem('cookieCozyUser', JSON.stringify(user));
+      document.getElementById('profile-points').textContent = `${user.points} Cookie Points`;
+
+      showAlert(`แลกรับ "${name}" สำเร็จ! ได้รับโค้ดส่วนลดของแถม: ${promoCode} (นำไปใส่ในตะกร้าได้เลย)`, 'success');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('tab') === 'register') {
+        switchAuthTab('register');
+      }
+      checkCurrentUser();
+    });
+  </script>
+</body>
+</html>
