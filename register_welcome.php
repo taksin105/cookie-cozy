@@ -211,18 +211,27 @@ $emailBody = '<!DOCTYPE html>
           <tr>
             <!-- Cookie 1: Classic Choco Chip -->
             <td width="31%" style="vertical-align: top; background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 14px; overflow: hidden; padding: 10px; text-align: center;">
-              <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-chocochip.jpg" alt="Classic Choco Chip" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
+              <a href="https://taksin105.github.io/cookie-cozy/?product=classic-chocochip#cookie-classic-chocochip" target="_blank" style="text-decoration: none; display: block;">
+                <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-chocochip.jpg" alt="Classic Choco Chip" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
+              </a>
               <span style="display: inline-block; background: #fee2e2; color: #b91c1c; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px; margin-bottom: 4px;">
                 ⭐ Best Seller
               </span>
-              <div style="font-size: 12px; font-weight: 700; color: #3a1a0c; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
-                Classic Choco Chip
+              <div style="font-size: 12px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
+                <a href="https://taksin105.github.io/cookie-cozy/?product=classic-chocochip#cookie-classic-chocochip" target="_blank" style="color: #3a1a0c; text-decoration: none;">
+                  Classic Choco Chip
+                </a>
               </div>
-              <div style="font-size: 11px; color: #7a6a5d; margin-bottom: 8px; line-height: 1.3;">
+              <div style="font-size: 11px; color: #7a6a5d; margin-bottom: 6px; line-height: 1.3;">
                 ช็อกโกแลตเยิ้มๆ เนยแท้ฝรั่งเศส
               </div>
-              <div style="font-size: 13px; font-weight: 800; color: #bf7739;">
+              <div style="font-size: 13px; font-weight: 800; color: #bf7739; margin-bottom: 8px;">
                 ฿45
+              </div>
+              <div>
+                <a href="https://taksin105.github.io/cookie-cozy/?product=classic-chocochip#cookie-classic-chocochip" target="_blank" style="display: block; background: linear-gradient(135deg, #bf7739 0%, #8c4217 100%); color: #ffffff; text-decoration: none; padding: 7px 6px; border-radius: 18px; font-size: 11px; font-weight: 700; box-shadow: 0 2px 6px rgba(191,119,57,0.3);">
+                  ดูสินค้าชิ้นนี้ ➔
+                </a>
               </div>
             </td>
 
@@ -230,18 +239,27 @@ $emailBody = '<!DOCTYPE html>
 
             <!-- Cookie 2: Red Velvet Cream Cheese -->
             <td width="31%" style="vertical-align: top; background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 14px; overflow: hidden; padding: 10px; text-align: center;">
-              <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-redvelvet.jpg" alt="Red Velvet Cream Cheese" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
+              <a href="https://taksin105.github.io/cookie-cozy/?product=red-velvet#cookie-red-velvet" target="_blank" style="text-decoration: none; display: block;">
+                <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-redvelvet.jpg" alt="Red Velvet Cream Cheese" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
+              </a>
               <span style="display: inline-block; background: #fef3c7; color: #b45309; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px; margin-bottom: 4px;">
                 💖 ครีมชีสลาวา
               </span>
-              <div style="font-size: 12px; font-weight: 700; color: #3a1a0c; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
-                Red Velvet Cream Cheese
+              <div style="font-size: 12px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
+                <a href="https://taksin105.github.io/cookie-cozy/?product=red-velvet#cookie-red-velvet" target="_blank" style="color: #3a1a0c; text-decoration: none;">
+                  Red Velvet Cream Cheese
+                </a>
               </div>
-              <div style="font-size: 11px; color: #7a6a5d; margin-bottom: 8px; line-height: 1.3;">
+              <div style="font-size: 11px; color: #7a6a5d; margin-bottom: 6px; line-height: 1.3;">
                 ครีมชีสนิวซีแลนด์รสละมุนลิ้น
               </div>
-              <div style="font-size: 13px; font-weight: 800; color: #bf7739;">
+              <div style="font-size: 13px; font-weight: 800; color: #bf7739; margin-bottom: 8px;">
                 ฿55
+              </div>
+              <div>
+                <a href="https://taksin105.github.io/cookie-cozy/?product=red-velvet#cookie-red-velvet" target="_blank" style="display: block; background: linear-gradient(135deg, #bf7739 0%, #8c4217 100%); color: #ffffff; text-decoration: none; padding: 7px 6px; border-radius: 18px; font-size: 11px; font-weight: 700; box-shadow: 0 2px 6px rgba(191,119,57,0.3);">
+                  ดูสินค้าชิ้นนี้ ➔
+                </a>
               </div>
             </td>
 
@@ -249,18 +267,27 @@ $emailBody = '<!DOCTYPE html>
 
             <!-- Cookie 3: Lotus Biscoff Lava -->
             <td width="31%" style="vertical-align: top; background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 14px; overflow: hidden; padding: 10px; text-align: center;">
-              <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-biscoff.jpg" alt="Lotus Biscoff Lava" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
+              <a href="https://taksin105.github.io/cookie-cozy/?product=biscoff-lava#cookie-biscoff-lava" target="_blank" style="text-decoration: none; display: block;">
+                <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-biscoff.jpg" alt="Lotus Biscoff Lava" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
+              </a>
               <span style="display: inline-block; background: #ffedd5; color: #c2410c; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px; margin-bottom: 4px;">
                 🔥 ลาวาคาราเมล
               </span>
-              <div style="font-size: 12px; font-weight: 700; color: #3a1a0c; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
-                Lotus Biscoff Lava
+              <div style="font-size: 12px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
+                <a href="https://taksin105.github.io/cookie-cozy/?product=biscoff-lava#cookie-biscoff-lava" target="_blank" style="color: #3a1a0c; text-decoration: none;">
+                  Lotus Biscoff Lava
+                </a>
               </div>
-              <div style="font-size: 11px; color: #7a6a5d; margin-bottom: 8px; line-height: 1.3;">
+              <div style="font-size: 11px; color: #7a6a5d; margin-bottom: 6px; line-height: 1.3;">
                 บิสกิตเบลเยียม ลาวาคาราเมล
               </div>
-              <div style="font-size: 13px; font-weight: 800; color: #bf7739;">
+              <div style="font-size: 13px; font-weight: 800; color: #bf7739; margin-bottom: 8px;">
                 ฿55
+              </div>
+              <div>
+                <a href="https://taksin105.github.io/cookie-cozy/?product=biscoff-lava#cookie-biscoff-lava" target="_blank" style="display: block; background: linear-gradient(135deg, #bf7739 0%, #8c4217 100%); color: #ffffff; text-decoration: none; padding: 7px 6px; border-radius: 18px; font-size: 11px; font-weight: 700; box-shadow: 0 2px 6px rgba(191,119,57,0.3);">
+                  ดูสินค้าชิ้นนี้ ➔
+                </a>
               </div>
             </td>
           </tr>

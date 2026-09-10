@@ -166,16 +166,20 @@ $subscribers[] = [
 $promoCode = 'COZYNEWS15';
 
 $productsHtml = '';
-foreach ($recommended as $c) {
+foreach ($recommended as $id => $c) {
     $productsHtml .= '
     <td style="padding: 10px; width: 33.33%; vertical-align: top;">
       <div style="background: #ffffff; border: 1px solid #ebd9c8; border-radius: 14px; overflow: hidden; text-align: center; padding-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
-        <img src="' . htmlspecialchars($c['img']) . '" alt="' . htmlspecialchars($c['name']) . '" style="width: 100%; height: 130px; object-fit: cover; display: block;">
+        <a href="https://taksin105.github.io/cookie-cozy/?product=' . urlencode($id) . '#cookie-' . urlencode($id) . '" target="_blank" style="text-decoration: none; display: block;">
+          <img src="' . htmlspecialchars($c['img']) . '" alt="' . htmlspecialchars($c['name']) . '" style="width: 100%; height: 130px; object-fit: cover; display: block;">
+        </a>
         <div style="padding: 10px 8px 4px;">
-          <h4 style="margin: 0 0 4px; font-size: 13px; color: #3a1a0c; font-family: sans-serif;">' . htmlspecialchars($c['name']) . '</h4>
+          <h4 style="margin: 0 0 4px; font-size: 13px; color: #3a1a0c; font-family: sans-serif;">
+            <a href="https://taksin105.github.io/cookie-cozy/?product=' . urlencode($id) . '#cookie-' . urlencode($id) . '" target="_blank" style="color: #3a1a0c; text-decoration: none;">' . htmlspecialchars($c['name']) . '</a>
+          </h4>
           <p style="margin: 0 0 8px; font-size: 11px; color: #7a6a5d; line-height: 1.4;">' . htmlspecialchars($c['tagline']) . '</p>
           <div style="font-size: 14px; font-weight: bold; color: #bf7739; margin-bottom: 8px;">' . $c['price'] . '</div>
-          <a href="https://taksin105.github.io/cookie-cozy/#menu" style="display: inline-block; background: #5a2d18; color: #ffffff; text-decoration: none; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold;">ชิมรสนี้ ➔</a>
+          <a href="https://taksin105.github.io/cookie-cozy/?product=' . urlencode($id) . '#cookie-' . urlencode($id) . '" target="_blank" style="display: inline-block; background: #5a2d18; color: #ffffff; text-decoration: none; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: bold;">สั่งชิมรสนี้ ➔</a>
         </div>
       </div>
     </td>';

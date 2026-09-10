@@ -958,12 +958,25 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      scroll-margin-top: 100px;
     }
 
     .cookie-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-md);
       border-color: var(--peach);
+    }
+
+    @keyframes cookieHighlightPulse {
+      0% { box-shadow: 0 0 0 0 rgba(191, 119, 57, 0.7); transform: scale(1); }
+      50% { box-shadow: 0 0 0 14px rgba(191, 119, 57, 0); transform: scale(1.04); }
+      100% { box-shadow: 0 0 0 0 rgba(191, 119, 57, 0); transform: scale(1); }
+    }
+
+    .cookie-card.cookie-highlight-focus {
+      border-color: var(--caramel) !important;
+      border-width: 2px !important;
+      animation: cookieHighlightPulse 1.2s ease-in-out 3;
     }
 
     .cookie-thumb {
@@ -4002,7 +4015,45 @@
       const navlinks = document.getElementById('navlinks');
       toggle.addEventListener('click', () => navlinks.classList.toggle('show'));
       navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('show')));
+
+      // Check URL query param ?product=... or hash #cookie-...
+      const urlParams = new URLSearchParams(window.location.search);
+      const productQuery = urlParams.get('product');
+      const hashQuery = window.location.hash.startsWith('#cookie-') ? window.location.hash.replace('#cookie-', '') : null;
+      const targetId = productQuery || hashQuery;
+      if (targetId) {
+        setTimeout(() => focusAndHighlightCookie(targetId), 400);
+      }
+
+      window.addEventListener('hashchange', () => {
+        if (window.location.hash.startsWith('#cookie-')) {
+          const cId = window.location.hash.replace('#cookie-', '');
+          focusAndHighlightCookie(cId);
+        }
+      });
     });
+
+    function focusAndHighlightCookie(cookieId) {
+      const targetCookie = COOKIE_DATA.find(c => c.id === cookieId);
+      if (!targetCookie) return;
+
+      renderCookieMenu('all');
+      document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+      const allBtn = document.querySelector('.cat-pill');
+      if (allBtn) allBtn.classList.add('active');
+
+      setTimeout(() => {
+        const targetCard = document.getElementById(`cookie-${cookieId}`);
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.classList.remove('cookie-highlight-focus');
+          void targetCard.offsetWidth; // trigger reflow
+          targetCard.classList.add('cookie-highlight-focus');
+          showToast(`🍪 คุณกำลังดูคุกกี้: ${targetCookie.name}`);
+          trackCookieView(cookieId);
+        }
+      }, 150);
+    }
 
     // Batch Countdown Timer
     function startBatchCountdown() {
@@ -4237,7 +4288,7 @@
       }
 
       grid.innerHTML = filtered.map(c => `
-        <article class="cookie-card">
+        <article class="cookie-card" id="cookie-${c.id}">
           <div class="cookie-thumb">
             <img src="${c.img}" alt="${c.name}" loading="lazy">
             ${c.badge ? `<span class="cookie-card-badge ${c.badgeClass}">${c.badge}</span>` : ''}
