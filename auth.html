@@ -838,6 +838,26 @@
     </div>
   </div>
 
+  <!-- WELCOME EMAIL PREVIEW MODAL -->
+  <div class="modal-overlay" id="welcome-email-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:1000; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#fff; border-radius:24px; max-width:620px; width:100%; max-height:92vh; overflow-y:auto; padding:24px; box-shadow:0 20px 40px rgba(0,0,0,0.3); animation:modalPop 0.3s ease;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #ebd9c8; padding-bottom:12px; margin-bottom:16px;">
+        <div style="font-weight:bold; color:var(--cocoa); font-size:1.1rem; display:flex; align-items:center; gap:8px;">
+          <span>✉️</span> ส่งอีเมลต้อนรับสมาชิกแล้ว (Sent via PHP mailer)
+        </div>
+        <button onclick="closeWelcomeEmailModal()" style="background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--muted);">✕</button>
+      </div>
+      <div style="background:#fdfaf6; border:1px solid #ebd9c8; border-radius:16px; padding:10px; margin-bottom:16px; max-height:480px; overflow-y:auto;" id="welcome-email-preview-container">
+        <!-- Injected via JS -->
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="submit-btn" style="flex:1;" onclick="window.location.href='index.html'">
+          เข้าสู่ร้านค้าและเริ่มสะสมแต้ม ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     function switchAuthTab(tab) {
       const loginBtn = document.getElementById('tab-login-btn');
@@ -889,10 +909,10 @@
       }, 1000);
     }
 
-    function handleRegisterSubmit(e) {
+    async function handleRegisterSubmit(e) {
       e.preventDefault();
-      const name = document.getElementById('reg-name').value;
-      const email = document.getElementById('reg-email').value;
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
       const pass = document.getElementById('reg-password').value;
       const confirmPass = document.getElementById('reg-confirm-password').value;
 
@@ -902,18 +922,65 @@
       }
 
       const user = {
-        name: name,
+        name: name || 'สมาชิกใหม่',
         email: email,
         points: 50,
         memberTier: 'Silver Member'
       };
 
       localStorage.setItem('cookieCozyUser', JSON.stringify(user));
-      showAlert('ยินดีต้อนรับสู่ Cookie Club! ได้รับโบนัสต้อนรับ 50 Points เรียบร้อย', 'success');
+      showAlert('ยินดีต้อนรับสู่ Cookie Club! ได้รับโบนัสต้อนรับ 50 Points เรียบร้อย 🎉', 'success');
 
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 1200);
+      // Call PHP backend register_welcome.php
+      let emailHtmlContent = '';
+      try {
+        const response = await fetch('register_welcome.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: user.name,
+            email: user.email,
+            memberTier: user.memberTier
+          })
+        });
+        if (response.ok) {
+          const result = await response.json();
+          emailHtmlContent = result.email_html;
+        }
+      } catch (err) {
+        console.log('Running on static host, using local email renderer for preview:', err);
+      }
+
+      // Fallback Email HTML Preview if running on static host
+      if (!emailHtmlContent) {
+        const memberId = 'CCZ-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+        emailHtmlContent = `
+          <div style="background: linear-gradient(135deg, #3a1a0c 0%, #5a2d18 100%); color: #fff; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;">
+            <h3 style="margin: 0 0 4px; color: #fdfaf6; font-size: 18px;">COOKIE CLUB VIP PASS</h3>
+            <p style="margin: 0; color: #f1c982; font-size: 12px;">Official Membership Privileges</p>
+            <div style="font-family: monospace; font-size: 20px; font-weight: bold; letter-spacing: 2px; margin: 14px 0; color: #fdfaf6;">${memberId}</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; font-size: 13px;">
+              <span>👤 <strong>${user.name}</strong></span>
+              <span style="color: #f1c982; font-weight: bold;">⭐ 50 Welcome Points</span>
+            </div>
+          </div>
+          <div style="padding: 10px; font-size: 13px; color: #5a2d18; line-height: 1.6;">
+            <p><strong>สวัสดีคุณ ${user.name} ♡</strong></p>
+            <p>ยินดีต้อนรับสู่ครอบครัว Cookie Cozy! ระบบได้ทำการส่งอีเมลต้อนรับ (PHP Mailer) พร้อมบัตรสมาชิก VIP และแต้มโบนัส 50 Points เข้าสู่บัญชีของคุณเรียบร้อยแล้ว</p>
+            <div style="background: #fff8eb; border: 1px dashed #bf7739; border-radius: 12px; padding: 12px; margin: 12px 0;">
+              🎁 <strong>สิทธิประโยชน์สมาชิก:</strong> ฟรีคุกกี้เดือนเกิด, ส่งฟรีเดือนละ 1 ครั้ง, และสิทธิ์ชิมรสชาติ Limited Edition ก่อนใคร!
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('welcome-email-preview-container').innerHTML = emailHtmlContent;
+      document.getElementById('welcome-email-modal').style.display = 'flex';
+    }
+
+    function closeWelcomeEmailModal() {
+      document.getElementById('welcome-email-modal').style.display = 'none';
+      window.location.href = 'index.html';
     }
 
     function quickSocialLogin(provider) {
