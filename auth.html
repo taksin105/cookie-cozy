@@ -957,20 +957,64 @@
       if (!emailHtmlContent) {
         const memberId = 'CCZ-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
         emailHtmlContent = `
-          <div style="background: linear-gradient(135deg, #3a1a0c 0%, #5a2d18 100%); color: #fff; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;">
-            <h3 style="margin: 0 0 4px; color: #fdfaf6; font-size: 18px;">COOKIE CLUB VIP PASS</h3>
-            <p style="margin: 0; color: #f1c982; font-size: 12px;">Official Membership Privileges</p>
-            <div style="font-family: monospace; font-size: 20px; font-weight: bold; letter-spacing: 2px; margin: 14px 0; color: #fdfaf6;">${memberId}</div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; font-size: 13px;">
-              <span>👤 <strong>${user.name}</strong></span>
-              <span style="color: #f1c982; font-weight: bold;">⭐ 50 Welcome Points</span>
+          <div style="max-width: 540px; margin: 0 auto; background: #ffffff; border-radius: 20px; overflow: hidden; border: 1px solid #ebd9c8; font-family: 'Kanit', sans-serif;">
+            <div style="background: linear-gradient(135deg, #2c1409 0%, #4a210f 50%, #3a1a0c 100%); padding: 18px; text-align: center;">
+              <img src="images/cookie-cozy/logo.png" alt="Cookie Cozy" style="max-height: 44px; display: inline-block;">
+              <div style="color: #f1c982; font-size: 10px; font-weight: 700; letter-spacing: 2px; margin-top: 6px;">★ OFFICIAL WELCOME TO COOKIE CLUB ★</div>
             </div>
-          </div>
-          <div style="padding: 10px; font-size: 13px; color: #5a2d18; line-height: 1.6;">
-            <p><strong>สวัสดีคุณ ${user.name} ♡</strong></p>
-            <p>ยินดีต้อนรับสู่ครอบครัว Cookie Cozy! ระบบได้ทำการส่งอีเมลต้อนรับ (PHP Mailer) พร้อมบัตรสมาชิก VIP และแต้มโบนัส 50 Points เข้าสู่บัญชีของคุณเรียบร้อยแล้ว</p>
-            <div style="background: #fff8eb; border: 1px dashed #bf7739; border-radius: 12px; padding: 12px; margin: 12px 0;">
-              🎁 <strong>สิทธิประโยชน์สมาชิก:</strong> ฟรีคุกกี้เดือนเกิด, ส่งฟรีเดือนละ 1 ครั้ง, และสิทธิ์ชิมรสชาติ Limited Edition ก่อนใคร!
+            <img src="images/cookie-cozy/hero-banner.jpg" alt="Cozy Cookies" style="width: 100%; max-height: 180px; object-fit: cover; display: block;">
+            <div style="padding: 22px;">
+              <div style="text-align: center; margin-bottom: 18px;">
+                <div style="display: inline-block; background: #fff5e6; border: 1px solid #f8dfbe; border-radius: 20px; padding: 3px 12px; font-size: 12px; color: #bf7739; font-weight: 600; margin-bottom: 8px;">✨ การสมัครสมาชิกเสร็จสมบูรณ์</div>
+                <h3 style="margin: 0 0 6px; font-size: 20px; color: #3a1a0c;">ยินดีต้อนรับคุณ ${user.name}!</h3>
+                <p style="margin: 0; font-size: 13px; color: #7a6a5d;">ขอต้อนรับสู่ครอบครัว Cookie Cozy อบสดใหม่ด้วยเนยแท้ฝรั่งเศส 100%</p>
+              </div>
+
+              <!-- VIP Card -->
+              <div style="background: linear-gradient(135deg, #241107 0%, #461f0d 50%, #703617 85%, #b5672c 100%); border-radius: 16px; border: 2px solid #e2a85c; padding: 18px 20px; color: #fff; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(58,26,12,0.25);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                  <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #f1c982;">COOKIE CLUB VIP PASS</span>
+                  <span style="background: rgba(241, 201, 130, 0.2); border: 1px solid rgba(241, 201, 130, 0.5); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">✦ Silver Member</span>
+                </div>
+                <div style="font-family: monospace; font-size: 18px; font-weight: 700; letter-spacing: 2.5px; color: #fff8eb; margin-bottom: 14px;">${memberId}</div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px;">
+                  <div>
+                    <div style="font-size: 9px; color: #f1c982;">MEMBER NAME</div>
+                    <div style="font-size: 14px; font-weight: 700;">${user.name}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 9px; color: #f1c982; text-align: right;">WELCOME BONUS</div>
+                    <div style="background: #f1c982; color: #3a1a0c; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 10px;">⭐ +50 PTS</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cookies Showcase -->
+              <div style="border-top: 1px solid #ebd9c8; padding-top: 16px; margin-bottom: 18px;">
+                <div style="font-size: 14px; font-weight: 700; color: #3a1a0c; margin-bottom: 10px;">🍪 เมนูคุกกี้ Signature ยอดนิยมที่คุณไม่ควรพลาด</div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                  <div style="background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 12px; padding: 8px; text-align: center;">
+                    <img src="images/cookie-cozy/cookie-chocochip.jpg" alt="Choco Chip" style="width: 100%; height: 75px; object-fit: cover; border-radius: 8px; margin-bottom: 6px;">
+                    <div style="font-size: 11px; font-weight: 700; color: #3a1a0c;">Classic Choco</div>
+                    <div style="font-size: 11px; font-weight: 800; color: #bf7739;">฿45</div>
+                  </div>
+                  <div style="background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 12px; padding: 8px; text-align: center;">
+                    <img src="images/cookie-cozy/cookie-redvelvet.jpg" alt="Red Velvet" style="width: 100%; height: 75px; object-fit: cover; border-radius: 8px; margin-bottom: 6px;">
+                    <div style="font-size: 11px; font-weight: 700; color: #3a1a0c;">Red Velvet</div>
+                    <div style="font-size: 11px; font-weight: 800; color: #bf7739;">฿55</div>
+                  </div>
+                  <div style="background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 12px; padding: 8px; text-align: center;">
+                    <img src="images/cookie-cozy/cookie-biscoff.jpg" alt="Lotus Biscoff" style="width: 100%; height: 75px; object-fit: cover; border-radius: 8px; margin-bottom: 6px;">
+                    <div style="font-size: 11px; font-weight: 700; color: #3a1a0c;">Biscoff Lava</div>
+                    <div style="font-size: 11px; font-weight: 800; color: #bf7739;">฿55</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Perks -->
+              <div style="background: #faf5ee; border-radius: 12px; padding: 12px 14px; font-size: 12px; color: #5a2d18; line-height: 1.6;">
+                🎁 <strong>สิทธิประโยชน์:</strong> ฟรีคุกกี้เดือนเกิด, ส่งฟรีเดือนละครั้ง, คะแนนสะสม x2, และสิทธิ์ชิมรสใหม่ก่อนใคร!
+              </div>
             </div>
           </div>
         `;
