@@ -60,6 +60,11 @@ function sendCookieEmail($to, $subject, $htmlBody, $fromName = 'Cookie Cozy Bake
 }
 
 function sendViaSMTP($host, $port, $user, $pass, $fromEmail, $fromName, $to, $subject, $htmlBody) {
+    $user = trim($user);
+    $pass = str_replace(' ', '', trim($pass));
+    $fromEmail = trim($fromEmail);
+    $to = trim($to);
+
     $timeout = 10;
     $socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
     if (!$socket) {

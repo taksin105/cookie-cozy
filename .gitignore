@@ -1,0 +1,5 @@
+smtp_config.php
+sent_emails/
+subscribers.json
+members.json
+*.log
