@@ -164,15 +164,10 @@ $emailBody = '<!DOCTYPE html>
 </body>
 </html>';
 
-// 5. Send Email using PHP mail()
+// 5. Send Email using mailer_helper (Supports SMTP & Local Outbox File)
+require_once __DIR__ . '/mailer_helper.php';
 $subject = "🎉 ยินดีต้อนรับสู่ Cookie Club! มอบโบนัสต้อนรับ 50 Points สำหรับคุณ";
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset=UTF-8\r\n";
-$headers .= "From: Cookie Club <welcome@cookiecozy.com>\r\n";
-$headers .= "Reply-To: hello@cookiecozy.com\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
-
-$mailSent = @mail($email, $subject, $emailBody, $headers);
+$sendResult = sendCookieEmail($email, $subject, $emailBody, 'Cookie Club');
 
 // 6. Return JSON response
 echo json_encode([
@@ -182,6 +177,7 @@ echo json_encode([
     'name' => $name,
     'email' => $email,
     'bonus_points' => $bonusPoints,
-    'mail_sent' => $mailSent,
+    'mail_sent' => $sendResult['smtp_sent'] || $sendResult['mail_sent'],
+    'saved_file' => $sendResult['saved_file'],
     'email_html' => $emailBody
 ], JSON_UNESCAPED_UNICODE);

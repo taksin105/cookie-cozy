@@ -933,6 +933,7 @@
 
       // Call PHP backend register_welcome.php
       let emailHtmlContent = '';
+      let savedFile = '';
       try {
         const response = await fetch('register_welcome.php', {
           method: 'POST',
@@ -946,6 +947,7 @@
         if (response.ok) {
           const result = await response.json();
           emailHtmlContent = result.email_html;
+          savedFile = result.saved_file || '';
         }
       } catch (err) {
         console.log('Running on static host, using local email renderer for preview:', err);
@@ -972,6 +974,15 @@
             </div>
           </div>
         `;
+      }
+
+      if (savedFile) {
+        emailHtmlContent = `
+          <div style="background: #e8f5e9; color: #2e7d32; padding: 10px 14px; border-radius: 12px; font-size: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #a5d6a7;">
+            <span>💾 <strong>Local PHP Server:</strong> บันทึกไฟล์อีเมลไว้ที่ <code>${savedFile}</code></span>
+            <a href="${savedFile}" target="_blank" style="color: #1b5e20; text-decoration: underline; font-weight: bold; background: #fff; padding: 4px 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">เปิดดูไฟล์เต็ม ➔</a>
+          </div>
+        ` + emailHtmlContent;
       }
 
       document.getElementById('welcome-email-preview-container').innerHTML = emailHtmlContent;

@@ -251,16 +251,10 @@ $emailBody = '<!DOCTYPE html>
 </body>
 </html>';
 
-// 6. Send Email using PHP mail()
+// 6. Send Email using mailer_helper (Supports SMTP & Local Outbox File)
+require_once __DIR__ . '/mailer_helper.php';
 $subject = "🍪 คูปองลด 15% พร้อมคุกกี้รสโปรดของคุณจาก Cookie Cozy Bakery!";
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-type: text/html; charset=UTF-8\r\n";
-$headers .= "From: Cookie Cozy Bakery <newsletter@cookiecozy.com>\r\n";
-$headers .= "Reply-To: hello@cookiecozy.com\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
-
-// Send email (suppressed warnings if local sendmail is not yet configured)
-$mailSent = @mail($email, $subject, $emailBody, $headers);
+$sendResult = sendCookieEmail($email, $subject, $emailBody, 'Cookie Cozy Bakery');
 
 // 7. Return JSON response
 echo json_encode([
@@ -269,7 +263,8 @@ echo json_encode([
     'email' => $email,
     'interests' => $interests,
     'promo_code' => $promoCode,
-    'mail_sent' => $mailSent,
+    'mail_sent' => $sendResult['smtp_sent'] || $sendResult['mail_sent'],
+    'saved_file' => $sendResult['saved_file'],
     'recommended_cookies' => array_values($recommended),
     'email_html' => $emailBody
 ], JSON_UNESCAPED_UNICODE);

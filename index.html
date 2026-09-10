@@ -5204,6 +5204,7 @@
       submitBtn.textContent = '⏳ กำลังประมวลผลผ่าน PHP Mailer...';
 
       let emailHtml = '';
+      let savedFile = '';
 
       try {
         const response = await fetch('subscribe.php', {
@@ -5215,6 +5216,7 @@
           const result = await response.json();
           if (result.status === 'success' && result.email_html) {
             emailHtml = result.email_html;
+            savedFile = result.saved_file || '';
           }
         }
       } catch (err) {
@@ -5289,6 +5291,15 @@
             </div>
           </div>
         `;
+      }
+
+      if (savedFile) {
+        emailHtml = `
+          <div style="background: #e8f5e9; color: #2e7d32; padding: 10px 14px; border-radius: 12px; font-size: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #a5d6a7;">
+            <span>💾 <strong>Local PHP Server:</strong> บันทึกไฟล์อีเมลไว้ที่ <code>${savedFile}</code></span>
+            <a href="${savedFile}" target="_blank" style="color: #1b5e20; text-decoration: underline; font-weight: bold; background: #fff; padding: 4px 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">เปิดดูไฟล์เต็ม ➔</a>
+          </div>
+        ` + emailHtml;
       }
 
       document.getElementById('newsletter-email-preview-body').innerHTML = emailHtml;
