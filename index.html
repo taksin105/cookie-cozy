@@ -142,16 +142,21 @@
     .navlinks {
       display: flex;
       align-items: center;
-      gap: 20px;
-      font-size: 0.95rem;
+      gap: clamp(6px, 1.1vw, 14px);
+      font-size: 0.88rem;
       font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .navlinks a {
       color: var(--muted);
       position: relative;
-      padding: 6px 2px;
+      padding: 6px 3px;
+      white-space: nowrap;
+      word-break: keep-all;
       transition: color 0.25s ease;
+      display: inline-block;
     }
 
     .navlinks a:hover {
@@ -166,23 +171,26 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .btn-icon {
       position: relative;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1px solid var(--line);
       background: #fff;
       display: grid;
       place-items: center;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--cocoa);
       cursor: pointer;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
+      flex-shrink: 0;
     }
 
     .btn-icon:hover {
@@ -212,14 +220,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 16px;
+      padding: 7px 14px;
       border-radius: var(--radius-full);
       border: 1px solid var(--line);
       background: #fff;
       color: var(--cocoa);
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: var(--transition);
     }
 
@@ -227,6 +237,15 @@
       border-color: var(--caramel);
       background: var(--cream);
       transform: translateY(-2px);
+    }
+
+    .user-btn #nav-user-text {
+      white-space: nowrap;
+      max-width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .user-btn .user-avatar {
@@ -2413,10 +2432,13 @@
       .newsletter-card { padding: 32px 24px; }
     }
 
-    @media (max-width: 820px) {
-      .navlinks { display: none; position: absolute; top: 78px; left: 20px; right: 20px; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; flex-direction: column; align-items: stretch; box-shadow: var(--shadow-lg); }
+    @media (max-width: 1080px) {
+      .navlinks { display: none; position: absolute; top: 78px; left: 20px; right: 20px; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; flex-direction: column; align-items: stretch; box-shadow: var(--shadow-lg); z-index: 100; }
       .navlinks.show { display: flex; }
       .mobile-toggle { display: block; }
+    }
+
+    @media (max-width: 820px) {
       .checkout-steps-bar { display: none; }
     }
 
@@ -2457,12 +2479,12 @@
 
       <nav class="navlinks" id="navlinks">
         <a href="#home">หน้าแรก</a>
-        <a href="#mood-matcher" class="nav-highlight">✨ ทายคุกกี้ตามอารมณ์</a>
-        <a href="#box-builder">🎁 จัดกล่องเอง</a>
-        <a href="#ai-recommendations">🤖 แนะนำเฉพาะคุณ</a>
+        <a href="#mood-matcher" class="nav-highlight">✨ ทายคุกกี้</a>
+        <a href="#box-builder">🎁 จัดกล่อง</a>
+        <a href="#ai-recommendations">🤖 AI แนะนำ</a>
         <a href="#menu">เมนูทั้งหมด</a>
         <a href="#warming-guide">♨️ วิธีอุ่น</a>
-        <a href="#newsletter-section" style="color: var(--caramel); font-weight: 600;">📩 รับคูปอง 15%</a>
+        <a href="#newsletter-section" style="color: var(--caramel); font-weight: 600;">📩 คูปอง 15%</a>
       </nav>
 
       <div class="nav-actions">
@@ -4002,7 +4024,9 @@
       if (storedUser) {
         try {
           const user = JSON.parse(storedUser);
-          userText.textContent = `${user.name} (${user.points || 0} pts)`;
+          const firstName = user.name ? user.name.trim().split(/\s+/)[0] : 'สมาชิก';
+          userText.textContent = `${firstName} (${user.points || 0} pts)`;
+          userText.title = `${user.name} (${user.points || 0} pts)`;
           userAvatar.textContent = '🍪';
         } catch(e) {}
       }
