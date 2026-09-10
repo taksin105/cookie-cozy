@@ -528,7 +528,7 @@
       font-weight: 300;
     }
 
-    /* 1. MOOD MATCHER SECTION */
+    /* 1. 5-STEP INTERACTIVE MOOD MATCHER QUIZ SECTION */
     .mood-section { padding: 50px 0 80px; }
     .mood-box-container {
       background: linear-gradient(145deg, #ffffff 0%, #fffbf5 100%);
@@ -540,48 +540,324 @@
       overflow: hidden;
     }
 
-    .mood-options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
-      margin: 28px 0 32px;
+    /* Quiz Progress Bar & Step Dots */
+    .quiz-progress-wrapper {
+      background: #fff8ef;
+      border: 1px solid #ebd9c8;
+      border-radius: 20px;
+      padding: 16px 22px;
+      margin-bottom: 28px;
     }
 
-    .mood-card-btn {
-      background: var(--cream);
-      border: 1.5px solid var(--line);
-      border-radius: 18px;
-      padding: 14px 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
+    .quiz-step-indicator {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .quiz-step-badge {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--cocoa);
+      display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .mood-card-btn:hover {
-      background: #fff;
-      border-color: var(--caramel);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-sm);
+    .quiz-step-percent {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--caramel);
     }
 
-    .mood-card-btn.active {
+    .quiz-progress-track {
+      width: 100%;
+      height: 8px;
+      background: #eee1d3;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #d49a43, #5a2d18);
+      border-radius: 8px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .quiz-steps-dots {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .step-dot {
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid #ebd9c8;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      cursor: default;
+    }
+
+    .step-dot.completed {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border-color: #a5d6a7;
+      font-weight: 600;
+    }
+
+    .step-dot.active {
       background: var(--cocoa);
       color: #fff;
       border-color: var(--cocoa);
-      box-shadow: 0 6px 18px rgba(90, 45, 24, 0.22);
-      transform: translateY(-3px) scale(1.02);
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(90, 45, 24, 0.25);
     }
 
-    .mood-icon { font-size: 1.8rem; }
-    .mood-label { font-size: 0.86rem; font-weight: 600; }
-    .mood-sublabel { font-size: 0.72rem; color: var(--muted); line-height: 1.2; }
-    .mood-card-btn.active .mood-sublabel { color: #ebdcc9; }
+    /* Question Box */
+    .quiz-question-box {
+      animation: fadeIn 0.35s ease;
+    }
 
-    .mood-result-panel {
+    .quiz-q-header {
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .quiz-q-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--cocoa);
+      margin-bottom: 6px;
+    }
+
+    .quiz-q-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .quiz-options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .quiz-option-card {
+      background: #ffffff;
+      border: 2px solid #ebd9c8;
+      border-radius: 20px;
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      text-align: left;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .quiz-option-card:hover {
+      border-color: var(--caramel);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(191, 119, 57, 0.12);
+      background: #fffdfa;
+    }
+
+    .quiz-option-card.selected {
+      background: #fff8ef;
+      border-color: var(--cocoa);
+      box-shadow: 0 6px 18px rgba(90, 45, 24, 0.18);
+      transform: scale(1.01);
+    }
+
+    .quiz-opt-icon {
+      font-size: 2rem;
+      line-height: 1;
+      background: #faf3eb;
+      padding: 10px;
+      border-radius: 14px;
+      flex-shrink: 0;
+      border: 1px solid #ebd9c8;
+      transition: transform 0.25s ease;
+    }
+
+    .quiz-option-card:hover .quiz-opt-icon,
+    .quiz-option-card.selected .quiz-opt-icon {
+      transform: scale(1.1) rotate(4deg);
+      background: #fff;
+    }
+
+    .quiz-opt-body {
+      flex: 1;
+    }
+
+    .quiz-opt-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cocoa);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quiz-opt-radio {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .quiz-option-card.selected .quiz-opt-radio {
+      border-color: var(--cocoa);
+      background: var(--cocoa);
+    }
+
+    .quiz-opt-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .quiz-nav-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #ebd9c8;
+    }
+
+    .quiz-btn-nav {
+      background: #fff;
+      border: 1.5px solid var(--line);
+      color: var(--cocoa);
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quiz-btn-nav:hover {
+      background: var(--cream);
+      border-color: var(--caramel);
+      color: var(--caramel);
+    }
+
+    .quiz-nav-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Loading / Calculating State */
+    .quiz-loading-box {
+      text-align: center;
+      padding: 50px 20px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .quiz-loading-spinner {
+      font-size: 3.5rem;
+      animation: pulseAndSpin 1.8s infinite ease-in-out;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    @keyframes pulseAndSpin {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(15deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    .quiz-loading-box h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--cocoa);
+      margin-bottom: 8px;
+    }
+
+    .quiz-loading-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .quiz-loading-sparkles {
+      font-size: 1.3rem;
+      margin-top: 16px;
+      letter-spacing: 6px;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Result View Panel */
+    .quiz-result-panel {
+      animation: fadeIn 0.4s ease;
+    }
+
+    .quiz-result-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .match-badge {
+      background: linear-gradient(135deg, #f1c982 0%, #bf7739 100%);
+      color: #3a1a0c;
+      font-weight: 800;
+      font-size: 0.92rem;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 3px 10px rgba(191, 119, 57, 0.28);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quiz-btn-restart {
+      background: #fff;
+      border: 1.5px solid var(--line);
+      color: var(--cocoa);
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quiz-btn-restart:hover {
+      background: var(--cream);
+      border-color: var(--caramel);
+      color: var(--caramel);
+    }
+
+    .quiz-matched-card {
       background: #fff9f0;
       border: 1.5px solid var(--peach);
       border-radius: 24px;
@@ -590,8 +866,8 @@
       grid-template-columns: 0.85fr 1.15fr;
       align-items: center;
       gap: 32px;
-      animation: fadeIn 0.4s ease;
       box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
     }
 
     .mood-cookie-visual {
@@ -613,7 +889,7 @@
 
     .mood-result-info h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.9rem;
+      font-size: 1.85rem;
       color: var(--cocoa);
       margin-bottom: 6px;
     }
@@ -627,11 +903,140 @@
       display: block;
     }
 
+    .quiz-why-match {
+      background: #ffffff;
+      border: 1px solid #ebd9c8;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin: 12px 0 16px;
+    }
+
+    .quiz-why-match strong {
+      display: block;
+      color: var(--caramel);
+      font-size: 0.86rem;
+      margin-bottom: 4px;
+    }
+
+    .quiz-why-match p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--cocoa);
+      line-height: 1.5;
+    }
+
     .mood-reason { color: var(--muted); font-size: 0.94rem; line-height: 1.6; margin-bottom: 18px; }
     .flavor-profile { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .tag-badge { background: #fff; border: 1px solid var(--line); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 500; color: var(--cocoa); }
-    .mood-actions { display: flex; align-items: center; gap: 14px; }
+    .mood-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .mood-price { font-size: 1.35rem; font-weight: 700; color: var(--caramel); }
+
+    .btn-quick-view-quiz {
+      background: #ffffff;
+      color: var(--cocoa);
+      border: 1.5px solid var(--line);
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-quick-view-quiz:hover {
+      background: var(--cream);
+      border-color: var(--caramel);
+      color: var(--caramel);
+      transform: translateY(-2px);
+    }
+
+    /* Runner-up box */
+    .quiz-runnerup-bar {
+      background: #ffffff;
+      border: 1px dashed var(--caramel);
+      border-radius: 18px;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .runnerup-info {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .runnerup-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #6a4b2c;
+      background: #fdf3e7;
+      padding: 2px 10px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+    }
+
+    .runnerup-info h4 {
+      margin: 0 0 2px;
+      color: var(--cocoa);
+      font-size: 1.05rem;
+    }
+
+    .runnerup-info p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .runnerup-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .runnerup-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--caramel);
+    }
+
+    .btn-sm-cart {
+      background: var(--cocoa);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-sm-cart:hover {
+      background: var(--caramel);
+    }
+
+    .btn-sm-view {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--cocoa);
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-sm-view:hover {
+      background: var(--cream);
+      border-color: var(--caramel);
+    }
 
     /* 2. CUSTOM BOX BUILDER SECTION */
     .box-builder-section {
@@ -2667,6 +3072,10 @@
 
     @media (max-width: 820px) {
       .checkout-steps-bar { display: none; }
+      .quiz-options-grid { grid-template-columns: 1fr; }
+      .quiz-matched-card { grid-template-columns: 1fr; gap: 20px; }
+      .quiz-steps-dots { overflow-x: auto; padding-bottom: 6px; }
+      .step-dot { font-size: 0.72rem; }
     }
 
     @media (max-width: 480px) {
@@ -2674,6 +3083,11 @@
       .mood-options-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
       .mood-card-btn { padding: 10px 4px; }
       .mood-sublabel { display: none; }
+      .quiz-option-card { padding: 14px 12px; gap: 12px; }
+      .quiz-opt-icon { font-size: 1.6rem; padding: 8px; }
+      .quiz-q-title { font-size: 1.25rem; }
+      .quiz-runnerup-bar { flex-direction: column; align-items: stretch; text-align: center; }
+      .runnerup-actions { justify-content: center; }
       .builder-container, .mood-box-container, .warming-card { padding: 20px 14px; }
       .baking-timeline { grid-template-columns: 1fr 1fr; gap: 12px; }
       .checkout-form-grid { grid-template-columns: 1fr; }
@@ -2794,36 +3208,110 @@
       </div>
     </div>
 
-    <!-- 1. MOOD-BASED COOKIE MATCHER SECTION -->
+    <!-- 1. 5-STEP INTERACTIVE MOOD & COOKIE MATCHER SECTION -->
     <section id="mood-matcher" class="mood-section container">
       <div class="mood-box-container">
-        <div class="section-head">
-          <span class="section-kicker">Interactive Mood Matcher</span>
-          <h2 class="section-title">วันนี้ใจคุณอยากได้คุกกี้รสไหน? 🔮</h2>
-          <p class="section-desc">เลือกอารมณ์ของคุณตอนนี้ แล้วให้เราจับคู่รสชาติความอร่อยที่ลงตัวที่สุดเพื่อฮีลใจคุณ</p>
+        
+        <!-- Header -->
+        <div class="section-head" style="margin-bottom: 24px;">
+          <span class="section-kicker">Interactive Cookie Matcher</span>
+          <h2 class="section-title">ค้นหาคุกกี้เนื้อคู่ของคุณ (5 คำถาม) 🔮</h2>
+          <p class="section-desc">ตอบคำถาม 5 ข้อง่ายๆ ให้เราคำนวณรสชาติคุกกี้อบสดที่ตรงใจและฮีลอารมณ์ของคุณที่สุด</p>
         </div>
 
-        <div class="mood-options-grid" id="mood-options"></div>
-
-        <div class="mood-result-panel" id="mood-result-box">
-          <div class="mood-cookie-visual">
-            <img id="mood-img" src="images/cookie-cozy/cookie-double-dark.jpg" alt="Recommended Cookie">
+        <!-- Step Indicator & Progress Bar -->
+        <div class="quiz-progress-wrapper" id="quiz-progress-wrapper">
+          <div class="quiz-step-indicator">
+            <span class="quiz-step-badge" id="quiz-step-badge">🔮 คำถามข้อที่ 1 จาก 5: อารมณ์ของคุณ</span>
+            <span class="quiz-step-percent" id="quiz-step-percent">20%</span>
           </div>
-          <div class="mood-result-info">
-            <span class="mood-quote" id="mood-quote">“เติมพลังเข้มข้น ปลุกความสดชื่นในตัวคุณ”</span>
-            <h3 id="mood-title">Double Dark Chocolate Sea Salt</h3>
-            <p class="mood-reason" id="mood-reason">
-              ช็อกโกแลตฟัดจ์เข้มข้น 70% ผสานเกล็ดเกลือทะเล Sea Salt ช่วยกระตุ้นเอนดอร์ฟินและเพิ่มเอเนอร์จี้ ให้คุณกลับมาสดใสพร้อมลุยต่อทันที
-            </p>
-            <div class="flavor-profile" id="mood-tags"></div>
-            <div class="mood-actions">
-              <span class="mood-price" id="mood-price">฿49</span>
-              <button class="btn-primary" onclick="addMoodCookieToCart()">
-                🛒 สั่งรสนี้เลย (+ใส่ตะกร้า)
-              </button>
+          <div class="quiz-progress-track">
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 20%;"></div>
+          </div>
+          <div class="quiz-steps-dots" id="quiz-steps-dots">
+            <span class="step-dot active" id="dot-step-1">1. อารมณ์</span>
+            <span class="step-dot" id="dot-step-2">2. สัมผัส</span>
+            <span class="step-dot" id="dot-step-3">3. ความหวาน</span>
+            <span class="step-dot" id="dot-step-4">4. รสชาติ</span>
+            <span class="step-dot" id="dot-step-5">5. สไตล์</span>
+          </div>
+        </div>
+
+        <!-- Question View Box -->
+        <div class="quiz-question-box" id="quiz-question-box">
+          <div class="quiz-q-header">
+            <h3 class="quiz-q-title" id="quiz-q-title">1. อารมณ์และระดับพลังงานของคุณตอนนี้เป็นแบบไหน?</h3>
+            <p class="quiz-q-desc" id="quiz-q-desc">บอกเล่าความรู้สึกปัจจุบัน เพื่อให้เราค้นหาสูตรคุกกี้ที่ช่วยเติมเต็มหัวใจคุณได้ดีที่สุด</p>
+          </div>
+          
+          <div class="quiz-options-grid" id="quiz-options-grid"></div>
+
+          <div class="quiz-nav-footer">
+            <button class="quiz-btn-nav" id="quiz-btn-back" onclick="goToPrevQuizStep()" style="display: none;">
+              ← ย้อนกลับข้อก่อนหน้า
+            </button>
+            <div class="quiz-nav-hint" id="quiz-nav-hint">
+              💡 คลิกเลือกคำตอบที่ต้องการ ระบบจะบันทึกและเลื่อนไปข้อถัดไปอัตโนมัติ
             </div>
           </div>
         </div>
+
+        <!-- Loading / Calculating Shimmer Box -->
+        <div class="quiz-loading-box" id="quiz-loading-box" style="display: none;">
+          <div class="quiz-loading-spinner">🔮</div>
+          <h3>กำลังค้นหาสูตรคุกกี้เนื้อคู่ของคุณ...</h3>
+          <p>ประมวลผลจาก 5 คำตอบ ผสานคุกกี้โฮมเมด 16 รสชาติอบสดจากเตา</p>
+          <div class="quiz-loading-sparkles">✨ 🍪 🍯 🍫 ✨</div>
+        </div>
+
+        <!-- Result View Panel -->
+        <div class="quiz-result-panel" id="quiz-result-box" style="display: none;">
+          <div class="quiz-result-head">
+            <span class="match-badge" id="quiz-match-badge">✨ 99% Perfect Match คุกกี้เนื้อคู่ของคุณ!</span>
+            <button class="quiz-btn-restart" onclick="resetQuiz()">
+              🔄 ทำแบบทดสอบใหม่
+            </button>
+          </div>
+
+          <div class="quiz-matched-card">
+            <div class="mood-cookie-visual">
+              <img id="mood-img" src="images/cookie-cozy/cookie-double-dark.jpg" alt="Recommended Cookie">
+            </div>
+            <div class="mood-result-info">
+              <span class="mood-quote" id="mood-quote">“เติมพลังเข้มข้น ปลุกความสดชื่นในตัวคุณ”</span>
+              <h3 id="mood-title">Double Dark Chocolate Sea Salt</h3>
+              <div class="quiz-why-match">
+                <strong>💡 ทำไมรสนี้ถึงเป็นเนื้อคู่ของคุณ:</strong>
+                <p id="mood-reason">ช็อกโกแลตฟัดจ์เข้มข้น 70% ผสานเกล็ด Sea Salt ตรงกับความต้องการหวานน้อยและชาร์จพลังของคุณ</p>
+              </div>
+              <div class="flavor-profile" id="mood-tags"></div>
+              <div class="mood-actions">
+                <span class="mood-price" id="mood-price">฿49</span>
+                <button class="btn-primary" id="btn-add-matched-cart" onclick="addMatchedCookieToCart()">
+                  🛒 สั่งรสนี้เลย (+ใส่ตะกร้า)
+                </button>
+                <button class="btn-quick-view-quiz" id="btn-view-matched-modal" onclick="openMatchedCookieModal()">
+                  🔍 ดูรายละเอียดสินค้า
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Runner Up Recommendation Card -->
+          <div class="quiz-runnerup-bar" id="quiz-runnerup-box">
+            <div class="runnerup-info">
+              <span class="runnerup-badge">🥈 รสชาติสำรองที่เข้ากันได้ดี (95% Match)</span>
+              <h4 id="runnerup-title">Lotus Biscoff Molten Lava</h4>
+              <p id="runnerup-desc">อีกหนึ่งตัวเลือกสุดฟินที่ตอบโจทย์ความชอบของคุณ</p>
+            </div>
+            <div class="runnerup-actions">
+              <span class="runnerup-price" id="runnerup-price">฿58</span>
+              <button class="btn-sm-cart" id="btn-runnerup-cart" onclick="addRunnerUpToCart()">+ เพิ่มรสนี้</button>
+              <button class="btn-sm-view" id="btn-runnerup-view" onclick="openRunnerUpModal()">🔍 ดูข้อมูล</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -4209,6 +4697,273 @@
       }
     ];
 
+    // QUIZ DATA & COOKIE PROFILES
+    const QUIZ_QUESTIONS = [
+      {
+        step: 1,
+        title: '1. อารมณ์และระดับพลังงานของคุณตอนนี้เป็นแบบไหน? 🔋',
+        subtitle: 'บอกเล่าความรู้สึกปัจจุบัน เพื่อให้เราค้นหาสูตรคุกกี้ที่ช่วยเติมเต็มหัวใจคุณได้ดีที่สุด',
+        stepLabel: '1. อารมณ์ของคุณ',
+        options: [
+          {
+            id: 'tired',
+            icon: '🔋',
+            title: 'หมดพลัง / เพลียร่าง',
+            desc: 'อยากได้เอเนอร์จี้บูสต์ ดาร์กช็อกโกแลตเข้มข้นให้สดชื่นตื่นตัวทันที',
+            tags: ['energy', 'choco', 'coffee', 'dark']
+          },
+          {
+            id: 'comfort',
+            icon: '💖',
+            title: 'ต้องการฮีลใจ / ปลอบโยน',
+            desc: 'อยากได้ความอบอุ่น ละมุนหัวใจ ไส้ลาวาเยิ้มหรือครีมชีสเปรี้ยวหวาน',
+            tags: ['comfort', 'lava', 'cream-cheese', 'warm']
+          },
+          {
+            id: 'chill',
+            icon: '🧘',
+            title: 'ผ่อนคลาย / สโลว์ไลฟ์',
+            desc: 'ฟีลลิ่งสงบ ชิลล์ๆ จิบชาหอมๆ หรือมัทฉะเกียวโตหวานน้อยสบายอารมณ์',
+            tags: ['chill', 'tea', 'matcha', 'less-sweet']
+          },
+          {
+            id: 'happy',
+            icon: '🥳',
+            title: 'ร่าเริง / แฮปปี้ฉลอง',
+            desc: 'อยากเคี้ยวความสนุก มาร์ชเมลโลว์ยืดๆ คาราเมลล้นๆ ฟินสะใจ',
+            tags: ['happy', 'fun', 'caramel', 'sweet']
+          }
+        ]
+      },
+      {
+        step: 2,
+        title: '2. เนื้อสัมผัส (Texture) ที่ใจคุณเรียกร้องในคำแรก? 🍪',
+        subtitle: 'สัมผัสที่ใช่จะทำให้ทุกคำกลายเป็นช่วงเวลาที่แสนพิเศษ',
+        stepLabel: '2. เนื้อสัมผัส',
+        options: [
+          {
+            id: 'lava',
+            icon: '🌋',
+            title: 'ลาวาเยิ้มทะลักอุ่นๆ',
+            desc: 'กัดปุ๊บไส้เยิ้มไหลละมุนในปาก ความฟินเต็ม 10 ไม่หัก',
+            tags: ['lava']
+          },
+          {
+            id: 'fudge',
+            icon: '🍫',
+            title: 'ซอฟต์คุกกี้ ฟัดจ์นุ่มหนึบ',
+            desc: 'เนื้อแน่น เข้มข้นเต็มชิ้น สไตล์อเมริกันซอฟต์เบคแท้ๆ',
+            tags: ['fudge', 'chewy']
+          },
+          {
+            id: 'mochi',
+            icon: '🍡',
+            title: 'โมจิยืดนุ่ม / ครีมชีสเนียน',
+            desc: 'เคี้ยวหนึบยืดสนุก หรือสัมผัสครีมชีสนิวยอร์กเนียนนุ่มลิ้น',
+            tags: ['mochi', 'cream-cheese']
+          },
+          {
+            id: 'crunch',
+            icon: '🥨',
+            title: 'กรุบกรอบ มีมิติเคี้ยวเพลิน',
+            desc: 'มีท็อปปิ้งเพรตเซล คอร์นเฟลก หรือเส้นคูนาฟากรอบมัน',
+            tags: ['crunchy']
+          }
+        ]
+      },
+      {
+        step: 3,
+        title: '3. ระดับความหวานที่ตรงใจคุณที่สุดวันนี้? 🍯',
+        subtitle: 'เรามีระดับความหวานที่หลากหลายตอบโจทย์ทุกไลฟ์สไตล์',
+        stepLabel: '3. ระดับความหวาน',
+        options: [
+          {
+            id: 'less-sweet',
+            icon: '🍃',
+            title: 'หวานน้อย เข้มลึก (2/5)',
+            desc: 'เน้นรสชาติวัตถุดิบพรีเมียมแท้ๆ ไม่เลี่ยน สายสุขภาพทานสบาย',
+            tags: ['less-sweet']
+          },
+          {
+            id: 'balanced',
+            icon: '🍯',
+            title: 'หวานละมุน กลมกล่อม (3/5)',
+            desc: 'สูตรต้นตำรับ หวานกำลังดี ตัดกับความหอมของเนยสดแท้ฝรั่งเศส',
+            tags: ['balanced']
+          },
+          {
+            id: 'sweet',
+            icon: '🤤',
+            title: 'หวานฉ่ำ ฟินสะใจ (4-5/5)',
+            desc: 'รสชาติเข้มข้นถึงใจ ให้รางวัลตัวเองหลังจากเหน็ดเหนื่อยมาทั้งวัน',
+            tags: ['sweet']
+          },
+          {
+            id: 'any-sweet',
+            icon: '✨',
+            title: 'หวานระดับไหนก็ได้ อร่อยหมด',
+            desc: 'ขอเพียงอร่อยลงตัว พร้อมเปิดรับความฟินทุกระดับความหวาน',
+            tags: ['any-sweet']
+          }
+        ]
+      },
+      {
+        step: 4,
+        title: '4. โทนรสชาติที่คุณอยากได้ยินเสียงในปาก? 🍓',
+        subtitle: 'เลือกคาแรคเตอร์รสชาติที่หัวใจคุณปรารถนามากที่สุด',
+        stepLabel: '4. โทนรสชาติ',
+        options: [
+          {
+            id: 'choco-coffee',
+            icon: '🍫',
+            title: 'ดาร์กช็อกโกแลต & กาแฟสด',
+            desc: 'ช็อกโกแลตแท้เบลเยียม 70% ผงโกโก้พรีเมียม หรือเอสเปรสโซ่เข้มข้น',
+            tags: ['choco', 'coffee']
+          },
+          {
+            id: 'tea-matcha',
+            icon: '🍵',
+            title: 'ชาเขียวมัทฉะ & ชาพรีเมียม',
+            desc: 'มัทฉะเกียวโตแท้ โฮจิฉะคั่วหอมกรุ่น หรือชาเอิร์ลเกรย์ลาเวนเดอร์',
+            tags: ['tea', 'matcha']
+          },
+          {
+            id: 'fruity-cheese',
+            icon: '🍓',
+            title: 'เบอร์รี & ครีมชีสผลไม้',
+            desc: 'บลูเบอร์รี แครนเบอร์รี สตรอว์เบอร์รี เปรี้ยวอมหวานตัดเลี่ยนสดชื่น',
+            tags: ['fruit', 'cream-cheese']
+          },
+          {
+            id: 'caramel-butter',
+            icon: '🧈',
+            title: 'คาราเมลหอมเนย & ถั่วอบกรอบ',
+            desc: 'บิสคอฟคาราเมล เนยน้ำผึ้ง พิสตาชิโอ หรือแมคคาเดเมียหอมมัน',
+            tags: ['caramel', 'nuts']
+          }
+        ]
+      },
+      {
+        step: 5,
+        title: '5. สไตล์การทานหรือข้อจำกัดพิเศษของคุณ? ☕',
+        subtitle: 'ข้อสุดท้ายแล้ว! เพื่อให้เราเลือกคุกกี้ที่ปลอดภัยและอร่อยที่สุดสำหรับคุณ',
+        stepLabel: '5. สไตล์การทาน',
+        options: [
+          {
+            id: 'coffee-pair',
+            icon: '☕',
+            title: 'ทานคู่กาแฟสด / ชาร้อน',
+            desc: 'คุกกี้รสเข้มข้นที่เข้ากับกลิ่นกาแฟดริป ลาเต้ หรือชาเอิร์ลเกรย์ร้อน',
+            tags: ['coffee-pair']
+          },
+          {
+            id: 'milk-pair',
+            icon: '🥛',
+            title: 'ทานคู่นมสดเย็น / ชาผลไม้',
+            desc: 'สัมผัสที่จุ่มนมสดเย็นๆ แล้วละลายในปาก หรือตัดกับชาผลไม้เปรี้ยวหวาน',
+            tags: ['milk-pair']
+          },
+          {
+            id: 'nut-free',
+            icon: '🛡️',
+            title: 'ปลอดภัย 100% ไร้ถั่ว (Nut-Free)',
+            desc: 'ต้องมั่นใจว่าไม่มีส่วนผสมของถั่วทุกชนิด ทานได้อย่างสบายใจไร้กังวล',
+            tags: ['nut-free']
+          },
+          {
+            id: 'no-limit',
+            icon: '🌟',
+            title: 'ไม่มีข้อจำกัด อบสดใหม่ก็พอ!',
+            desc: 'เปิดรับทุกความอร่อย คุกกี้อบสดจากเตาทุกชิ้นคือคำตอบที่ใช่',
+            tags: ['no-limit']
+          }
+        ]
+      }
+    ];
+
+    const COOKIE_QUIZ_PROFILES = {
+      'classic-chocochip': {
+        tags: ['fudge', 'chewy', 'balanced', 'choco', 'milk', 'happy', 'coffee'],
+        quote: '“คลาสสิกเหนือกาลเวลา ความสุขเรียบง่ายที่ลงตัวที่สุด”',
+        reason: 'เนยสดแท้ผสมช็อกโกแลตชิปเบลเยียมแน่นๆ สัมผัสกรอบนอกนุ่มใน หวานละมุนกำลังดี ทานคู่นมสดแล้วอบอุ่นใจ'
+      },
+      'double-dark': {
+        tags: ['energy', 'choco', 'fudge', 'less', 'coffee', 'nut-free', 'dark', 'less-sweet'],
+        quote: '“ชาร์จพลังเข้มข้น ปลุกความสดชื่นในตัวคุณทันที”',
+        reason: 'ช็อกโกแลตฟัดจ์เข้มข้น 70% ผสานเกล็ดเกลือ Sea Salt หวานน้อยลุ่มลึก ช่วยปลุกพลังและเข้ากับกาแฟเข้มๆ'
+      },
+      'red-velvet': {
+        tags: ['comfort', 'lava', 'cream-cheese', 'fruit', 'balanced', 'coffee', 'nut-free'],
+        quote: '“โอบกอดหัวใจด้วยความนุ่มละมุนของครีมชีสลาวา”',
+        reason: 'เรดเวลเวตสอดไส้ครีมชีสนิวยอร์กลาวาเยิ้มๆ รสเปรี้ยวอมหวานช่วยฮีลใจและผ่อนคลายความเครียดได้ทันตา'
+      },
+      'matcha-macadamia': {
+        tags: ['chill', 'tea', 'matcha', 'less', 'coffee', 'crunchy', 'nuts', 'less-sweet'],
+        quote: '“ดื่มด่ำความสงบ ผ่อนคลายกับมัทฉะเกรดพิธีการและแมคคาเดเมีย”',
+        reason: 'มัทฉะอุจิแท้ผสาน L-Theanine ช่วยให้สมองปลอดโปร่ง พร้อมแมคคาเดเมียกรุบกรอบ หวานน้อยกลมกล่อม'
+      },
+      'salted-caramel': {
+        tags: ['happy', 'caramel', 'crunchy', 'sweet', 'coffee', 'fun'],
+        quote: '“เพลิดเพลินกับคาราเมลเคี่ยวสดและเพรตเซลกรุบกรอบ”',
+        reason: 'คาราเมลหอมเนยตัดกับเกลือสมุทรและเพรตเซลกรอบมัน รสชาติเค็มหวานมีมิติ สนุกสนานทุกคำที่เคี้ยว'
+      },
+      'smores': {
+        tags: ['happy', 'choco', 'fudge', 'chewy', 'sweet', 'milk', 'lava', 'fun'],
+        quote: '“ปาร์ตี้ความอร่อย มาร์ชเมลโลว์ยืดสะใจเหมือนนั่งรอบกองไฟ”',
+        reason: 'มาร์ชเมลโลว์ไซส์ยักษ์ยืดเหนียวนุ่ม ดาร์กช็อกโกแลตและแครกเกอร์กรุบกรอบ เติมเต็มช่วงเวลาแห่งความสุข'
+      },
+      'white-choc-berry': {
+        tags: ['comfort', 'fruit', 'cream-cheese', 'balanced', 'milk', 'nut-free', 'happy'],
+        quote: '“สัมผัสความสดชื่น เปรี้ยวอมหวานน่ารักสดใส”',
+        reason: 'สตรอว์เบอร์รีและแครนเบอร์รีแท้ตัดกับไวท์ช็อกโกแลตพรีเมียม สดชื่นละมุนลิ้น ไร้ถั่ว 100% ปลอดภัย'
+      },
+      'thai-tea-white-choc': {
+        tags: ['comfort', 'tea', 'lava', 'sweet', 'milk', 'nut-free'],
+        quote: '“หอมกลิ่นชาไทยแท้ ไส้ไวท์ช็อกโกแลตลาวาเยิ้มละมุน”',
+        reason: 'ชาไทยเกรดพรีเมียมเข้มข้นผสานลาวาหวานมัน หอมเตะจมูก ละลายในปาก เหมาะกับผู้ที่ชอบความหวานมันสไตล์ไทย'
+      },
+      'biscoff-lava': {
+        tags: ['happy', 'caramel', 'lava', 'sweet', 'coffee', 'fun'],
+        quote: '“ฟินเต็มคาราเบลกับคาราเมลบิสคอฟลาวาเยิ้มทะลัก”',
+        reason: 'ไส้บิสคอฟสเปรดเยิ้มทะลัก บิสกิตสเปคูลอสกรุบกรอบ รสชาติเข้มข้นหวานมันถึงใจ ทานคู่กาแฟสดคือที่สุด'
+      },
+      'pistachio-creme': {
+        tags: ['happy', 'caramel', 'crunchy', 'nuts', 'sweet', 'coffee'],
+        quote: '“มิติความกรุบกรอบระดับตำนาน เส้นคูนาฟาทองและพิสตาชิโอ”',
+        reason: 'พิสตาชิโอซิซิลีแท้ผสานเส้นคูนาฟาทอดเนยทองกรอบและครีมเนียนนุ่ม แปลกใหม่และเข้มข้นสะใจ'
+      },
+      'nutella-hazelnut': {
+        tags: ['comfort', 'choco', 'lava', 'nuts', 'sweet', 'milk'],
+        quote: '“สวรรค์ของคนรักนูเทลล่า ลาวาเยิ้มและเฮเซลนัทคั่วทั้งเม็ด”',
+        reason: 'นูเทลล่าแท้ไหลเยิ้มเต็มคำคู่กับเฮเซลนัทคั่วหอมกรอบ ดาร์กช็อกโกแลตเข้มข้น ให้รางวัลตัวเองแบบจัดเต็ม'
+      },
+      'blueberry-cheesecake': {
+        tags: ['comfort', 'fruit', 'cream-cheese', 'mochi', 'balanced', 'coffee', 'nut-free'],
+        quote: '“ชีสเค้กคุกกี้ แยมบลูเบอร์รีป่าและครัมเบิลเนยทอง”',
+        reason: 'ครีมชีสแท้ผสานแยมบลูเบอร์รีป่าเปรี้ยวอมหวาน และเนยครัมเบิลกรุบกรอบ รสสัมผัสเหมือนทานชีสเค้กอบสด'
+      },
+      'earlgrey-lavender': {
+        tags: ['chill', 'tea', 'less', 'coffee', 'crunchy', 'nut-free', 'less-sweet'],
+        quote: '“ผ่อนคลายกลิ่นชาเอิร์ลเกรย์เบอร์กามอตและเกลซเลมอนสดชื่น”',
+        reason: 'ใบชาทไวนิงส์ผสานลาเวนเดอร์ออร์แกนิกและเกลซเลมอนสด หวานน้อยกลิ่นหอมผ่อนคลาย ช่วยปลอบประโลมจิตใจ'
+      },
+      'tiramisu-espresso': {
+        tags: ['energy', 'coffee', 'choco', 'cream-cheese', 'less', 'coffee', 'nut-free', 'less-sweet'],
+        quote: '“เอสเปรสโซ่แท้ผสานมาสคาโปเน่ชีส ปลุกพลังความสดชื่น”',
+        reason: 'คุกกี้กาแฟสดอาราบิก้าสอดไส้ครีมชีสมาสคาโปเนเนียนนุ่ม โรยผงโกโก้เวเนซุเอลา หวานน้อยเข้มลึก'
+      },
+      'hojicha-mochi': {
+        tags: ['chill', 'tea', 'mochi', 'less', 'coffee', 'nut-free', 'less-sweet'],
+        quote: '“เคี้ยวโมจิญี่ปุ่นยืดนุ่ม ผ่อนคลายกับกลิ่นชาคั่วโฮจิฉะเกียวโต”',
+        reason: 'ชาเขียวคั่วเกียวโตกลิ่นสโมคกี้ผสานโมจิญี่ปุ่นยืดหนึบและงาดำคั่วบด หวานน้อยละมุนใจ ช่วยให้จิตใจสงบ'
+      },
+      'honey-butter-corn': {
+        tags: ['happy', 'mochi', 'cream-cheese', 'crunchy', 'balanced', 'milk', 'nut-free', 'caramel'],
+        quote: '“ข้าวโพดหวานฉ่ำ มอสซาเรลลาชีสยืด และคอร์นเฟลกกรุบกรอบ”',
+        reason: 'เนยน้ำผึ้งหอมหวาน ข้าวโพดหวานฉ่ำ ไส้ชีสยืดสะใจ และคอร์นเฟลกกรอบมัน ฟีลสตรีทฟู้ดเกาหลีสุดฮิต'
+      }
+    };
+
     const MOOD_DATA = [
       {
         id: 'tired', icon: '🔋', label: 'หมดพลัง / เพลีย', sublabel: 'ต้องการบูสต์เอเนอร์จี้', cookieId: 'double-dark',
@@ -4233,30 +4988,6 @@
         quote: '“ปาร์ตี้ความอร่อยที่ยืดได้สะใจ!”',
         reason: 'มาร์ชเมลโลว์ยืดๆ ดาร์กช็อกโกแลตและแครกเกอร์กรุบกรอบ เติมเต็มช่วงเวลาแห่งความสุขให้สนุกยิ่งขึ้น',
         tags: ['🔥 มาร์ชเมลโลว์ยืด', '🍪 แครกเกอร์กรุบกรอบ', '✨ ฟีลแคมป์ไฟอบอุ่น']
-      },
-      {
-        id: 'craving', icon: '🤤', label: 'อยากของหวานเยิ้มๆ', sublabel: 'ฟินเต็มคาราเบล', cookieId: 'biscoff-lava',
-        quote: '“ดื่มด่ำความหอมหวานของคาราเมลลาวาที่ไหลเยิ้ม”',
-        reason: 'ไส้คาราเมลบิสคอฟลาวาร้อนๆ ผสานความกรุบกรอบของคุกกี้สเปคูลอส ตอบโจทย์ความฟินระดับ 10/10',
-        tags: ['🍯 บิสคอฟลาวาเยิ้ม', '✨ บิสกิตกรุบกรอบ', '🔥 รสชาติเข้มข้นถึงใจ']
-      },
-      {
-        id: 'focus', icon: '☕', label: 'นั่งทำงาน / สมาธิ', sublabel: 'คู่กาแฟแก้วโปรด', cookieId: 'salted-caramel',
-        quote: '“กลิ่นคาราเมลหอมกรุ่น เคี้ยวเพลินแก้ง่วง”',
-        reason: 'คาราเมลเคี่ยวสดตัดกับเกลือสมุทรและเพรตเซลกรอบมัน เหมาะที่สุดสำหรับทานคู่กับกาแฟดริปหรือลาเต้',
-        tags: ['🥨 เพรตเซลกรุบกรอบ', '🍯 ซอสคาราเมลโฮมเมด', '✨ ทานคู่กาแฟลงตัวสุด']
-      },
-      {
-        id: 'fresh', icon: '🌸', label: 'สดชื่น / ร่าเริง', sublabel: 'เบอร์รีหวานอมเปรี้ยว', cookieId: 'white-choc-berry',
-        quote: '“สัมผัสความสดชื่น เติมความหวานน่ารัก”',
-        reason: 'แครนเบอร์รีและสตรอว์เบอร์รีเปรี้ยวอมหวาน ตัดกับไวท์ช็อกโกแลตเนื้อเนียน ให้ความรู้สึกสดชื่นกระปรี้กระเปร่า',
-        tags: ['🍓 เบอร์รีฟรีซดรายแท้', '🤍 ไวท์ช็อกโกแลตพรีเมียม', '✨ รสเปรี้ยวอมหวาน']
-      },
-      {
-        id: 'cozy-zen', icon: '🍂', label: 'อบอุ่น ละมุนใจ', sublabel: 'สโลว์ไลฟ์ สบายอารมณ์', cookieId: 'hojicha-mochi',
-        quote: '“เคี้ยวโมจินุ่มหนึบ ผ่อนคลายไปกับกลิ่นชาคั่ว”',
-        reason: 'ชาเขียวคั่วโฮจิฉะเกียวโตร่วมกับโมจิญี่ปุ่นยืดเหนียวนุ่มและงาดำคั่ว หอมละมุนใจ ช่วยให้จิตใจสงบ',
-        tags: ['🍵 ชาโฮจิฉะคั่วเกียวโต', '🍡 โมจิญี่ปุ่นยืดนุ่ม', '🍯 หวานน้อยกลมกล่อม']
       }
     ];
 
@@ -4271,6 +5002,12 @@
     let discountRate = 0;
     let appliedCoupon = '';
     let currentMood = MOOD_DATA[0];
+
+    // Mood Quiz State
+    let currentQuizStep = 0; // 0 to 4 (Step 1 to 5)
+    let userQuizAnswers = [null, null, null, null, null];
+    let matchedWinnerCookie = null;
+    let matchedRunnerUpCookie = null;
 
     // Custom Box Builder State
     let boxCapacity = 6;
@@ -4288,8 +5025,7 @@
     // 3. INITIALIZATION
     document.addEventListener('DOMContentLoaded', () => {
       startBatchCountdown();
-      renderMoodButtons();
-      selectMood(MOOD_DATA[0].id);
+      initMoodQuiz();
       renderCookieMenu('all');
       renderBoxSlots();
       updateCartUI();
@@ -4440,51 +5176,303 @@
       }
     }
 
-    // 4. MOOD MATCHER
-    function renderMoodButtons() {
-      const container = document.getElementById('mood-options');
-      container.innerHTML = MOOD_DATA.map(m => `
-        <button class="mood-card-btn ${m.id === currentMood.id ? 'active' : ''}" onclick="selectMood('${m.id}')" id="btn-mood-${m.id}">
-          <span class="mood-icon">${m.icon}</span>
-          <span class="mood-label">${m.label}</span>
-          <span class="mood-sublabel">${m.sublabel}</span>
-        </button>
-      `).join('');
+    // 4. 5-STEP INTERACTIVE MOOD & FLAVOR MATCHER QUIZ LOGIC
+    function initMoodQuiz() {
+      currentQuizStep = 0;
+      userQuizAnswers = [null, null, null, null, null];
+      matchedWinnerCookie = null;
+      matchedRunnerUpCookie = null;
+      renderQuizStep(0);
     }
 
-    function selectMood(moodId) {
-      const mood = MOOD_DATA.find(m => m.id === moodId);
-      if (!mood) return;
-      currentMood = mood;
+    function renderQuizStep(stepIdx) {
+      if (stepIdx < 0 || stepIdx >= QUIZ_QUESTIONS.length) return;
+      currentQuizStep = stepIdx;
+      const q = QUIZ_QUESTIONS[stepIdx];
 
-      document.querySelectorAll('.mood-card-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById(`btn-mood-${moodId}`);
-      if (activeBtn) activeBtn.classList.add('active');
+      // Update progress bar & percentage text
+      const pct = Math.round(((stepIdx + 1) / QUIZ_QUESTIONS.length) * 100);
+      const progressFill = document.getElementById('quiz-progress-fill');
+      const stepBadge = document.getElementById('quiz-step-badge');
+      const stepPercent = document.getElementById('quiz-step-percent');
+      
+      if (progressFill) progressFill.style.width = `${pct}%`;
+      if (stepBadge) stepBadge.innerHTML = `🔮 คำถามข้อที่ ${stepIdx + 1} จาก 5: <strong>${q.stepLabel}</strong>`;
+      if (stepPercent) stepPercent.textContent = `${pct}%`;
 
-      const cookie = COOKIE_DATA.find(c => c.id === mood.cookieId);
-      if (!cookie) return;
+      // Update dots indicator
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.getElementById(`dot-step-${i}`);
+        if (dot) {
+          dot.classList.remove('active', 'completed');
+          if (i - 1 < stepIdx) {
+            dot.classList.add('completed');
+          } else if (i - 1 === stepIdx) {
+            dot.classList.add('active');
+          }
+        }
+      }
 
-      const panel = document.getElementById('mood-result-box');
-      panel.style.opacity = '0';
-      panel.style.transform = 'translateY(6px)';
+      // Update question title and subtitle
+      const qTitle = document.getElementById('quiz-q-title');
+      const qDesc = document.getElementById('quiz-q-desc');
+      if (qTitle) qTitle.textContent = q.title;
+      if (qDesc) qDesc.textContent = q.subtitle;
 
+      // Render options grid
+      const grid = document.getElementById('quiz-options-grid');
+      if (grid) {
+        grid.innerHTML = q.options.map(opt => {
+          const isSelected = userQuizAnswers[stepIdx] === opt.id;
+          return `
+            <div class="quiz-option-card ${isSelected ? 'selected' : ''}" onclick="selectQuizOption(${stepIdx}, '${opt.id}')" id="opt-card-${opt.id}">
+              <div class="quiz-opt-icon">${opt.icon}</div>
+              <div class="quiz-opt-body">
+                <div class="quiz-opt-title">
+                  <span>${opt.title}</span>
+                  <span class="quiz-opt-radio"></span>
+                </div>
+                <div class="quiz-opt-desc">${opt.desc}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Show/hide Back button
+      const backBtn = document.getElementById('quiz-btn-back');
+      if (backBtn) {
+        backBtn.style.display = stepIdx > 0 ? 'inline-flex' : 'none';
+      }
+
+      // Ensure correct view visibility
+      const qBox = document.getElementById('quiz-question-box');
+      const loadingBox = document.getElementById('quiz-loading-box');
+      const resultBox = document.getElementById('quiz-result-box');
+      if (qBox) qBox.style.display = 'block';
+      if (loadingBox) loadingBox.style.display = 'none';
+      if (resultBox) resultBox.style.display = 'none';
+    }
+
+    function selectQuizOption(stepIdx, optionId) {
+      userQuizAnswers[stepIdx] = optionId;
+
+      // Immediate visual feedback on selection
+      const cards = document.querySelectorAll('.quiz-option-card');
+      cards.forEach(c => c.classList.remove('selected'));
+      const activeCard = document.getElementById(`opt-card-${optionId}`);
+      if (activeCard) activeCard.classList.add('selected');
+
+      // Auto-advance with smooth transition
       setTimeout(() => {
-        document.getElementById('mood-img').src = cookie.img;
-        document.getElementById('mood-quote').textContent = mood.quote;
-        document.getElementById('mood-title').textContent = cookie.name;
-        document.getElementById('mood-reason').textContent = mood.reason;
-        document.getElementById('mood-price').textContent = `฿${cookie.price}`;
-        document.getElementById('mood-tags').innerHTML = mood.tags.map(t => `<span class="tag-badge">${t}</span>`).join('');
-
-        panel.style.transition = 'all 0.3s ease';
-        panel.style.opacity = '1';
-        panel.style.transform = 'translateY(0)';
-      }, 150);
+        if (stepIdx < 4) {
+          renderQuizStep(stepIdx + 1);
+        } else {
+          // Reached the 5th and final answer!
+          processAndShowQuizResult();
+        }
+      }, 260);
     }
 
+    function goToPrevQuizStep() {
+      if (currentQuizStep > 0) {
+        renderQuizStep(currentQuizStep - 1);
+      }
+    }
+
+    function processAndShowQuizResult() {
+      const qBox = document.getElementById('quiz-question-box');
+      const loadingBox = document.getElementById('quiz-loading-box');
+      const resultBox = document.getElementById('quiz-result-box');
+
+      if (qBox) qBox.style.display = 'none';
+      if (loadingBox) loadingBox.style.display = 'block';
+      if (resultBox) resultBox.style.display = 'none';
+
+      // Update progress bar to 100% complete
+      const progressFill = document.getElementById('quiz-progress-fill');
+      const stepBadge = document.getElementById('quiz-step-badge');
+      const stepPercent = document.getElementById('quiz-step-percent');
+      if (progressFill) progressFill.style.width = '100%';
+      if (stepBadge) stepBadge.innerHTML = '✨ <strong>ประมวลผลสำเร็จ 5 จาก 5 ข้อ</strong>';
+      if (stepPercent) stepPercent.textContent = '100%';
+
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.getElementById(`dot-step-${i}`);
+        if (dot) {
+          dot.classList.remove('active');
+          dot.classList.add('completed');
+        }
+      }
+
+      // Smooth scroll up to quiz container
+      const section = document.getElementById('mood-matcher');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Show magical calculation for 700ms before revealing
+      setTimeout(() => {
+        calculateAndRenderResults();
+      }, 700);
+    }
+
+    function calculateAndRenderResults() {
+      const q1 = userQuizAnswers[0]; // mood: tired, comfort, chill, happy
+      const q2 = userQuizAnswers[1]; // texture: lava, fudge, mochi, crunch
+      const q3 = userQuizAnswers[2]; // sweetness: less-sweet, balanced, sweet, any-sweet
+      const q4 = userQuizAnswers[3]; // flavor: choco-coffee, tea-matcha, fruity-cheese, caramel-butter
+      const q5 = userQuizAnswers[4]; // dietary/pairing: coffee-pair, milk-pair, nut-free, no-limit
+
+      const scoredCookies = COOKIE_DATA.map(cookie => {
+        const profile = COOKIE_QUIZ_PROFILES[cookie.id] || { tags: [], quote: '', reason: '' };
+        let score = 50;
+
+        // Q1 Mood scoring
+        if (q1 === 'tired' && (profile.tags.includes('energy') || profile.tags.includes('dark') || profile.tags.includes('choco'))) score += 20;
+        if (q1 === 'comfort' && (profile.tags.includes('comfort') || profile.tags.includes('warm') || profile.tags.includes('lava'))) score += 20;
+        if (q1 === 'chill' && (profile.tags.includes('chill') || profile.tags.includes('tea') || cookie.isLessSweet)) score += 20;
+        if (q1 === 'happy' && (profile.tags.includes('happy') || profile.tags.includes('fun') || profile.tags.includes('caramel'))) score += 20;
+
+        // Q2 Texture scoring
+        if (q2 === 'lava' && profile.tags.includes('lava')) score += 25;
+        if (q2 === 'fudge' && (profile.tags.includes('fudge') || profile.tags.includes('chewy'))) score += 25;
+        if (q2 === 'mochi' && (profile.tags.includes('mochi') || profile.tags.includes('cream-cheese'))) score += 25;
+        if (q2 === 'crunch' && profile.tags.includes('crunchy')) score += 25;
+
+        // Q3 Sweetness scoring
+        if (q3 === 'less-sweet') {
+          if (cookie.isLessSweet) score += 25;
+          else score -= 15;
+        } else if (q3 === 'balanced') {
+          if (profile.tags.includes('balanced')) score += 20;
+        } else if (q3 === 'sweet') {
+          if (profile.tags.includes('sweet') || profile.tags.includes('caramel') || profile.tags.includes('lava')) score += 20;
+        } else if (q3 === 'any-sweet') {
+          score += 10;
+        }
+
+        // Q4 Flavor scoring
+        if (q4 === 'choco-coffee' && (profile.tags.includes('choco') || profile.tags.includes('coffee') || cookie.category === 'choco')) score += 25;
+        if (q4 === 'tea-matcha' && (cookie.category === 'tea' || profile.tags.includes('tea') || profile.tags.includes('matcha'))) score += 25;
+        if (q4 === 'fruity-cheese' && (profile.tags.includes('fruit') || profile.tags.includes('cream-cheese') || profile.tags.includes('berry'))) score += 25;
+        if (q4 === 'caramel-butter' && (profile.tags.includes('caramel') || profile.tags.includes('nuts') || profile.tags.includes('butter'))) score += 25;
+
+        // Q5 Pairing / Dietary scoring
+        if (q5 === 'nut-free') {
+          if (!cookie.isNutFree) score -= 150; // Strict filter!
+          else score += 20;
+        } else if (q5 === 'coffee-pair') {
+          if (profile.tags.includes('coffee') || (cookie.drinkPair && (cookie.drinkPair.includes('กาแฟ') || cookie.drinkPair.includes('ชา')))) score += 20;
+        } else if (q5 === 'milk-pair') {
+          if (profile.tags.includes('milk') || (cookie.drinkPair && cookie.drinkPair.includes('นม'))) score += 20;
+        } else if (q5 === 'no-limit') {
+          score += 10;
+        }
+
+        return { cookie, profile, score };
+      });
+
+      scoredCookies.sort((a, b) => b.score - a.score);
+      const winner = scoredCookies[0].cookie;
+      const winnerProfile = scoredCookies[0].profile;
+      const runnerUp = scoredCookies.length > 1 ? scoredCookies[1].cookie : scoredCookies[0].cookie;
+      const runnerUpProfile = scoredCookies.length > 1 ? scoredCookies[1].profile : scoredCookies[0].profile;
+
+      matchedWinnerCookie = winner;
+      matchedRunnerUpCookie = runnerUp;
+
+      // Build dynamic match reasoning based on user's 5 answers
+      const reasons = [];
+      if (q1 === 'tired') reasons.push('ช่วยปลุกความสดชื่นและบูสต์เอเนอร์จี้ทันตา');
+      else if (q1 === 'comfort') reasons.push('มอบความอบอุ่นละมุนใจ ช่วยฮีลความรู้สึก');
+      else if (q1 === 'chill') reasons.push('ให้ความรู้สึกผ่อนคลายและสงบสบายใจ');
+      else if (q1 === 'happy') reasons.push('เพิ่มความสุขและความสนุกในทุกคำ');
+
+      if (q2 === 'lava') reasons.push('เนื้อสัมผัสสอดไส้ลาวาเยิ้มทะลัก');
+      else if (q2 === 'fudge') reasons.push('สัมผัสฟัดจ์นุ่มหนึบเข้มข้น');
+      else if (q2 === 'mochi') reasons.push('ไส้โมจิยืดนุ่มหรือครีมชีสเนียนละมุน');
+      else if (q2 === 'crunch') reasons.push('มิติความกรุบกรอบเคี้ยวเพลิน');
+
+      if (q3 === 'less-sweet') reasons.push('ระดับความหวานน้อยเข้มลึก 2/5');
+      else if (q3 === 'sweet') reasons.push('รสชาติเข้มข้นหวานฉ่ำสะใจ');
+
+      if (q5 === 'coffee-pair') reasons.push('ลงตัวที่สุดเมื่อทานคู่กาแฟสดหรือชาร้อน');
+      else if (q5 === 'milk-pair') reasons.push('จุ่มทานคู่นมสดเย็นสดชื่น');
+      else if (q5 === 'nut-free') reasons.push('มั่นใจได้ 100% ปลอดภัยไร้ถั่ว');
+
+      const dynamicReasonText = `รสนี้ตอบโจทย์คุณ: ${reasons.join(' • ')} — ${winnerProfile.reason || winner.desc}`;
+
+      // Populate Winner View
+      document.getElementById('mood-img').src = winner.img;
+      document.getElementById('mood-img').alt = winner.name;
+      document.getElementById('mood-quote').textContent = winnerProfile.quote || `“รสชาติที่ใช่สำหรับคุณ”`;
+      document.getElementById('mood-title').textContent = winner.name;
+      document.getElementById('mood-reason').textContent = dynamicReasonText;
+      document.getElementById('mood-price').textContent = `฿${winner.price}`;
+
+      // Build tags
+      const tagList = [
+        winner.isLessSweet ? '🍃 หวานน้อย' : '🍯 หวานละมุน',
+        winner.isNutFree ? '🛡️ ไร้ถั่ว 100%' : '🥜 มีถั่วพรีเมียม',
+        `⭐ รีวิว ${winner.rating}`,
+        winner.cal ? `🔥 ${winner.cal}` : null
+      ].filter(Boolean);
+      document.getElementById('mood-tags').innerHTML = tagList.map(t => `<span class="tag-badge">${t}</span>`).join('');
+
+      // Populate Runner-Up View
+      document.getElementById('runnerup-title').textContent = runnerUp.name;
+      document.getElementById('runnerup-desc').textContent = `${runnerUpProfile.quote || runnerUp.desc} (คู่แท้สำรองที่เข้ากับคุณ)`;
+      document.getElementById('runnerup-price').textContent = `฿${runnerUp.price}`;
+
+      // Toggle display
+      const loadingBox = document.getElementById('quiz-loading-box');
+      const resultBox = document.getElementById('quiz-result-box');
+      if (loadingBox) loadingBox.style.display = 'none';
+      if (resultBox) resultBox.style.display = 'block';
+    }
+
+    function resetQuiz() {
+      initMoodQuiz();
+      const section = document.getElementById('mood-matcher');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function addMatchedCookieToCart() {
+      if (matchedWinnerCookie) {
+        addToCart(matchedWinnerCookie.id);
+      }
+    }
+
+    function openMatchedCookieModal() {
+      if (matchedWinnerCookie) {
+        openProductDetailModal(matchedWinnerCookie.id);
+      }
+    }
+
+    function addRunnerUpToCart() {
+      if (matchedRunnerUpCookie) {
+        addToCart(matchedRunnerUpCookie.id);
+      }
+    }
+
+    function openRunnerUpModal() {
+      if (matchedRunnerUpCookie) {
+        openProductDetailModal(matchedRunnerUpCookie.id);
+      }
+    }
+
+    // Legacy Fallback Helpers
+    function renderMoodButtons() {
+      initMoodQuiz();
+    }
+    function selectMood(moodId) {
+      // Legacy compatibility stub
+    }
     function addMoodCookieToCart() {
-      const cookie = COOKIE_DATA.find(c => c.id === currentMood.cookieId);
-      if (cookie) addToCart(cookie.id);
+      addMatchedCookieToCart();
     }
 
     // 5. CUSTOM BOX BUILDER LOGIC
