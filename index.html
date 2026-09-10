@@ -1240,6 +1240,220 @@
     .modal-card { background: #fff; border-radius: 28px; width: min(520px, 100%); padding: 32px; box-shadow: var(--shadow-lg); animation: modalPop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); max-height: 90vh; overflow-y: auto; }
     @keyframes modalPop { 0% { transform: scale(0.92); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
+    /* DEDICATED PRODUCT DETAIL MODAL */
+    .product-modal-card {
+      background: #fff;
+      border-radius: 28px;
+      width: min(840px, 96vw);
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(58, 26, 12, 0.25);
+      animation: modalPop 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+    .product-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: #faf2ea;
+      border: 1px solid var(--line);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--cocoa);
+      transition: var(--transition);
+      z-index: 10;
+    }
+    .product-modal-close:hover {
+      background: var(--caramel);
+      color: #fff;
+      transform: rotate(90deg);
+    }
+    .product-modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 30px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .product-modal-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .product-modal-card {
+        padding: 22px 18px;
+      }
+    }
+    .product-modal-img-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      background: #faf4ed;
+      border: 1.5px solid var(--line);
+      box-shadow: var(--shadow-md);
+    }
+    .product-modal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .product-modal-img-wrap:hover img {
+      transform: scale(1.05);
+    }
+    .product-modal-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #fff;
+      color: var(--caramel);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .product-modal-rating {
+      color: #d97706;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .product-modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.85rem;
+      color: var(--cocoa);
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    .product-modal-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .product-modal-price-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #faf5ee;
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+    }
+    .product-modal-price {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--caramel);
+    }
+    .product-modal-qty-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-full);
+      padding: 4px 14px;
+    }
+    .p-qty-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--cocoa);
+      cursor: pointer;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .p-qty-btn:hover {
+      background: var(--cream);
+      color: var(--caramel);
+    }
+    .p-qty-num {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cocoa);
+      min-width: 24px;
+      text-align: center;
+    }
+    .product-modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 500px) {
+      .product-modal-actions {
+        flex-direction: column;
+      }
+    }
+    .product-modal-pairing {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff9f0;
+      border: 1px dashed var(--caramel);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: var(--cocoa);
+      margin-bottom: 20px;
+    }
+    .product-modal-nutrition {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+    .p-nutri-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cocoa);
+      margin-bottom: 10px;
+    }
+    .p-nutri-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    @media (max-width: 480px) {
+      .p-nutri-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .p-nutri-item {
+      background: #faf6f0;
+      border-radius: 10px;
+      padding: 6px 4px;
+    }
+    .p-nutri-item .lbl {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .p-nutri-item strong {
+      font-size: 0.86rem;
+      color: var(--cocoa);
+    }
+    .p-nutri-allergen {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: #9c4221;
+      line-height: 1.4;
+    }
+
     /* Live Baking Progress Timeline in Checkout Modal */
     .baking-timeline {
       display: grid;
@@ -3656,6 +3870,78 @@
     </div>
   </div>
 
+  <!-- DEDICATED PRODUCT DETAIL / QUICK-VIEW MODAL -->
+  <div class="modal-overlay" id="product-detail-modal" onclick="if(event.target === this) closeProductDetailModal()">
+    <div class="product-modal-card">
+      <button class="product-modal-close" onclick="closeProductDetailModal()" aria-label="ปิด">✕</button>
+
+      <div class="product-modal-grid">
+        <!-- Left: Product Image & Badges -->
+        <div class="product-modal-visual">
+          <div class="product-modal-img-wrap">
+            <img id="p-modal-img" src="images/cookie-cozy/cookie-chocochip.jpg" alt="Cookie Product">
+            <span id="p-modal-badge" class="product-modal-badge">⭐ Best Seller</span>
+          </div>
+        </div>
+
+        <!-- Right: Product Info, Ordering & Nutrition -->
+        <div class="product-modal-info">
+          <div class="product-modal-header">
+            <div class="product-modal-rating" id="p-modal-rating">★★★★★ 4.9 (180+ รีวิว)</div>
+            <h2 class="product-modal-title" id="p-modal-title">Classic Choco Chip</h2>
+            <p class="product-modal-desc" id="p-modal-desc">
+              ช็อกโกแลตชิพคลาสสิก หอมเนยฝรั่งเศส กรอบนอกนุ่มใน
+            </p>
+          </div>
+
+          <!-- Price & Quantity Bar -->
+          <div class="product-modal-price-bar">
+            <div class="product-modal-price" id="p-modal-price">฿45</div>
+            <div class="product-modal-qty-control">
+              <button type="button" class="p-qty-btn" onclick="adjustProductModalQty(-1)">−</button>
+              <span id="p-modal-qty-val" class="p-qty-num">1</span>
+              <button type="button" class="p-qty-btn" onclick="adjustProductModalQty(1)">+</button>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="product-modal-actions">
+            <button class="btn-primary" style="flex: 1; padding: 14px 20px; font-size: 1rem;" onclick="addProductModalToCart()">
+              🛒 ใส่ตะกร้า (<span id="p-modal-btn-total">฿45</span>)
+            </button>
+            <button class="btn-accent" style="flex: 1; padding: 14px 20px; font-size: 1rem;" onclick="buyProductModalNow()">
+              ⚡ สั่งซื้อทันที (Buy Now)
+            </button>
+          </div>
+
+          <!-- Drink Pairing & Highlights -->
+          <div class="product-modal-pairing">
+            <span style="font-size: 1.4rem;">☕</span>
+            <div>
+              <strong>แนะนำทานคู่กับ:</strong>
+              <span id="p-modal-pairing-text">Drip Coffee / นมสดเย็น</span>
+            </div>
+          </div>
+
+          <!-- Accordion / Nutrition Details Tab -->
+          <div class="product-modal-nutrition">
+            <div class="p-nutri-title">ℹ️ คุณค่าทางโภชนาการ (Nutrition per piece)</div>
+            <div class="p-nutri-grid">
+              <div class="p-nutri-item"><span class="lbl">แคลอรี่</span><strong id="p-modal-cal">250 kcal</strong></div>
+              <div class="p-nutri-item"><span class="lbl">โปรตีน</span><strong id="p-modal-pro">4 g</strong></div>
+              <div class="p-nutri-item"><span class="lbl">คาร์บ</span><strong id="p-modal-carb">32 g</strong></div>
+              <div class="p-nutri-item"><span class="lbl">ไขมัน</span><strong id="p-modal-fat">13 g</strong></div>
+              <div class="p-nutri-item"><span class="lbl">น้ำตาล</span><strong id="p-modal-sugar">15 g</strong></div>
+            </div>
+            <div class="p-nutri-allergen" id="p-modal-allergen">
+              ⚠️ มีส่วนผสมของแป้งสาลี เนยแท้ ไข่ไก่ (ไร้ถั่ว 100%)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION -->
   <div class="toast" id="toast-msg">
     <span>🍪</span> <span id="toast-text">เพิ่มลงตะกร้าแล้ว ♡</span>
@@ -4016,24 +4302,97 @@
       toggle.addEventListener('click', () => navlinks.classList.toggle('show'));
       navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('show')));
 
-      // Check URL query param ?product=... or hash #cookie-...
+      // Check URL query param ?product=... or hash #cookie-... and auto-open product modal!
       const urlParams = new URLSearchParams(window.location.search);
       const productQuery = urlParams.get('product');
       const hashQuery = window.location.hash.startsWith('#cookie-') ? window.location.hash.replace('#cookie-', '') : null;
-      const targetId = productQuery || hashQuery;
+      let targetId = productQuery || hashQuery;
       if (targetId) {
-        setTimeout(() => focusAndHighlightCookie(targetId), 400);
+        if (targetId === 'classic-chocochip') targetId = 'chocochip';
+        setTimeout(() => {
+          openProductDetailModal(targetId);
+          focusAndHighlightCookie(targetId);
+        }, 300);
       }
 
       window.addEventListener('hashchange', () => {
         if (window.location.hash.startsWith('#cookie-')) {
-          const cId = window.location.hash.replace('#cookie-', '');
+          let cId = window.location.hash.replace('#cookie-', '');
+          if (cId === 'classic-chocochip') cId = 'chocochip';
+          openProductDetailModal(cId);
           focusAndHighlightCookie(cId);
         }
       });
     });
 
+    let activeProductModalCookie = null;
+    let activeProductModalQty = 1;
+
+    function openProductDetailModal(cookieId) {
+      if (cookieId === 'classic-chocochip') cookieId = 'chocochip';
+      const cookie = COOKIE_DATA.find(c => c.id === cookieId);
+      if (!cookie) return;
+
+      activeProductModalCookie = cookie;
+      activeProductModalQty = 1;
+
+      document.getElementById('p-modal-img').src = cookie.img;
+      document.getElementById('p-modal-img').alt = cookie.name;
+      document.getElementById('p-modal-title').textContent = cookie.name;
+      document.getElementById('p-modal-desc').textContent = cookie.desc;
+      document.getElementById('p-modal-price').textContent = `฿${cookie.price}`;
+      document.getElementById('p-modal-badge').textContent = cookie.badge ? `⭐ ${cookie.badge}` : 'Signature';
+      document.getElementById('p-modal-rating').textContent = `★★★★★ ${cookie.rating} (120+ รีวิวความอร่อย)`;
+      document.getElementById('p-modal-qty-val').textContent = '1';
+      document.getElementById('p-modal-btn-total').textContent = `฿${cookie.price}`;
+
+      document.getElementById('p-modal-pairing-text').textContent = cookie.drinkPair || 'ชาหรือกาแฟแก้วโปรด';
+      document.getElementById('p-modal-cal').textContent = cookie.cal || '-';
+      document.getElementById('p-modal-pro').textContent = cookie.pro || '-';
+      document.getElementById('p-modal-carb').textContent = cookie.carb || '-';
+      document.getElementById('p-modal-fat').textContent = cookie.fat || '-';
+      document.getElementById('p-modal-sugar').textContent = cookie.sugar || '-';
+      document.getElementById('p-modal-allergen').textContent = `⚠️ ข้อมูลสำหรับผู้แพ้อาหาร: ${cookie.allergen || 'มีส่วนผสมของแป้งสาลี เนยแท้'}`;
+
+      document.getElementById('product-detail-modal').classList.add('active');
+      trackCookieView(cookieId);
+    }
+
+    function closeProductDetailModal() {
+      document.getElementById('product-detail-modal').classList.remove('active');
+      activeProductModalCookie = null;
+    }
+
+    function adjustProductModalQty(delta) {
+      activeProductModalQty = Math.max(1, activeProductModalQty + delta);
+      document.getElementById('p-modal-qty-val').textContent = activeProductModalQty;
+      if (activeProductModalCookie) {
+        const total = activeProductModalCookie.price * activeProductModalQty;
+        document.getElementById('p-modal-btn-total').textContent = `฿${total}`;
+      }
+    }
+
+    function addProductModalToCart() {
+      if (!activeProductModalCookie) return;
+      for (let i = 0; i < activeProductModalQty; i++) {
+        addToCart(activeProductModalCookie.id);
+      }
+      closeProductDetailModal();
+      toggleCartDrawer(true);
+      showToast(`🛒 เพิ่ม ${activeProductModalCookie.name} x${activeProductModalQty} ลงตะกร้าแล้ว`);
+    }
+
+    function buyProductModalNow() {
+      if (!activeProductModalCookie) return;
+      for (let i = 0; i < activeProductModalQty; i++) {
+        addToCart(activeProductModalCookie.id);
+      }
+      closeProductDetailModal();
+      handleCheckout();
+    }
+
     function focusAndHighlightCookie(cookieId) {
+      if (cookieId === 'classic-chocochip') cookieId = 'chocochip';
       const targetCookie = COOKIE_DATA.find(c => c.id === cookieId);
       if (!targetCookie) return;
 
@@ -4049,8 +4408,6 @@
           targetCard.classList.remove('cookie-highlight-focus');
           void targetCard.offsetWidth; // trigger reflow
           targetCard.classList.add('cookie-highlight-focus');
-          showToast(`🍪 คุณกำลังดูคุกกี้: ${targetCookie.name}`);
-          trackCookieView(cookieId);
         }
       }, 150);
     }
@@ -4289,7 +4646,7 @@
 
       grid.innerHTML = filtered.map(c => `
         <article class="cookie-card" id="cookie-${c.id}">
-          <div class="cookie-thumb">
+          <div class="cookie-thumb" onclick="openProductDetailModal('${c.id}')" style="cursor: pointer;" title="คลิกเพื่อดูรายละเอียดและสั่งซื้อ">
             <img src="${c.img}" alt="${c.name}" loading="lazy">
             ${c.badge ? `<span class="cookie-card-badge ${c.badgeClass}">${c.badge}</span>` : ''}
             <div class="drink-pairing-tag">
@@ -4297,10 +4654,10 @@
             </div>
           </div>
           <div class="cookie-info">
-            <h3 class="cookie-title">${c.name}</h3>
+            <h3 class="cookie-title" onclick="openProductDetailModal('${c.id}')" style="cursor: pointer;" title="คลิกเพื่อดูรายละเอียด">${c.name}</h3>
             <p class="cookie-desc">${c.desc}</p>
-            <button class="btn-nutrition" onclick="openNutritionModal('${c.id}')">
-              ℹ️ ข้อมูลโภชนาการ (Nutrition Facts)
+            <button class="btn-nutrition" onclick="openProductDetailModal('${c.id}')">
+              🔍 ดูรายละเอียด & สั่งซื้อ ➔
             </button>
             <div class="cookie-meta">
               <span class="cookie-price">฿${c.price}</span>

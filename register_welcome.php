@@ -211,14 +211,14 @@ $emailBody = '<!DOCTYPE html>
           <tr>
             <!-- Cookie 1: Classic Choco Chip -->
             <td width="31%" style="vertical-align: top; background: #fffaf5; border: 1px solid #ebd9c8; border-radius: 14px; overflow: hidden; padding: 10px; text-align: center;">
-              <a href="https://taksin105.github.io/cookie-cozy/?product=classic-chocochip#cookie-classic-chocochip" target="_blank" style="text-decoration: none; display: block;">
+              <a href="https://taksin105.github.io/cookie-cozy/?product=chocochip#cookie-chocochip" target="_blank" style="text-decoration: none; display: block;">
                 <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/cookie-chocochip.jpg" alt="Classic Choco Chip" width="100%" style="display: block; width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-bottom: 8px;">
               </a>
               <span style="display: inline-block; background: #fee2e2; color: #b91c1c; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 6px; margin-bottom: 4px;">
                 ⭐ Best Seller
               </span>
               <div style="font-size: 12px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; min-height: 32px;">
-                <a href="https://taksin105.github.io/cookie-cozy/?product=classic-chocochip#cookie-classic-chocochip" target="_blank" style="color: #3a1a0c; text-decoration: none;">
+                <a href="https://taksin105.github.io/cookie-cozy/?product=chocochip#cookie-chocochip" target="_blank" style="color: #3a1a0c; text-decoration: none;">
                   Classic Choco Chip
                 </a>
               </div>
@@ -229,7 +229,7 @@ $emailBody = '<!DOCTYPE html>
                 ฿45
               </div>
               <div>
-                <a href="https://taksin105.github.io/cookie-cozy/?product=classic-chocochip#cookie-classic-chocochip" target="_blank" style="display: block; background: linear-gradient(135deg, #bf7739 0%, #8c4217 100%); color: #ffffff; text-decoration: none; padding: 7px 6px; border-radius: 18px; font-size: 11px; font-weight: 700; box-shadow: 0 2px 6px rgba(191,119,57,0.3);">
+                <a href="https://taksin105.github.io/cookie-cozy/?product=chocochip#cookie-chocochip" target="_blank" style="display: block; background: linear-gradient(135deg, #bf7739 0%, #8c4217 100%); color: #ffffff; text-decoration: none; padding: 7px 6px; border-radius: 18px; font-size: 11px; font-weight: 700; box-shadow: 0 2px 6px rgba(191,119,57,0.3);">
                   ดูสินค้าชิ้นนี้ ➔
                 </a>
               </div>
