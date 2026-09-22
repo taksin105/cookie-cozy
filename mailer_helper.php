@@ -65,7 +65,7 @@ function sendViaSMTP($host, $port, $user, $pass, $fromEmail, $fromName, $to, $su
     $fromEmail = trim($fromEmail);
     $to = trim($to);
 
-    $timeout = 10;
+    $timeout = 3;
     $socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
     if (!$socket) {
         return "Cannot connect to $host:$port ($errstr)";

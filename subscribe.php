@@ -194,11 +194,15 @@ $emailBody = '<!DOCTYPE html>
 </head>
 <body style="margin: 0; padding: 20px; background-color: #fdfaf6; font-family: \'Prompt\', \'Kanit\', Helvetica, Arial, sans-serif; color: #3a1a0c;">
   <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 20px; border: 1px solid #ebd9c8; overflow: hidden; box-shadow: 0 10px 25px rgba(90,45,24,0.06);">
-    <!-- Header -->
+    <!-- Header Brand Bar -->
     <tr>
-      <td align="center" style="padding: 28px 20px 20px; background: linear-gradient(135deg, #5a2d18 0%, #3a1a0c 100%);">
-        <h1 style="margin: 0; color: #fdfaf6; font-size: 26px; letter-spacing: 1px;">COOKIE COZY</h1>
-        <p style="margin: 4px 0 0; color: #f1c982; font-size: 13px;">Artisan Homemade Bakery • กรอบนอก นุ่มใน</p>
+      <td align="center" style="padding: 24px 20px 18px; background: linear-gradient(135deg, #2c1409 0%, #4a210f 50%, #3a1a0c 100%);">
+        <a href="https://taksin105.github.io/cookie-cozy/" target="_blank" style="text-decoration: none;">
+          <img src="https://taksin105.github.io/cookie-cozy/images/cookie-cozy/logo.png" alt="Cookie Cozy" width="140" style="display: block; border: 0; height: auto; max-height: 48px; object-fit: contain; margin: 0 auto;">
+        </a>
+        <div style="margin-top: 8px; color: #f1c982; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">
+          ★ ARTISAN HOMEMADE BAKERY NEWSLETTER ★
+        </div>
       </td>
     </tr>
 

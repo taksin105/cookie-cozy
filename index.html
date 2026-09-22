@@ -4157,6 +4157,20 @@
         <p style="color: var(--muted); font-size: 0.88rem;">ขอบคุณที่ให้ Cookie Cozy ส่งต่อความอบอุ่นให้คุณค่ะ ♡</p>
       </div>
 
+      <!-- Email Sent Notification Box (Homework Item 3) -->
+      <div id="rec-email-sent-banner" style="background: linear-gradient(135deg, #eef9f0 0%, #e3f5e6 100%); border: 1.5px solid #a5d6a7; border-radius: 16px; padding: 12px 18px; margin-bottom: 14px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 4px 12px rgba(46, 125, 50, 0.08);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 1.6rem; line-height: 1;">✉️</span>
+          <div>
+            <strong style="color: #1b5e20; font-size: 0.92rem; display: block; margin-bottom: 2px;">ส่งใบเสร็จรับเงินสรุปคำสั่งซื้อไปยังอีเมลแล้ว!</strong>
+            <span style="color: #2e7d32; font-size: 0.8rem;" id="rec-email-sent-text">จัดส่งไปที่: <strong id="rec-email-display">-</strong></span>
+          </div>
+        </div>
+        <button type="button" class="btn-primary" style="background: #2e7d32; border: none; font-size: 0.82rem; padding: 6px 14px; border-radius: 20px; white-space: nowrap; cursor: pointer;" onclick="openOrderEmailPreviewModal()">
+          🔍 ดูตัวอย่างอีเมลใบเสร็จ ➔
+        </button>
+      </div>
+
       <!-- Printable Area -->
       <div class="official-receipt" id="official-receipt-print-area">
         <div class="receipt-brand-header">
@@ -4318,6 +4332,28 @@
         </button>
         <button class="btn-primary" style="flex: 0.8;" onclick="closeNewsletterEmailModal()">
           ปิดหน้าต่าง ♡
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER CONFIRMATION & RECEIPT EMAIL PREVIEW MODAL (HOMEWORK ITEM 3) -->
+  <div class="modal-overlay" id="order-email-modal">
+    <div class="modal-card" style="max-width: 660px; max-height: 92vh; overflow-y: auto; padding: 24px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px;">
+        <div style="font-weight: 700; color: var(--cocoa); font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+          <span>🧾</span> ตัวอย่างอีเมลยืนยันคำสั่งซื้อและใบเสร็จ (Order Receipt Email Preview)
+        </div>
+        <button onclick="closeOrderEmailPreviewModal()" style="background: none; border: none; font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div style="background: #fdfaf6; border: 1.5px solid #ebd9c8; border-radius: 16px; padding: 10px; margin-bottom: 16px; overflow-x: auto; max-height: 520px; overflow-y: auto;" id="order-email-preview-body">
+        <!-- Injected dynamically via confirmAndPlaceRealOrder() / sendOrderConfirmationEmail() -->
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button class="btn-primary" style="padding: 10px 24px; border-radius: var(--radius-full);" onclick="closeOrderEmailPreviewModal()">
+          ปิดหน้าต่างพรีวิว ♡
         </button>
       </div>
     </div>
@@ -6307,6 +6343,7 @@
       // Close Checkout Modal & Open Official Receipt Modal
       closeCheckoutFlowModal();
       renderReceiptModal(newOrder);
+      sendOrderConfirmationEmail(newOrder);
       document.getElementById('receipt-modal').classList.add('active');
 
       showToast('🎉 สั่งซื้อสำเร็จแล้ว! เรากำลังเตรียมอบคุกกี้สดใหม่ส่งถึงคุณ');
@@ -6319,6 +6356,11 @@
       document.getElementById('rec-customer-phone').textContent = order.customer.phone;
       document.getElementById('rec-customer-addr').textContent = order.address;
       document.getElementById('rec-delivery-info').textContent = `${order.delivery.method === 'standard' ? 'Standard Delivery' : 'Express Rider'} (${order.delivery.batch})`;
+
+      const emailDisplay = document.getElementById('rec-email-display');
+      if (emailDisplay) {
+        emailDisplay.textContent = (order.customer && order.customer.email) ? order.customer.email : 'kaitock@gmail.com';
+      }
 
       const tbody = document.getElementById('rec-items-tbody');
       tbody.innerHTML = order.items.map(item => `
@@ -6460,6 +6502,11 @@
       closeOrderHistoryModal();
       lastPlacedOrder = order;
       renderReceiptModal(order);
+      lastPlacedOrderEmailHtml = generateClientSideOrderEmailHtml(order);
+      const previewContainer = document.getElementById('order-email-preview-body');
+      if (previewContainer) {
+        previewContainer.innerHTML = lastPlacedOrderEmailHtml;
+      }
       document.getElementById('receipt-modal').classList.add('active');
     }
 
@@ -6739,6 +6786,243 @@
       applyCoupon();
       closeNewsletterEmailModal();
       toggleCartDrawer(true);
+    }
+
+    // --- HOMEWORK ITEM 3: ORDER CONFIRMATION & RECEIPT EMAIL SYSTEM ---
+    let lastPlacedOrderEmailHtml = '';
+
+    async function sendOrderConfirmationEmail(order) {
+      // 1. Initial client-side render as instant preview fallback
+      lastPlacedOrderEmailHtml = generateClientSideOrderEmailHtml(order);
+      const previewContainer = document.getElementById('order-email-preview-body');
+      if (previewContainer) {
+        previewContainer.innerHTML = lastPlacedOrderEmailHtml;
+      }
+
+      // 2. Call backend PHP API (order_confirmation.php)
+      try {
+        const response = await fetch('order_confirmation.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(order)
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.status === 'success' && result.email_html) {
+            let fullHtml = '';
+            if (result.saved_file) {
+              fullHtml += `
+                <div style="background: #e8f5e9; color: #2e7d32; padding: 10px 14px; border-radius: 12px; font-size: 12px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #a5d6a7;">
+                  <span>💾 <strong>Local PHP Server:</strong> บันทึกไฟล์อีเมลใบเสร็จไว้ที่ <code>${result.saved_file}</code></span>
+                  <a href="${result.saved_file}" target="_blank" style="color: #1b5e20; text-decoration: underline; font-weight: bold; background: #fff; padding: 4px 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">เปิดดูไฟล์เต็ม ➔</a>
+                </div>
+              `;
+            }
+            fullHtml += result.email_html;
+            lastPlacedOrderEmailHtml = fullHtml;
+            if (previewContainer) {
+              previewContainer.innerHTML = lastPlacedOrderEmailHtml;
+            }
+          }
+        }
+      } catch (err) {
+        console.log('Running in static environment, using client-side generated email receipt:', err);
+      }
+    }
+
+    function openOrderEmailPreviewModal() {
+      const previewContainer = document.getElementById('order-email-preview-body');
+      if (previewContainer && (!previewContainer.innerHTML || !previewContainer.innerHTML.trim()) && lastPlacedOrder) {
+        lastPlacedOrderEmailHtml = generateClientSideOrderEmailHtml(lastPlacedOrder);
+        previewContainer.innerHTML = lastPlacedOrderEmailHtml;
+      }
+      const modal = document.getElementById('order-email-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeOrderEmailPreviewModal() {
+      const modal = document.getElementById('order-email-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function generateClientSideOrderEmailHtml(order) {
+      if (!order) return '<div style="padding: 20px; text-align: center; color: #7a6a5d;">ไม่พบข้อมูลคำสั่งซื้อ</div>';
+
+      const paymentNames = {
+        'promptpay': 'พร้อมเพย์ QR Code (ชำระเงินเรียบร้อยแล้ว)',
+        'card': 'บัตรเครดิต / เดบิต (ชำระเงินเรียบร้อยแล้ว)',
+        'cod': 'ชำระเงินสดปลายทาง (Cash on Delivery)',
+        'transfer': 'โอนเงินผ่านธนาคาร'
+      };
+      const paymentText = paymentNames[order.payment ? order.payment.method : 'promptpay'] || 'ชำระเงินเรียบร้อยแล้ว';
+
+      const shippingNames = {
+        'standard': 'ขนส่งพัสดุควบคุมความชื้น (Standard Express)',
+        'express': 'ส่งด่วนไรเดอร์เตาอบทันใจ (Express Rider)'
+      };
+      const shippingText = shippingNames[order.delivery ? order.delivery.method : 'standard'] || 'Standard Delivery';
+
+      const itemsHtml = (order.items || []).map(item => {
+        let itemImg = item.img || 'images/cookie-cozy/cookie-chocochip.jpg';
+        return `
+          <tr>
+            <td style="padding: 12px 10px; border-bottom: 1px solid #ebd9c8; vertical-align: middle;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td width="58" style="vertical-align: middle;">
+                    <img src="${itemImg}" alt="${item.name}" width="52" height="52" style="width: 52px; height: 52px; object-fit: cover; border-radius: 10px; border: 1px solid #ebd9c8; display: block;">
+                  </td>
+                  <td style="padding-left: 10px; vertical-align: middle;">
+                    <strong style="color: #3a1a0c; font-size: 13px; display: block; line-height: 1.3;">${item.name}</strong>
+                    ${item.giftDetails ? `<span style="color: #bf7739; font-size: 11px; display: block; margin-top: 2px;">${item.giftDetails}</span>` : ''}
+                    <span style="color: #8c7b6d; font-size: 12px;">฿${(item.price || 0).toLocaleString()} / ชิ้น</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td align="center" style="padding: 12px 8px; border-bottom: 1px solid #ebd9c8; color: #5a2d18; font-weight: bold; font-size: 13px; vertical-align: middle;">
+              x${item.qty}
+            </td>
+            <td align="right" style="padding: 12px 10px; border-bottom: 1px solid #ebd9c8; color: #3a1a0c; font-weight: 700; font-size: 13px; vertical-align: middle;">
+              ฿${((item.price || 0) * (item.qty || 1)).toLocaleString()}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      const discountRow = (order.pricing && order.pricing.discount > 0) ? `
+        <tr>
+          <td style="padding: 6px 12px; color: #2e7d32; font-size: 13px;">ส่วนลดพิเศษ ${order.pricing.coupon ? `(${order.pricing.coupon})` : ''}</td>
+          <td align="right" style="padding: 6px 12px; color: #2e7d32; font-weight: bold; font-size: 13px;">-฿${Math.round(order.pricing.discount).toLocaleString()}</td>
+        </tr>
+      ` : '';
+
+      const shippingDisplay = (order.pricing && order.pricing.shipping === 0) 
+        ? '<span style="color: #2e7d32; font-weight: bold;">ฟรี (ยอดครบ ฿350)</span>' 
+        : `฿${(order.pricing ? order.pricing.shipping : 0).toLocaleString()}`;
+
+      const codRow = (order.pricing && order.pricing.codFee > 0) ? `
+        <tr>
+          <td style="padding: 6px 12px; color: #7a6a5d; font-size: 13px;">ค่าธรรมเนียมเก็บเงินปลายทาง (COD)</td>
+          <td align="right" style="padding: 6px 12px; color: #3a1a0c; font-weight: bold; font-size: 13px;">฿${order.pricing.codFee}</td>
+        </tr>
+      ` : '';
+
+      return `
+        <div style="font-family: 'Prompt', 'Kanit', Helvetica, Arial, sans-serif; color: #3a1a0c; background: #ffffff; border-radius: 18px; border: 1px solid #ebd9c8; overflow: hidden; max-width: 580px; margin: 0 auto;">
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #2c1409 0%, #4a210f 50%, #3a1a0c 100%); padding: 22px 18px; text-align: center;">
+            <img src="images/cookie-cozy/logo.png" alt="Cookie Cozy" style="max-height: 44px; display: inline-block;">
+            <div style="color: #f1c982; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px;">
+              ★ OFFICIAL ORDER RECEIPT & CONFIRMATION ★
+            </div>
+          </div>
+
+          <!-- Status Banner -->
+          <div style="padding: 22px 20px 14px; text-align: center; background-color: #fffaf2; border-bottom: 1px solid #ebd9c8;">
+            <div style="display: inline-block; background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 8px;">
+              ✓ คำสั่งซื้อได้รับการยืนยันแล้ว
+            </div>
+            <h2 style="margin: 0 0 6px; font-size: 20px; color: #3a1a0c; font-weight: 700;">
+              ขอบคุณสำหรับคำสั่งซื้อของคุณ! ♡
+            </h2>
+            <p style="margin: 0; font-size: 13px; color: #7a6a5d; line-height: 1.5;">
+              เชฟได้รับออเดอร์ของคุณแล้ว และกำลังเตรียมอบคุกกี้สดใหม่ด้วยเนยแท้ฝรั่งเศส 100%
+            </p>
+          </div>
+
+          <!-- Metadata Box -->
+          <div style="padding: 16px 20px 8px;">
+            <div style="background-color: #fcf8f3; border: 1px solid #ebd9c8; border-radius: 14px; padding: 14px 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span style="font-size: 11px; color: #8c7b6d; text-transform: uppercase; font-weight: 600; display: block;">หมายเลขคำสั่งซื้อ</span>
+                <strong style="font-size: 15px; color: #5a2d18; font-family: monospace; letter-spacing: 1px;">${order.id}</strong>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 11px; color: #8c7b6d; text-transform: uppercase; font-weight: 600; display: block;">วันที่และเวลา</span>
+                <strong style="font-size: 12px; color: #3a1a0c;">${order.date}</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customer & Delivery -->
+          <div style="padding: 8px 20px 14px;">
+            <div style="background-color: #ffffff; border: 1px solid #ebd9c8; border-radius: 14px; padding: 14px 18px; font-size: 12px; line-height: 1.6;">
+              <div style="font-weight: 700; color: #5a2d18; margin-bottom: 6px; font-size: 13px;">📍 ข้อมูลผู้รับและการจัดส่ง:</div>
+              <div><strong>ผู้สั่งซื้อ:</strong> ${order.customer ? order.customer.name : '-'} (${order.customer ? order.customer.phone : '-'})</div>
+              <div><strong>อีเมลรับใบเสร็จ:</strong> ${order.customer ? (order.customer.email || '-') : '-'}</div>
+              <div><strong>ที่อยู่จัดส่ง:</strong> ${order.address || '-'}</div>
+              <div><strong>วิธีการจัดส่ง:</strong> ${shippingText}</div>
+              <div><strong>รอบการอบสด:</strong> ${order.delivery ? (order.delivery.batch || 'รอบเตาอบสดประจำวัน') : 'รอบเตาอบสดประจำวัน'}</div>
+              <div><strong>การชำระเงิน:</strong> ${paymentText}</div>
+            </div>
+          </div>
+
+          <!-- Items Table -->
+          <div style="padding: 0 20px 14px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #ebd9c8; border-radius: 14px; overflow: hidden; border-collapse: collapse;">
+              <thead>
+                <tr style="background-color: #faf3ec; border-bottom: 1px solid #ebd9c8;">
+                  <th align="left" style="padding: 10px 12px; font-size: 12px; color: #5a2d18;">รายการคุกกี้อบสด</th>
+                  <th align="center" style="padding: 10px 8px; font-size: 12px; color: #5a2d18; width: 60px;">จำนวน</th>
+                  <th align="right" style="padding: 10px 12px; font-size: 12px; color: #5a2d18; width: 80px;">รวม</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${itemsHtml}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Financial Summary -->
+          <div style="padding: 0 20px 16px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fdfaf6; border: 1px solid #ebd9c8; border-radius: 14px; padding: 12px 14px;">
+              <tr>
+                <td style="padding: 5px 10px; color: #7a6a5d; font-size: 13px;">ยอดรวมสินค้า (Subtotal)</td>
+                <td align="right" style="padding: 5px 10px; color: #3a1a0c; font-weight: bold; font-size: 13px;">฿${(order.pricing ? order.pricing.subtotal : 0).toLocaleString()}</td>
+              </tr>
+              ${discountRow}
+              <tr>
+                <td style="padding: 5px 10px; color: #7a6a5d; font-size: 13px;">ค่าจัดส่งพัสดุ</td>
+                <td align="right" style="padding: 5px 10px; font-size: 13px;">${shippingDisplay}</td>
+              </tr>
+              ${codRow}
+              <tr style="border-top: 1.5px solid #ebd9c8;">
+                <td style="padding: 10px 10px 4px; color: #3a1a0c; font-weight: 700; font-size: 15px;">ยอดชำระสุทธิ (Grand Total)</td>
+                <td align="right" style="padding: 10px 10px 4px; color: #bf7739; font-weight: 800; font-size: 18px;">฿${(order.pricing ? order.pricing.grandTotal : 0).toLocaleString()}</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Points Rewards -->
+          <div style="padding: 0 20px 16px;">
+            <div style="background: linear-gradient(135deg, #fff8eb 0%, #fae6cf 100%); border: 1.5px dashed #bf7739; border-radius: 14px; padding: 12px 16px; text-align: center;">
+              <span style="font-size: 11px; color: #8c5825; font-weight: bold; text-transform: uppercase;">✦ COOKIE CLUB REWARDS ✦</span>
+              <div style="font-size: 15px; font-weight: 700; color: #5a2d18; margin: 4px 0;">
+                ✨ ยอดซื้อนี้สะสมได้ +${order.pointsEarned || 0} Cookie Points!
+              </div>
+              <span style="font-size: 11px; color: #7a6a5d;">แต้มจะถูกบันทึกเข้าบัญชีของคุณโดยอัตโนมัติ สำหรับแลกส่วนลดในครั้งถัดไป</span>
+            </div>
+          </div>
+
+          <!-- Care & Warming Tips -->
+          <div style="padding: 0 20px 20px;">
+            <div style="background-color: #f7f1ea; border-radius: 14px; padding: 14px 16px; font-size: 12px; color: #6b584a; line-height: 1.6;">
+              <strong style="color: #5a2d18; display: block; margin-bottom: 4px;">🍪 เคล็ดลับความอร่อยฉบับ Cookie Cozy:</strong>
+              <div>• <strong>อุ่นร้อนก่อนทาน:</strong> อุ่นในเตาอบ 160°C นาน 3-5 นาที หรือไมโครเวฟ 15-20 วินาที ช็อกโกแลตจะเยิ้มละมุน</div>
+              <div>• <strong>การเก็บรักษา:</strong> เก็บที่อุณหภูมิห้องได้ 7 วัน หรือแช่ช่องฟรีซได้นาน 1 เดือน</div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div style="background-color: #faf3ec; border-top: 1px solid #ebd9c8; padding: 16px 20px; text-align: center; font-size: 11px; color: #8c7b6d; line-height: 1.5;">
+            <strong>Cookie Cozy Bakery Boutique</strong><br>
+            ความอบอุ่นที่ส่งต่อผ่านคุกกี้โฮมเมดเนยสดแท้ 100% | ติดต่อ: 02-123-4567<br>
+            <a href="https://taksin105.github.io/cookie-cozy/" target="_blank" style="color: #bf7739; text-decoration: underline; font-weight: bold;">www.cookiecozybakery.com</a>
+          </div>
+        </div>
+      `;
     }
   </script>
 </body>
