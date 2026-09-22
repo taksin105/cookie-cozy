@@ -3127,7 +3127,7 @@
         <a href="#ai-recommendations">🤖 AI แนะนำ</a>
         <a href="#menu">เมนูทั้งหมด</a>
         <a href="#warming-guide">♨️ วิธีอุ่น</a>
-        <a href="#newsletter-section" style="color: var(--caramel); font-weight: 700;">📩 รับข่าวสาร (ลด 15%)</a>
+        <a href="#newsletter-section" style="color: var(--caramel); font-weight: 700;">📩 รับข่าวสาร</a>
       </nav>
 
       <div class="nav-actions">
@@ -3598,10 +3598,10 @@
       <div class="newsletter-card">
         <div class="newsletter-content-grid">
           <div>
-            <div class="newsletter-badge">🎁 NEWSLETTER EXCLUSIVE</div>
-            <h2 class="newsletter-title">รับส่วนลด 15% พร้อมเมนูคุกกี้ที่คัดสรรเฉพาะคุณ</h2>
+            <div class="newsletter-badge">🎁 NEWSLETTER & OFFERS</div>
+            <h2 class="newsletter-title">รับข่าวสาร</h2>
             <p class="newsletter-desc">
-              บอกความชอบของคุณ แล้วรอรับคำแนะนำคุกกี้สูตรลับเฉพาะสไตล์คุณส่งตรงถึงอีเมล พร้อมโค้ดลด 15% ทันทีที่กด Subscribe!
+              กรอกอีเมลเพื่อรับข่าวสารและโปรโมชั่นพิเศษ พร้อมรับคูปองส่วนลด 15% และเมนูคุกกี้ที่คัดสรรเฉพาะคุณทันที!
             </p>
 
             <div class="interest-tags-label">
@@ -3630,7 +3630,7 @@
                 <input type="email" id="nl-email" class="newsletter-input" placeholder="อีเมลของคุณ (เช่น name@email.com) *" required>
               </div>
               <button type="button" class="newsletter-submit-btn" id="nl-submit-btn" onclick="submitNewsletter()">
-                ✨ รับคูปองลด 15% และดูเมนูแนะนำ ➔
+                ✨ กดรับข่าวสาร (รับคูปองลด 15%) ➔
               </button>
               <div style="font-size: 0.78rem; color: #f1c982; opacity: 0.9; text-align: center; margin-top: 4px;">
                 🔒 เราจะส่งเฉพาะคูปองและรสชาติแนะนำที่คุณชอบเท่านั้น ไม่มีสแปม ยกเลิกได้ตลอดเวลา
@@ -4322,7 +4322,7 @@
     <div class="modal-card" style="max-width: 660px; max-height: 92vh; overflow-y: auto; padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px;">
         <div style="font-weight: 700; color: var(--cocoa); font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
-          <span>✉️</span> ส่งอีเมล Personalized Marketing เรียบร้อยแล้ว (PHP Mailer)
+          <span>✉️</span> ตัวอย่างอีเมลรับข่าวสารและคูปองส่วนลด 15% (Newsletter Preview)
         </div>
         <button onclick="closeNewsletterEmailModal()" style="background: none; border: none; font-size: 1.3rem; cursor: pointer;">✕</button>
       </div>
@@ -6778,8 +6778,8 @@
       document.getElementById('newsletter-email-modal').classList.add('active');
 
       submitBtn.disabled = false;
-      submitBtn.textContent = '✨ รับคูปองลด 15% และดูเมนูแนะนำ ➔';
-      showToast('🎉 ส่งอีเมล Personalized Marketing เรียบร้อยแล้ว!');
+      submitBtn.textContent = '✨ กดรับข่าวสาร (รับคูปองลด 15%) ➔';
+      showToast('🎉 ส่งอีเมลรับข่าวสารเรียบร้อยแล้ว!');
     }
 
     function closeNewsletterEmailModal() {
