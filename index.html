@@ -5086,6 +5086,7 @@
       let targetId = productQuery || hashQuery;
       if (targetId) {
         if (targetId === 'classic-chocochip') targetId = 'chocochip';
+        if (targetId === 'redvelvet') targetId = 'red-velvet';
         setTimeout(() => {
           openProductDetailModal(targetId);
           focusAndHighlightCookie(targetId);
@@ -5096,6 +5097,7 @@
         if (window.location.hash.startsWith('#cookie-')) {
           let cId = window.location.hash.replace('#cookie-', '');
           if (cId === 'classic-chocochip') cId = 'chocochip';
+          if (cId === 'redvelvet') cId = 'red-velvet';
           openProductDetailModal(cId);
           focusAndHighlightCookie(cId);
         }
@@ -5107,6 +5109,7 @@
 
     function openProductDetailModal(cookieId) {
       if (cookieId === 'classic-chocochip') cookieId = 'chocochip';
+      if (cookieId === 'redvelvet') cookieId = 'red-velvet';
       const cookie = COOKIE_DATA.find(c => c.id === cookieId);
       if (!cookie) return;
 
