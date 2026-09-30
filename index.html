@@ -5082,11 +5082,18 @@
       // Check URL query param ?product=... or hash #cookie-... and auto-open product modal!
       const urlParams = new URLSearchParams(window.location.search);
       const productQuery = urlParams.get('product');
+      function normalizeCookieId(id) {
+        if (!id) return id;
+        if (id === 'classic-chocochip') return 'chocochip';
+        if (id === 'redvelvet') return 'red-velvet';
+        if (id === 'doubledark') return 'double-dark';
+        if (id === 'matcha') return 'matcha-macadamia';
+        return id;
+      }
+
       const hashQuery = window.location.hash.startsWith('#cookie-') ? window.location.hash.replace('#cookie-', '') : null;
-      let targetId = productQuery || hashQuery;
+      let targetId = normalizeCookieId(productQuery || hashQuery);
       if (targetId) {
-        if (targetId === 'classic-chocochip') targetId = 'chocochip';
-        if (targetId === 'redvelvet') targetId = 'red-velvet';
         setTimeout(() => {
           openProductDetailModal(targetId);
           focusAndHighlightCookie(targetId);
@@ -5095,9 +5102,7 @@
 
       window.addEventListener('hashchange', () => {
         if (window.location.hash.startsWith('#cookie-')) {
-          let cId = window.location.hash.replace('#cookie-', '');
-          if (cId === 'classic-chocochip') cId = 'chocochip';
-          if (cId === 'redvelvet') cId = 'red-velvet';
+          let cId = normalizeCookieId(window.location.hash.replace('#cookie-', ''));
           openProductDetailModal(cId);
           focusAndHighlightCookie(cId);
         }
@@ -5110,6 +5115,8 @@
     function openProductDetailModal(cookieId) {
       if (cookieId === 'classic-chocochip') cookieId = 'chocochip';
       if (cookieId === 'redvelvet') cookieId = 'red-velvet';
+      if (cookieId === 'doubledark') cookieId = 'double-dark';
+      if (cookieId === 'matcha') cookieId = 'matcha-macadamia';
       const cookie = COOKIE_DATA.find(c => c.id === cookieId);
       if (!cookie) return;
 
